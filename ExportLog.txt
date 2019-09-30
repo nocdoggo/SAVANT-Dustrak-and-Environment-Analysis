@@ -1,0 +1,48 @@
+   25-Sep-2019 08:42:22
+
+=============================================================================
+Please enter the name of the input NetCDF file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+What would be the starting time? [x:x2:30]
+3:02:30
+What would be the ending time? [x:x7:30]
+4:37:30
+   26-Sep-2019 15:27:11
+
+=============================================================================
+Please enter the name of the input NetCDF file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+Dustrak info exists.
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 299)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',299,0)">line 299</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+        t = table.readTextFile(filename,otherArgs);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+t = table.readFromFile(filename,varargin);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Downloads\MATLAB3\MATLAB\analysis.m', 84)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Downloads\MATLAB3\MATLAB\analysis.m',84,0)">line 84</a>)
+    dustTable = readtable(dustfile);
+} 
+   30-Sep-2019 14:25:38
+
+=============================================================================
+Please enter the name of the input NetCDF file folder: 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Downloads\MATLAB3\MATLAB\analysis.m', 16)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Downloads\MATLAB3\MATLAB\analysis.m',16,0)">line 16</a>)
+} 

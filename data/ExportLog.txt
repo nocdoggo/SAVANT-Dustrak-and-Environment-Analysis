@@ -1,0 +1,50 @@
+   28-Aug-2019 14:00:16
+
+=============================================================================
+Please enter the name of the input NetCDF file folder: 
+data
+
+No NC file detected @ data, please check in your file explorer!
+
+Unable to delete file: C:\Users\wzhang77\Documents\MATLAB\data\ExportLog.txt
+cd ..
+dir
+
+.                                                          
+..                                                         
+.accelerate                                                
+Cloud                                                      
+Custom Office Templates                                    
+Default.rdp                                                
+GTA                                               
+GitHub                                                     
+Installation.md                                            
+Latest Update On NTRACK Online Tool Backend.md             
+M1n1t4b_18.zip                                             
+MATLAB                                                     
+Mail - [Refund] Request for refund.pdf                     
+My Music                                                   
+My Pictures                                                
+My Videos                                                  
+MySQL Backup and Logging.md                                
+MySQL Backup and Logging.pdf                               
+NTRACK                                                     
+NTRACK22                                                   
+Orders                                                     
+PSP.rar                                     
+USIPTABLE.txt                                              
+Wang 2008-ModelingAgDusts.pdf                              
+desktop.ini                                                
+imp.txt                                                    
+loil                                                       
+passwd.txt                                                 
+qqqqa.png                                                  
+randomsites.txt                                            
+temp.png                                                   
+themeforest-8254575-wordpress-resume-theme-squareroot.zip  
+~$NTRACK_2016_2018_DATA_SIM (Autosaved).xlsx               
+~$NTRACK_2016_2018_DATA_SIM.xlsx                           
+
+
+cd MATLAB
+run
