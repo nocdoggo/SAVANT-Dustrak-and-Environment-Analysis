@@ -653,14 +653,17 @@ if isWindExist == 'Y'
             upper_height = 4.5;
             lower_height = 1.5;
 %             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
-            delta_theta_v = windTable{:, 50} - windTable{:, 48};
+            delta_theta_v = windTable{:, 50} - windTable{:, 48};        % Now using virtual temperatures
             delta_z = upper_height - lower_height;
 %             theta_v = temperatureTable{:, 18};
-            theta_v = windTable{:, 48};
+            theta_v_low = windTable{:, 48};     % Now using virtual temperature
+            theta_v_high = windTable{: 50};
             delta_u = windTable{:, 5} - windTable{:, 3};
             delta_v = windTable{:, 20} - windTable{:, 18};
             u_star_low = ((windTable{:, 78}.*windTable{:, 78}) + (windTable{:, 93}.*windTable{:, 93})).^(0.25);
             u_star_high = ((windTable{:, 80}.*windTable{:, 80}) + (windTable{:, 95}.*windTable{:, 95})).^(0.25);
+            w_theta_v_low = windTable{:, 63};
+            w_theta_v_high = windTable{:, 65};
             
             % Initialization for R_Bulk
             R_Bulk_up = [];
@@ -678,21 +681,33 @@ if isWindExist == 'Y'
                 % Try to calculate the R_Bulk
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
-                    R_Bulk_down(idx, 1) = theta_v(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
                     R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
                 
+                % Try to calculate the lower surface Obukhov length
                 try
-                    L_up_low(idx, 1) = -theta_v(idx, 1) .* ((u_star_up(idx, 1)).^3);
-                    L_down_low(idx, 1) = k * g .* (windTable(idx, 1));
-                    L_low(idx, 1) = L_up(idx, 1) ./ L_down(idx, 1);
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_low(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_high(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
             end
                 
             % Form a csv dump
