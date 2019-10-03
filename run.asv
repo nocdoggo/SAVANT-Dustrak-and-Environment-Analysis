@@ -1633,7 +1633,7 @@ for idx = 1:num_NC
         flag_counter = flag_counter + 1;
     end
     
-    % u'w' Component
+    % w'tc' Component
     % Uconv Tower
     try
         u_w__1_5m_uconv = ncread(currFile,'u_w__1_5m_uconv');
@@ -1780,153 +1780,6 @@ for idx = 1:num_NC
         flag_counter = flag_counter + 1;
     end
 
-    % w'tc' Component
-    % Uconv Tower
-    try
-        v_w__1_5m_uconv = ncread(currFile,'v_w__1_5m_uconv');
-    catch
-        errmsg('red','v_w__1_5m_uconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__1_5m_uconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__3m_uconv = ncread(currFile,'v_w__3m_uconv');
-    catch
-        errmsg('red','v_w__3m_uconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__3m_uconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__4_5m_uconv = ncread(currFile,'v_w__4_5m_uconv');
-    catch
-        errmsg('red','v_w__4_5m_uconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__4_5m_uconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__6m_uconv = ncread(currFile,'v_w__6m_uconv');
-    catch
-        errmsg('red','v_w__6m_uconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__6m_uconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__10m_uconv = ncread(currFile,'v_w__10m_uconv');
-    catch
-        errmsg('red','v_w__10m_uconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__10m_uconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    
-    % Lconv Tower
-    try
-        v_w__1_5m_lconv = ncread(currFile,'v_w__1_5m_lconv');
-    catch
-        errmsg('red','v_w__1_5m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__1_5m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__3m_lconv = ncread(currFile,'v_w__3m_lconv');
-    catch
-        errmsg('red','v_w__3m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__3m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__4_5m_lconv = ncread(currFile,'v_w__4_5m_lconv');
-    catch
-        errmsg('red','v_w__4_5m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__4_5m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__6m_lconv = ncread(currFile,'v_w__6m_lconv');
-    catch
-        errmsg('red','v_w__6m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__6m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__8_5m_lconv = ncread(currFile,'v_w__8_5m_lconv');
-    catch
-        errmsg('red','v_w__8_5m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__8_5m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__10m_lconv = ncread(currFile,'v_w__10m_lconv');
-    catch
-        errmsg('red','v_w__10m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__10m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__15m_lconv = ncread(currFile,'v_w__15m_lconv');
-    catch
-        errmsg('red','v_w__15m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__15m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
-    try
-        v_w__20m_lconv = ncread(currFile,'v_w__20m_lconv');
-    catch
-        errmsg('red','v_w__20m_lconv does not exist in the following file: \n');
-        errmsg('blue', '      %s\n',currFile)
-        v_w__20m_lconv = 0.* ones(len_Table,1);
-        errmsg('Magenta','The data has been saved as 0!\n')
-        fprintf('\n')
-        flag_counter = flag_counter + 1;
-    end
-    
     
     
     
@@ -2053,9 +1906,7 @@ for idx = 1:num_NC
         tempT_3D2 = table(CDT_time, bar_fence, u_1_5m_uconv, u_3m_uconv, u_4_5m_uconv, u_6m_uconv, u_10m_uconv, bar_fence, u_1_5m_lconv, u_3m_lconv, u_4_5m_lconv, u_6m_lconv, u_8_5m_lconv, u_10m_lconv, u_15m_lconv, u_20m_lconv, bar_fence, v_1_5m_uconv, v_3m_uconv, v_4_5m_uconv, v_6m_uconv, v_10m_uconv, bar_fence, v_1_5m_lconv, v_3m_lconv, v_4_5m_lconv, v_6m_lconv, v_8_5m_lconv, v_10m_lconv, v_15m_lconv, v_20m_lconv, ...
             bar_fence, w_1_5m_uconv, w_3m_uconv, w_4_5m_uconv, w_6m_uconv, w_10m_uconv, bar_fence, w_1_5m_lconv, w_3m_lconv, w_4_5m_lconv, w_6m_lconv, w_8_5m_lconv, w_10m_lconv, w_15m_lconv, w_20m_lconv, ...
             bar_fence, tc_1_5m_uconv, tc_3m_uconv, tc_4_5m_uconv, tc_6m_uconv, tc_10m_uconv, bar_fence, tc_1_5m_lconv, tc_3m_lconv, tc_4_5m_lconv, tc_6m_lconv, tc_8_5m_lconv, tc_10m_lconv, tc_15m_lconv, tc_20m_lconv, ...
-            bar_fence, w_tc__1_5m_uconv, w_tc__3m_uconv, w_tc__4_5m_uconv, w_tc__6m_uconv, w_tc__10m_uconv, bar_fence, w_tc__1_5m_lconv, w_tc__3m_lconv, w_tc__4_5m_lconv, w_tc__6m_lconv, w_tc__8_5m_lconv, w_tc__10m_lconv, w_tc__15m_lconv, w_tc__20m_lconv,...
-            bar_fence, u_w__1_5m_uconv, u_w__3m_uconv, u_w__4_5m_uconv, u_w__6m_uconv, u_w__10m_uconv, bar_fence, u_w__1_5m_lconv, u_w__3m_lconv, u_w__4_5m_lconv, u_w__6m_lconv, u_w__8_5m_lconv, u_w__10m_lconv, u_w__15m_lconv, u_w__20m_lconv,...
-            bar_fence, v_w__1_5m_uconv, v_w__3m_uconv, v_w__4_5m_uconv, v_w__6m_uconv, v_w__10m_uconv, bar_fence, v_w__1_5m_lconv, v_w__3m_lconv, v_w__4_5m_lconv, v_w__6m_lconv, v_w__8_5m_lconv, v_w__10m_lconv, v_w__15m_lconv, v_w__20m_lconv);
+            bar_fence, w_tc__1_5m_uconv, w_tc__3m_uconv, w_tc__4_5m_uconv, w_tc__6m_uconv, w_tc__10m_uconv, bar_fence, w_tc__1_5m_lconv, w_tc__3m_lconv, w_tc__4_5m_lconv, w_tc__6m_lconv, w_tc__8_5m_lconv, w_tc__10m_lconv, w_tc__15m_lconv, w_tc__20m_lconv);
         
         % Format Table Names
         table_name_dir = strcat(currDate, '_Direction.csv');

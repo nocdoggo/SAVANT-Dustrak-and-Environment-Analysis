@@ -652,7 +652,7 @@ if isWindExist == 'Y'
         if iteration == 1
             upper_height = 4.5;
             lower_height = 1.5;
-            delta_theta_v = temperatureTable{:, 50} - temperatureTable{:, 48};  % tc_4.5 - tc_1.5
+            delta_theta_v = temperatureTable{:, 50} - temperatureTable{:, 48};
             delta_z = upper_height - lower_height;
             theta_v = temperatureTable{:, 48};
             delta_u = windTable{:, 5} - windTable{:, 3};
