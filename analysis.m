@@ -652,20 +652,26 @@ if isWindExist == 'Y'
         if iteration == 1
             upper_height = 4.5;
             lower_height = 1.5;
-            delta_theta_v = temperatureTable{:, 50} - temperatureTable{:, 48};  % tc_4.5 - tc_1.5
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 50} - windTable{:, 48};
             delta_z = upper_height - lower_height;
-            theta_v = temperatureTable{:, 48};
+%             theta_v = temperatureTable{:, 18};
+            theta_v = windTable{:, 48};
             delta_u = windTable{:, 5} - windTable{:, 3};
             delta_v = windTable{:, 20} - windTable{:, 18};
-            u_star = ((windTable{:, 3}.*windTable{:, 3}) + (windTable{:, 18}.*windTable{:, 18})).^(0.25);
+            u_star_low = ((windTable{:, 78}.*windTable{:, 78}) + (windTable{:, 93}.*windTable{:, 93})).^(0.25);
+            u_star_high = ((windTable{:, 80}.*windTable{:, 80}) + (windTable{:, 95}.*windTable{:, 95})).^(0.25);
             
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
             R_Bulk = [];
-            L_up = [];
-            L_down = [];
-            L = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_low = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_high = [];
         
             for idx = 1:length(CDT_Time)
             
@@ -680,11 +686,11 @@ if isWindExist == 'Y'
                 end
                 
                 try
-                    L_up(idx, 1) = -theta_v(idx, 1) .* ((u_star(idx, 1)).^3);
-                    L_down(idx, 1) = k * g .* (windTable(idx, 1));
-                    L(idx, 1) = L_up(idx, 1) ./ L_down(idx, 1);
+                    L_up_low(idx, 1) = -theta_v(idx, 1) .* ((u_star_up(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* (windTable(idx, 1));
+                    L_low(idx, 1) = L_up(idx, 1) ./ L_down(idx, 1);
                 catch
-                    errmsg('red','Obukhov length is not calculatable @: \n');
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
             end

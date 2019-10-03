@@ -652,12 +652,15 @@ if isWindExist == 'Y'
         if iteration == 1
             upper_height = 4.5;
             lower_height = 1.5;
-            delta_theta_v = temperatureTable{:, 50} - temperatureTable{:, 48};
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 50} - windTable{:, 48};
             delta_z = upper_height - lower_height;
-            theta_v = temperatureTable{:, 48};
+%             theta_v = temperatureTable{:, 18};
+            theta_v = windTable{:, 48};
             delta_u = windTable{:, 5} - windTable{:, 3};
             delta_v = windTable{:, 20} - windTable{:, 18};
-            u_star = ((windTable{:, 3}.*windTable{:, 3}) + (windTable{:, 18}.*windTable{:, 18})).^(0.25);
+            u_star_low = ((windTable{:, 78}.*windTable{:, 78}) + (windTable{:, 93}.*windTable{:, 93})).^(0.25);
+            u_star_high = ((windTable{:, 80}.*windTable{:, 80}) + (windTable{:, 95}.*windTable{:, 95})).^(0.25);
             
             % Initialization for R_Bulk
             R_Bulk_up = [];
