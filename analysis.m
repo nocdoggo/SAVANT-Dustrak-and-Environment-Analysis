@@ -657,7 +657,7 @@ if isWindExist == 'Y'
             delta_z = upper_height - lower_height;
 %             theta_v = temperatureTable{:, 18};
             theta_v_low = windTable{:, 48};     % Now using virtual temperature
-            theta_v_high = windTable{: 50};
+            theta_v_high = windTable{:, 50};
             delta_u = windTable{:, 5} - windTable{:, 3};
             delta_v = windTable{:, 20} - windTable{:, 18};
             u_star_low = ((windTable{:, 78}.*windTable{:, 78}) + (windTable{:, 93}.*windTable{:, 93})).^(0.25);
@@ -712,7 +712,7 @@ if isWindExist == 'Y'
                 
             % Form a csv dump
             tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk);
-            table_name_uconv_bulk = strcat(targetDate, '_bulk_uconv_1.5-4.5.xlsx');
+            table_name_uconv_bulk = strcat(targetDate, '_bulk_uconv_1.5-4.5.csv');
             writetable(tempT_uconv_bulk, table_name_uconv_bulk);
         elseif iteration == 2
             upper_height = 4.5;
@@ -743,7 +743,7 @@ if isWindExist == 'Y'
             
             % Form a csv dump
             tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk);
-            table_name_lconv_bulk1 = strcat(targetDate, '_bulk_lconv_1.5-4.5.xlsx');
+            table_name_lconv_bulk1 = strcat(targetDate, '_bulk_lconv_1.5-4.5.csv');
             writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
         elseif iteration == 3
             upper_height = 8.5;
@@ -773,7 +773,7 @@ if isWindExist == 'Y'
             end
             % Form a csv dump
             tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk);
-            table_name_lconv_bulk2 = strcat(targetDate, '_bulk_lconv_4.5-8.5.xlsx');
+            table_name_lconv_bulk2 = strcat(targetDate, '_bulk_lconv_4.5-8.5.csv');
             writetable(tempT_lconv_bulk2, table_name_lconv_bulk2);
         end
         
