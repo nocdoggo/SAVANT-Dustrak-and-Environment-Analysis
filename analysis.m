@@ -13,7 +13,7 @@ disp(START_TIME)
 % Prompt User Selection
 fprintf('=============================================================================');
 fprintf('\n');
-file_dir = input('Please enter the name of the input NetCDF file folder: \n', 's');
+file_dir = input('Please enter the name of the input environmental file folder: \n', 's');
 
 % Catch all .csv files
 csv_group = dir(strcat(file_dir, filesep, '*.csv'));
@@ -40,6 +40,7 @@ dateStamp = str2double(targetDate);     % Use str2double to increase performance
 speedfile = strcat(file_dir, filesep, strcat(targetDate, '_Speed.csv'));
 directionfile = strcat(file_dir, filesep, strcat(targetDate, '_Direction.csv'));
 temperaturefile = strcat(file_dir, filesep, strcat(targetDate, '_Temperature.csv'));
+windfile = strcat(file_dir, filesep, strcat(targetDate, '_3DWind.csv'));
 
 
 % Catch if see if the file exist
@@ -51,7 +52,7 @@ else
     fprintf('Wind speed variable does not exist.\n');
 end
 
-if isfile(directionfile)        % Check speed file at first
+if isfile(directionfile)        % Check direction file at first
     isDirectionExist = 'Y';
     fprintf('Wind direction variable exists.\n');
 else
@@ -59,12 +60,20 @@ else
     fprintf('Wind direction variable does not exist.\n');
 end
 
-if isfile(temperaturefile)        % Check speed file at first
+if isfile(temperaturefile)        % Check temperature file at first
     isTempExist = 'Y';
     fprintf('Temperature variable exists.\n');
 else
     isTempExist = 'N';
     fprintf('Temperature variable does not exist.\n');
+end
+
+if isfile(windfile)        % Check 3DWind file at first
+    isWindExist = 'Y';
+    fprintf('3DWind variable exists.\n');
+else
+    isWindExist = 'N';
+    fprintf('3DWind variable does not exist.\n');
 end
 
 % Find Dustrak File
@@ -173,6 +182,7 @@ end
 speedTable = readtable(speedfile);
 directionTable = readtable(directionfile);
 temperatureTable = readtable(temperaturefile);
+windTable = readtable(windfile);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Speed work
@@ -612,6 +622,146 @@ if isTempExist == 'Y'
     
 end
 
+close all
+
+if isWindExist == 'Y'
+    
+    % Split out time
+    CDT_Time = windTable{:,1};
+    
+    % Generate empty column
+    bar_fence = repmat('|',length(CDT_Time),1);
+    
+%     % Logger 
+%     uconvU = {};
+%     uconvV = {};
+%     uconvW = {};
+%     
+%     lconvU = {};
+%     lconvV = {};
+%     lconvW = {};
+    
+    % Define constant values
+    g = 9.8;
+    R_critical = 0.25;
+    k = 0.4;
+    
+    
+    % Bulk Richardson Number
+    for iteration = 1:3     % As for the theta_v, we are using the lower surface temp
+        if iteration == 1
+            upper_height = 4.5;
+            lower_height = 1.5;
+            delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_z = upper_height - lower_height;
+            theta_v = temperatureTable{:, 18};
+            delta_u = windTable{:, 5} - windTable{:, 3};
+            delta_v = windTable{:, 20} - windTable{:, 18};
+            u_star = ((windTable{:, 3}.*windTable{:, 3}) + (windTable{:, 18}.*windTable{:, 18})).^(0.25);
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk = [];
+            L_up = [];
+            L_down = [];
+            L = [];
+        
+            for idx = 1:length(CDT_Time)
+            
+                % Try to calculate the R_Bulk
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                try
+                    L_up(idx, 1) = -theta_v(idx, 1) .* ((u_star(idx, 1)).^3);
+                    L_down(idx, 1) = k * g .* (windTable(idx, 1));
+                    L(idx, 1) = L_up(idx, 1) ./ L_down(idx, 1);
+                catch
+                    errmsg('red','Obukhov length is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+                
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk);
+            table_name_uconv_bulk = strcat(targetDate, '_bulk_uconv_1.5-4.5.xlsx');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+        elseif iteration == 2
+            upper_height = 4.5;
+            lower_height = 1.5;
+            delta_theta_v = temperatureTable{:, 26} - temperatureTable{:, 25};
+            delta_z = upper_height - lower_height;
+            theta_v = temperatureTable{:, 25};
+            delta_u = windTable{:, 11} - windTable{:, 9};
+            delta_v = windTable{:, 26} - windTable{:, 24};
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk = [];
+        
+            for idx = 1:length(CDT_Time)
+            
+                % Try to calculate the R_Bulk
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+            
+            % Form a csv dump
+            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk);
+            table_name_lconv_bulk1 = strcat(targetDate, '_bulk_lconv_1.5-4.5.xlsx');
+            writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
+        elseif iteration == 3
+            upper_height = 8.5;
+            lower_height = 4.5;
+            delta_theta_v = temperatureTable{:, 27} - temperatureTable{:, 26};
+            delta_z = upper_height - lower_height;
+            theta_v = temperatureTable{:, 26};
+            delta_u = windTable{:, 13} - windTable{:, 11};
+            delta_v = windTable{:, 28} - windTable{:, 26};
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk = [];
+        
+            for idx = 1:length(CDT_Time)
+            
+                % Try to calculate the R_Bulk
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+            % Form a csv dump
+            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk);
+            table_name_lconv_bulk2 = strcat(targetDate, '_bulk_lconv_4.5-8.5.xlsx');
+            writetable(tempT_lconv_bulk2, table_name_lconv_bulk2);
+        end
+        
+    end
+    
+    
+    
+end
+
 % Start Time
 varStart = input('What would be the starting time? [x:x2:30]\n', 's');
 varEnd = input('What would be the ending time? [x:x7:30]\n', 's');
@@ -649,31 +799,31 @@ ylabel('Dust Concentration')
 title(strcat(num2str(dateStamp), ' Data'))
 legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
 
-figure  % Upper average
-yyaxis left
-plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
-xlabel('CDT Time')
-ylabel('Uower Convergence Tower Wind Speed AVG')
+% figure  % Upper average
+% yyaxis left
+% plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+% xlabel('CDT Time')
+% ylabel('Uower Convergence Tower Wind Speed AVG')
+% 
+%     
+% yyaxis right
+% plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+% ylabel('Dust Concentration')
+% title(strcat(num2str(dateStamp), ' Data'))
+% legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
 
-    
-yyaxis right
-plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-ylabel('Dust Concentration')
-title(strcat(num2str(dateStamp), ' Data'))
-legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
-
-figure  % Lower average
-yyaxis left
-plot(CDT_Time(varStartIdx:varEndIdx), lconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), lconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
-xlabel('CDT Time')
-ylabel('Lower Convergence Tower Wind Speed AVG')
-
-    
-yyaxis right
-plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-ylabel('Dust Concentration')
-title(strcat(num2str(dateStamp), ' Data'))
-legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+% figure  % Lower average
+% yyaxis left
+% plot(CDT_Time(varStartIdx:varEndIdx), lconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), lconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+% xlabel('CDT Time')
+% ylabel('Lower Convergence Tower Wind Speed AVG')
+% 
+%     
+% yyaxis right
+% plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+% ylabel('Dust Concentration')
+% title(strcat(num2str(dateStamp), ' Data'))
+% legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
     
 % Temp
 figure
@@ -712,7 +862,7 @@ yyaxis right
 plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
 ylabel('Dust Concentration')
 title(strcat(num2str(dateStamp), ' Data'))
-legend('1.5m', '3.0m', '4.5m', '6.0m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+legend('0.2m', '1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
 
 figure
 yyaxis left
@@ -724,7 +874,7 @@ yyaxis right
 plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
 ylabel('Dust Concentration')
 title(strcat(num2str(dateStamp), ' Data'))
-legend('1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+legend('0.2m', '1.5m', '3.0m', '4.5m', '6m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
    
 
 diary off;
