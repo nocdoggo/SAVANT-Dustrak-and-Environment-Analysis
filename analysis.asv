@@ -679,7 +679,6 @@ if isWindExist == 'Y'
             Term_3_high = [];
         
             % Try to calculate the R_Bulk
-            for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
@@ -710,10 +709,9 @@ if isWindExist == 'Y'
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
-            end
                 
             % Form a csv dump
-            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high);
             table_name_uconv_bulk = strcat(targetDate, '_calculation_uconv_1.5-4.5.csv');
             writetable(tempT_uconv_bulk, table_name_uconv_bulk);
         elseif iteration == 2
@@ -746,7 +744,6 @@ if isWindExist == 'Y'
             Term_3_high = [];
         
             % Try to calculate the R_Bulk
-            for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
@@ -777,10 +774,9 @@ if isWindExist == 'Y'
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
-            end
             
             % Form a csv dump
-            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high);
             table_name_lconv_bulk1 = strcat(targetDate, '_calculation_lconv_1.5-4.5.csv');
             writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
         elseif iteration == 3
@@ -813,7 +809,6 @@ if isWindExist == 'Y'
             Term_3_high = [];
         
             % Try to calculate the R_Bulk
-            for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
@@ -844,10 +839,9 @@ if isWindExist == 'Y'
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
-            end
                 
             % Form a csv dump
-            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high);
             table_name_lconv_bulk2 = strcat(targetDate, '_calculation_lconv_4.5-8.5.csv');
             writetable(tempT_lconv_bulk2, table_name_lconv_bulk2);
         end
