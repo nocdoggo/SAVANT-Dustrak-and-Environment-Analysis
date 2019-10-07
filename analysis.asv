@@ -729,8 +729,7 @@ if isWindExist == 'Y'
             
             % Dump for calculation
             tempT_uconv_dump = table(CDT_Time, bar_fence, theta_v_low, theta_v_high, w_theta_v_low, w_theta_v_high, u_lower, u_upper, v_lower, v_upper, u_w_prime_low, u_w_prime_high, v_w_prime_low, v_w_prime_high);
-            table_name_uconv_dump = strcat(targetDate, '_dump_uconv_1.5-4.5.csv');
-            writetable(tempT_uconv_dump, table_name_uconv_dump);
+            table_name_uconv_dump = 
             
         elseif iteration == 2
             upper_height = 4.5;
