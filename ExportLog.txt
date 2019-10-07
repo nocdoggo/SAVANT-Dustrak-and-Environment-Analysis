@@ -15774,3 +15774,22 @@ Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback
 opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',688,0)
 opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',688,0)
 analysis
+   04-Oct-2019 15:46:41
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+3DWind variable exists.
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+What would be the starting time? [x:x2:30]
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 862)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',862,0)">line 862</a>)
+} 
+Your MATLAB session has timed out.  All license keys have been returned.
