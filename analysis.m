@@ -35,6 +35,8 @@ fprintf('\n');
 % Use string parameter to make sure no missing 0 in front of the date
 targetDate = input('Please enter the date which you would like to analyze: [MMDD] \n', 's');
 dateStamp = str2double(targetDate);     % Use str2double to increase performance
+fprintf('=============================================================================');
+fprintf('\n');
 
 % Create file list
 speedfile = strcat(file_dir, filesep, strcat(targetDate, '_Speed.csv'));
@@ -46,34 +48,42 @@ windfile = strcat(file_dir, filesep, strcat(targetDate, '_3DWind.csv'));
 % Catch if see if the file exist
 if isfile(speedfile)        % Check speed file at first
     isSpeedExist = 'Y';
-    fprintf('Wind speed variable exists.\n');
+    % fprintf('Wind speed variable exists.\n');
+    errmsg('Magenta','Wind speed variable exists. \n');
 else
     isSpeedExist = 'N';
-    fprintf('Wind speed variable does not exist.\n');
+    % fprintf('Wind speed variable does not exist.\n');
+    errmsg('red','Wind speed variable does not exists. \n');
 end
 
 if isfile(directionfile)        % Check direction file at first
     isDirectionExist = 'Y';
-    fprintf('Wind direction variable exists.\n');
+    % fprintf('Wind direction variable exists.\n');
+    errmsg('Magenta','Wind direction variable exists. \n');
 else
     isDirectionExist = 'N';
-    fprintf('Wind direction variable does not exist.\n');
+    % fprintf('Wind direction variable does not exist.\n');
+    errmsg('red','Wind direction variable does not exist. \n');
 end
 
 if isfile(temperaturefile)        % Check temperature file at first
     isTempExist = 'Y';
-    fprintf('Temperature variable exists.\n');
+    % fprintf('Temperature variable exists.\n');
+    errmsg('Magenta','Temperature variable exists. \n');
 else
     isTempExist = 'N';
-    fprintf('Temperature variable does not exist.\n');
+    % fprintf('Temperature variable does not exist.\n');
+    errmsg('red','Temperature variable does not exist. \n');
 end
 
 if isfile(windfile)        % Check 3DWind file at first
     isWindExist = 'Y';
-    fprintf('3DWind variable exists.\n');
+    % fprintf('3DWind variable exists.\n');
+    errmsg('Magenta','3DWind variable exists. \n');
 else
     isWindExist = 'N';
-    fprintf('3DWind variable does not exist.\n');
+    % fprintf('3DWind variable does not exist.\n');
+    errmsg('red','3DWind variable does not exist. \n');
 end
 
 % Find Dustrak File
@@ -82,10 +92,12 @@ dustfile = strcat(file_dir, filesep, strcat(targetDate, '_Dustrak.csv'));
 % Catch if see if the file exist
 if isfile(dustfile)        % Check speed file at first
     isDustExist = 'Y';
-    fprintf('Dustrak info exists.\n');
+    % fprintf('Dustrak info exists.\n');
+    errmsg('Magenta','Dustrak info exists. \n');
 else
     isDustExist = 'N';
-    fprintf('Dustrak info does not exist.\n');
+    % fprintf('Dustrak info does not exist.\n');
+    errmsg('red','Dustrak info does not exist. \n');
 end
 
 if isDustExist == 'Y'
@@ -624,6 +636,16 @@ end
 
 close all
 
+% Start Time
+fprintf('=============================================================================');
+fprintf('\n');
+varStart = input('What would be the starting time? [x:x2:30]\n', 's');
+varEnd = input('What would be the ending time? [x:x7:30]\n', 's');
+[varLogA, varStartIdx] = ismember(varStart, CDT_Time);
+[varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
+[dustLogA, dustStartIdx] = ismember(varStart, dustTable{:,2});
+[dustLogB, dustEndIdx] = ismember(varEnd, dustTable{:,2});
+
 if isWindExist == 'Y'
     
     % Split out time
@@ -732,6 +754,75 @@ if isWindExist == 'Y'
             table_name_uconv_dump = strcat(targetDate, '_dump_uconv_1.5-4.5.csv');
             writetable(tempT_uconv_dump, table_name_uconv_dump);
             
+            % Plot
+            % Ob Length versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), L_low(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high(varStartIdx:varEndIdx, 1), 'g-x');
+            ylabel('Obukhov Length')
+            title(strcat(num2str(dateStamp), ' Upper Convergence Obukhov Length vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
+            
+            % Term 3 versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g-x');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
+            
+            % Richardson Number versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk(varStartIdx:varEndIdx, 1), 'r-x');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m')
+            
+            % Wind Speed versus Term 3
+            figure
+            yyaxis left
+            plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 19}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 20}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 21}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 22}, 'k-x');
+            xlabel('CDT Time')
+            ylabel('Upper Convergence Tower Wind Speed')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g*');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Speed'))
+            legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', '1.5m Term 3', '4.5m Term 3')
+            
+            % Wind Direction versus Term 3
+            low_bar = ones(length(CDT_Time), 1) * 290;
+            high_bar = ones(length(CDT_Time), 1) * 310;
+            
+            figure
+            yyaxis left
+            plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
+            xlabel('CDT Time')
+            ylabel('Upper Convergence Tower Wind Direction')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g*');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Direction'))
+            legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', '1.5m Term 3', '4.5m Term 3')
+            
         elseif iteration == 2
             upper_height = 4.5;
             lower_height = 1.5;
@@ -751,22 +842,22 @@ if isWindExist == 'Y'
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
-            R_Bulk = [];
+            R_Bulk_A = [];
             L_up_low = [];
             L_down_low = [];
-            L_low = [];
+            L_low_A = [];
             L_up_high = [];
             L_down_high = [];
-            L_high = [];
-            Term_3_low = [];
-            Term_3_high = [];
+            L_high_A = [];
+            Term_3_low_A = [];
+            Term_3_high_A = [];
         
             % Try to calculate the R_Bulk
             for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
-                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                    R_Bulk_A(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -776,8 +867,8 @@ if isWindExist == 'Y'
                 try
                     L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
                     L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
-                    L_low(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
-                    Term_3_low(idx, 1) = lower_height ./ L_low(idx, 1);
+                    L_low_A(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_low_A(idx, 1) = lower_height ./ L_low_A(idx, 1);
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -787,8 +878,8 @@ if isWindExist == 'Y'
                 try
                     L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
                     L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
-                    L_high(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
-                    Term_3_high(idx, 1) = upper_height ./ L_high(idx, 1);
+                    L_high_A(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_high_A(idx, 1) = upper_height ./ L_high_A(idx, 1);
                 catch
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -796,9 +887,15 @@ if isWindExist == 'Y'
             end
             
             % Form a csv dump
-            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk_A, L_low_A, L_high_A, Term_3_low_A, Term_3_high_A);
             table_name_lconv_bulk1 = strcat(targetDate, '_calculation_lconv_1.5-4.5.csv');
             writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
+            
+            % Dump for calculation
+            tempT_uconv_dump = table(CDT_Time, bar_fence, theta_v_low, theta_v_high, w_theta_v_low, w_theta_v_high, u_lower, u_upper, v_lower, v_upper, u_w_prime_low, u_w_prime_high, v_w_prime_low, v_w_prime_high);
+            table_name_uconv_dump = strcat(targetDate, '_dump_lconv_1.5-4.5.csv');
+            writetable(tempT_uconv_dump, table_name_uconv_dump);
+            
         elseif iteration == 3
             upper_height = 8.5;
             lower_height = 4.5;
@@ -818,22 +915,22 @@ if isWindExist == 'Y'
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
-            R_Bulk = [];
+            R_Bulk_B = [];
             L_up_low = [];
             L_down_low = [];
-            L_low = [];
+            L_low_B = [];
             L_up_high = [];
             L_down_high = [];
-            L_high = [];
-            Term_3_low = [];
-            Term_3_high = [];
+            L_high_B = [];
+            Term_3_low_B = [];
+            Term_3_high_B = [];
         
             % Try to calculate the R_Bulk
             for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
-                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                    R_Bulk_B(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -843,8 +940,8 @@ if isWindExist == 'Y'
                 try
                     L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
                     L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
-                    L_low(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
-                    Term_3_low(idx, 1) = lower_height ./ L_low(idx, 1);
+                    L_low_B(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_low_B(idx, 1) = lower_height ./ L_low_B(idx, 1);
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -854,8 +951,8 @@ if isWindExist == 'Y'
                 try
                     L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
                     L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
-                    L_high(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
-                    Term_3_high(idx, 1) = upper_height ./ L_high(idx, 1);
+                    L_high_B(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_high_B(idx, 1) = upper_height ./ L_high_B(idx, 1);
                 catch
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -863,9 +960,55 @@ if isWindExist == 'Y'
             end
                 
             % Form a csv dump
-            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk_B, L_low_B, L_high_B, Term_3_low_B, Term_3_high_B);
             table_name_lconv_bulk2 = strcat(targetDate, '_calculation_lconv_4.5-8.5.csv');
             writetable(tempT_lconv_bulk2, table_name_lconv_bulk2);
+            
+            % Dump for calculation
+            tempT_uconv_dump = table(CDT_Time, bar_fence, theta_v_low, theta_v_high, w_theta_v_low, w_theta_v_high, u_lower, u_upper, v_lower, v_upper, u_w_prime_low, u_w_prime_high, v_w_prime_low, v_w_prime_high);
+            table_name_uconv_dump = strcat(targetDate, '_dump_lconv_4.5-8.5.csv');
+            writetable(tempT_uconv_dump, table_name_uconv_dump);
+            
+            % Plot
+            % Ob Length versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), L_low_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_A(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_high_B(varStartIdx:varEndIdx, 1), 'b-x');
+            ylabel('Obukhov Length')
+            title(strcat(num2str(dateStamp), ' Lower Convergence Obukhov Length vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
+            
+            % Term 3 versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_low_B(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_high_B(varStartIdx:varEndIdx, 1), 'b-x');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Lower Convergence Term 3 vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
+            
+            % Richardson Number versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_B(varStartIdx:varEndIdx, 1), 'g-x');
+            ylabel('Obukhov Length')
+            title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
+            
         end
         
     end
@@ -873,14 +1016,6 @@ if isWindExist == 'Y'
     
     
 end
-
-% Start Time
-varStart = input('What would be the starting time? [x:x2:30]\n', 's');
-varEnd = input('What would be the ending time? [x:x7:30]\n', 's');
-[varLogA, varStartIdx] = ismember(varStart, CDT_Time);
-[varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
-[dustLogA, dustStartIdx] = ismember(varStart, dustTable{:,2});
-[dustLogB, dustEndIdx] = ismember(varEnd, dustTable{:,2});
 
 % Try with double y-axis
 
@@ -964,9 +1099,12 @@ legend('0.2m', '1.5m', '4.5m', '8.5m', '15m', '20m', 'Up3.0', 'Up0', 'Low0', 'Lo
     
 % Direction
 
+low_bar = ones(length(CDT_Time), 1) * 290;
+high_bar = ones(length(CDT_Time), 1) * 310;
+
 figure
 yyaxis left
-plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), 310, 'k', CDT_Time(varStartIdx:varEndIdx), 290, 'k');
+plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
 xlabel('CDT Time')
 ylabel('Upper Convergence Tower Wind Direction')
     
@@ -974,11 +1112,11 @@ yyaxis right
 plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
 ylabel('Dust Concentration')
 title(strcat(num2str(dateStamp), ' Data'))
-legend('0.2m', '1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+legend( '1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
 
 figure
 yyaxis left
-plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 29}, 'k-x');
+plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
 xlabel('CDT Time')
 ylabel('Lower Convergence Tower Wind Direction')
 
@@ -986,7 +1124,7 @@ yyaxis right
 plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
 ylabel('Dust Concentration')
 title(strcat(num2str(dateStamp), ' Data'))
-legend('0.2m', '1.5m', '3.0m', '4.5m', '6m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
    
 
 diary off;

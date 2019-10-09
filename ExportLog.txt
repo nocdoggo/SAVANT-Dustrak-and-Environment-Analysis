@@ -15793,3 +15793,238 @@ What would be the starting time? [x:x2:30]
 {Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 862)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',862,0)">line 862</a>)
 } 
 Your MATLAB session has timed out.  All license keys have been returned.
+   07-Oct-2019 10:53:34
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+3DWind variable exists.
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('writetable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\writetable.m', 124)" style="font-weight:bold">writetable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\writetable.m',124,0)">line 124</a>)
+Unable to open file '1018_calculation_lconv_1.5-4.5.csv' for writing:
+
+Permission denied
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 801)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',801,0)">line 801</a>)
+            writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
+} 
+opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\writetable.m',124,0)
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',801,0)
+Your MATLAB session has timed out.  All license keys have been returned.
+   09-Oct-2019 07:43:24
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+3DWind variable exists.
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+What would be the starting time? [x:x2:30]
+4:02:30
+What would be the ending time? [x:x7:30]
+5:37:30
+   09-Oct-2019 08:00:24
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists.
+Wind direction variable exists.
+Temperature variable exists.
+3DWind variable exists.
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+What would be the starting time? [x:x2:30]
+4:02:30
+What would be the ending time? [x:x7:30]
+5:17:30
+   09-Oct-2019 08:05:49
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists.
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('tabular/subsrefBraces', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\subsrefBraces.m', 22)" style="font-weight:bold">tabular/subsrefBraces</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\subsrefBraces.m',22,0)">line 22</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('tabular/subsref', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\subsref.m', 65)" style="font-weight:bold">tabular/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\subsref.m',65,0)">line 65</a>)
+            b = t.subsrefBraces(s);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 150)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',150,0)">line 150</a>)
+        if (dustTable{cursor, 9} >= 0.1)
+} 
+analysis
+   09-Oct-2019 08:08:00
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 642)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',642,0)">line 642</a>)
+} 
+analysis
+   09-Oct-2019 08:11:59
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 179)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',179,0)">line 179</a>)
+} 
+analysis
+   09-Oct-2019 08:19:09
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+4:02:30
+What would be the ending time? [x:x7:30]
+5:07:30
+   09-Oct-2019 08:31:51
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+4:04:30
+What would be the ending time? [x:x7:30]
+5:07:30
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 766)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',766,0)">line 766</a>)
+Array indices must be positive integers or logical values.
+} 
+close all
+analysis
+   09-Oct-2019 08:33:36
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+4:02:30
+What would be the ending time? [x:x7:30]
+5:17:30
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 824)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',824,0)">line 824</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1115)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1115,0)">line 1115</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1127)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1127,0)">line 1127</a>)] 
+   09-Oct-2019 08:36:10
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+04:02:30
+What would be the ending time? [x:x7:30]
+05:07:30
