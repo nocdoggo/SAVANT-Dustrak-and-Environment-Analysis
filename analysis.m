@@ -111,79 +111,115 @@ if isDustExist == 'Y'
     DT6 = {};
     DT7 = {};
     DT8 = {};
-    DT2 = {};
+    Upper_3_0_v_0 = [];
     DT3 = {};
     DT10 = {};
     DT9 = {};
     DT5 = {};
+    Rel_1_5_v_0_4 = [];
+    Lower_1_5_v_0 = [];
     
     % Find 0:00:01
     [dustLogicA, dustStart] = ismember('0:00:01', dustTable{:,2});
     [dustLogicB, dustEnd] = ismember('7:02:30', dustTable{:,2});
     
     % Loop through
-    for cursor = dustStart:dustEnd
-        
-        % Check condition
-        if (dustTable{cursor, 3} >= 0.1)
-            DT6{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 3} >= 0)
-            DT6{cursor, 1} = 'N';
-        else
-            DT6{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 5} >= 0.1)
-            DT5{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 5} >= 0)
-            DT5{cursor, 1} = 'N';
-        else
-            DT5{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 7} >= 0.1)
-            DT8{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 7} >= 0)
-            DT8{cursor, 1} = 'N';
-        else
-            DT8{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 9} >= 0.1)
-            DT2{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 9} >= 0)
-            DT2{cursor, 1} = 'N';
-        else
-            DT2{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 11} >= 0.1)
-            DT3{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 11} >= 0)
-            DT3{cursor, 1} = 'N';
-        else
-            DT3{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 13} >= 0.1)
-            DT10{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 13} >= 0)
-            DT10{cursor, 1} = 'N';
-        else
-            DT10{cursor, 1} = 'ERROR';
-        end
-        
-        if (dustTable{cursor, 15} >= 0.1)
-            DT9{cursor, 1} = 'Y';
-        elseif (dustTable{cursor, 15} >= 0)
-            DT9{cursor, 1} = 'N';
-        else
-            DT9{cursor, 1} = 'ERROR';
-        end
-        
-        
-    end
+%     for cursor = dustStart:dustEnd
+%         
+%         % Check condition
+%         if (dustTable{cursor, 3} >= 0.1)
+%             DT6{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 3} >= 0)
+%             DT6{cursor, 1} = 'N';
+%         else
+%             DT6{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 5} >= 0.1)
+%             DT5{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 5} >= 0)
+%             DT5{cursor, 1} = 'N';
+%         else
+%             DT5{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 7} >= 0.1)
+%             DT8{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 7} >= 0)
+%             DT8{cursor, 1} = 'N';
+%         else
+%             DT8{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 9} >= 0.1)
+%             DT2{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 9} >= 0)
+%             DT2{cursor, 1} = 'N';
+%         else
+%             DT2{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 11} >= 0.1)
+%             DT3{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 11} >= 0)
+%             DT3{cursor, 1} = 'N';
+%         else
+%             DT3{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 13} >= 0.1)
+%             DT10{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 13} >= 0)
+%             DT10{cursor, 1} = 'N';
+%         else
+%             DT10{cursor, 1} = 'ERROR';
+%         end
+%         
+%         if (dustTable{cursor, 15} >= 0.1)
+%             DT9{cursor, 1} = 'Y';
+%         elseif (dustTable{cursor, 15} >= 0)
+%             DT9{cursor, 1} = 'N';
+%         else
+%             DT9{cursor, 1} = 'ERROR';
+%         end
+%         
+%         
+%     end
     
+    % Calculate Release tower
+    Rel_1_5_v_0_4(:, 1) = dustTable{:, 5} ./ dustTable{:, 3};
+    
+    % Calculate Lower convergence tower
+    Lower_1_5_v_0(:, 1) = dustTable{:, 13} ./ dustTable{:, 11};
+    
+    % Calculate Upper convergence tower
+    Upper_3_0_v_0(:, 1) = dustTable{:, 7} ./ dustTable{:, 9};
+    
+    % Miscs
+%     Init_3_0 = {};
+%     Init_3_0{:, 1} = dustTable{:, 17};
+    Upper_0 = [];
+    Upper_0(:, 1) = dustTable{:, 9};
+    Upper_3_0 = [];
+    Upper_3_0(:, 1) = dustTable{:, 7};
+    Rel_1_5 = [];
+    Rel_1_5(:, 1) = dustTable{:, 5};
+    Rel_0_4 = [];
+    Rel_0_4(:, 1) = dustTable{:, 3};
+    Lower_1_5 = [];
+    Lower_1_5(:, 1) = dustTable{:, 13};
+    Lower_0 = [];
+    Lower_0(:, 1) = dustTable{:, 11};
+    
+    
+    bar_fence = repmat('|',length(CDT_Time),1);
+
+    table_name = strcat(targetDate, '_dust_cal.csv');
+    
+    tableTray = table(bar_fence, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0);
+
+    writetable(tableTray, table_name);
+
         
     
 
@@ -670,7 +706,7 @@ if isWindExist == 'Y'
     
     
     % Bulk Richardson Number
-    for iteration = 1:3     % As for the theta_v, we are using the lower surface temp
+    for iteration = 1:10     % As for the theta_v, we are using the lower surface temp
         if iteration == 1
             upper_height = 4.5;
             lower_height = 1.5;
@@ -957,6 +993,7 @@ if isWindExist == 'Y'
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
                 end
+                
             end
                 
             % Form a csv dump
@@ -1008,6 +1045,424 @@ if isWindExist == 'Y'
             ylabel('Obukhov Length')
             title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
+            
+        elseif iteration == 5
+            % Init Tower
+            upper_height = 3.0;
+            lower_height = 1.5;
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 154} - windTable{:, 153};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+%             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 153} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 154} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 109} - windTable{:, 108};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 124} - windTable{:, 123};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 183}).*(windTable{:, 183})) + ((windTable{:, 198}).*(windTable{:, 198}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 184}).*(windTable{:, 184})) + ((windTable{:, 199}).*(windTable{:, 199}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 168};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 169};              % w_tc__high_tower
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Init_1_5_3 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Init_1_5 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Init_3 = [];
+            Term_3_Init_1_5 = [];
+            Term_3_Init_3 = [];
+        
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Init_1_5_3(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Init_1_5(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Init_1_5(idx, 1) = lower_height ./ L_Init_1_5(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Init_3(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Init_3(idx, 1) = upper_height ./ L_Init_3(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+                
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Init_1_5_3, L_Init_1_5, L_Init_3, Term_3_Init_1_5, Term_3_Init_3);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_init_1.5-3.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+            
+        elseif iteration == 6
+                        % Init Tower
+            upper_height = 4.5;
+            lower_height = 3.0;
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 155} - windTable{:, 154};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+%             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 154} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 155} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 110} - windTable{:, 109};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 125} - windTable{:, 124};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 184}).*(windTable{:, 184})) + ((windTable{:, 199}).*(windTable{:, 199}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 185}).*(windTable{:, 185})) + ((windTable{:, 200}).*(windTable{:, 200}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 169};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 170};              % w_tc__high_tower
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Init_3_4_5 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Init_3 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Init_4_5 = [];
+            Term_3_Init_3 = [];
+            Term_3_Init_4_5 = [];
+        
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Init_3_4_5(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Init_3(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Init_3(idx, 1) = lower_height ./ L_Init_3(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Init_4_5(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Init_4_5(idx, 1) = upper_height ./ L_Init_4_5(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+                
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Init_3_4_5, L_Init_3, L_Init_4_5, Term_3_Init_3, Term_3_Init_4_5);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_init_3.0-4.5.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+        elseif iteration == 7
+                        % Init Tower
+            upper_height = 6.0;
+            lower_height = 4.5;
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 156} - windTable{:, 155};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+%             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 155} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 156} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 111} - windTable{:, 110};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 126} - windTable{:, 125};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 185}).*(windTable{:, 185})) + ((windTable{:, 200}).*(windTable{:, 200}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 186}).*(windTable{:, 186})) + ((windTable{:, 201}).*(windTable{:, 201}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 170};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 171};              % w_tc__high_tower
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Init_4_5_6 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Init_4_5 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Init_6 = [];
+            Term_3_Init_4_5 = [];
+            Term_3_Init_6 = [];
+        
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Init_4_5_6(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Init_4_5(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Init_4_5(idx, 1) = lower_height ./ L_Init_4_5(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Init_6(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Init_6(idx, 1) = upper_height ./ L_Init_6(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+                
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Init_4_5_6, L_Init_4_5, L_Init_6, Term_3_Init_4_5, Term_3_Init_6);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_init_4.5-6.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+            
+        elseif iteration == 7
+                        % Init Tower
+            upper_height = 10.0;
+            lower_height = 6.0;
+%             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 157} - windTable{:, 156};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+%             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 156} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 157} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 112} - windTable{:, 111};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 127} - windTable{:, 126};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 186}).*(windTable{:, 186})) + ((windTable{:, 201}).*(windTable{:, 201}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 187}).*(windTable{:, 187})) + ((windTable{:, 202}).*(windTable{:, 202}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 171};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 172};              % w_tc__high_tower
+            
+            % Initialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Init_6_10 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Init_6 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Init_10 = [];
+            Term_3_Init_6 = [];
+            Term_3_Init_10 = [];
+        
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Init_6_10(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Init_6(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Init_6(idx, 1) = lower_height ./ L_Init_6(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Init_10(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Init_10(idx, 1) = upper_height ./ L_Init_10(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+                
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Init_6_10, L_Init_6, L_Init_10, Term_3_Init_6, Term_3_Init_10);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_init_6.0-10.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+            
+        elseif iteration == 8
+            % Rel Tower
+            upper_height = 15.0;
+            lower_height = 10.0;
+            %             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 165} - windTable{:, 164};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+            %             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 164} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 165} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 120} - windTable{:, 119};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 135} - windTable{:, 134};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 194}).*(windTable{:, 194})) + ((windTable{:, 209}).*(windTable{:, 209}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 195}).*(windTable{:, 195})) + ((windTable{:, 210}).*(windTable{:, 210}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 179};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 180};              % w_tc__high_tower
+            
+            % Relialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Rel_10_15 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Rel_10 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Rel_15 = [];
+            Term_3_Rel_10 = [];
+            Term_3_Rel_15 = [];
+            
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Rel_10_15(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Rel_10(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Rel_10(idx, 1) = lower_height ./ L_Rel_10(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Rel_15(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Rel_15(idx, 1) = upper_height ./ L_Rel_15(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+            
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Rel_10_15, L_Rel_10, L_Rel_15, Term_3_Rel_10, Term_3_Rel_15);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_rel_10.0-15.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+
+            
+        elseif iteration == 9
+            
+            % Rel Tower
+            upper_height = 20.0;
+            lower_height = 15.0;
+            %             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 166} - windTable{:, 165};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+            %             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 165} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 166} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 121} - windTable{:, 120};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 136} - windTable{:, 135};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 195}).*(windTable{:, 195})) + ((windTable{:, 210}).*(windTable{:, 210}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 196}).*(windTable{:, 196})) + ((windTable{:, 211}).*(windTable{:, 211}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 180};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 181};              % w_tc__high_tower
+            
+            % Relialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_Rel_15_20 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_Rel_15 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_Rel_20 = [];
+            Term_3_Rel_15 = [];
+            Term_3_Rel_20 = [];
+            
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_Rel_15_20(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_Rel_15(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_Rel_15(idx, 1) = lower_height ./ L_Rel_15(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_Rel_20(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_Rel_20(idx, 1) = upper_height ./ L_Rel_20(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+            
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Rel_15_20, L_Rel_15, L_Rel_20, Term_3_Rel_15, Term_3_Rel_20);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_rel_15.0-20.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+
+        elseif iteration == 10
+            
             
         end
         
