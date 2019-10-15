@@ -226877,3 +226877,45 @@ Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback
         bar_fence, CDT_Time, Upper_v_Lower_0, Upper_v_Init_3, Lower_v_Init_0, Lower_v_Rel_0, Lower_v_Rel_1_5);
 } 
 analysis
+   15-Oct-2019 10:31:43
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 691)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',691,0)">line 691</a>)
+} 
+analysis
+   15-Oct-2019 10:52:40
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+06:07:30
