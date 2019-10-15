@@ -196,8 +196,8 @@ if isDustExist == 'Y'
     Upper_3_0_v_0(:, 1) = dustTable{:, 7} ./ dustTable{:, 9};
     
     % Miscs
-%     Init_3_0 = {};
-%     Init_3_0{:, 1} = dustTable{:, 17};
+    Init_3_0 = [];
+    Init_3_0 = str2double(dustTable{:, 17});
     Upper_0 = [];
     Upper_0(:, 1) = dustTable{:, 9};
     Upper_3_0 = [];
@@ -211,12 +211,25 @@ if isDustExist == 'Y'
     Lower_0 = [];
     Lower_0(:, 1) = dustTable{:, 11};
     
+    Upper_v_Lower_0 = [];
+    Upper_v_Lower_0(:, 1) = Upper_0(:, 1) ./ Lower_0(:, 1);
+    
+    Upper_v_Init_3 = [];
+    Upper_v_Init_3(:, 1) = Upper_3_0(:, 1) ./ Init_3_0(:, 1);
+    
+    Lower_v_Rel_0 = [];
+    Lower_v_Rel_0(:, 1) = Lower_0(:, 1) ./ Rel_0_4(:, 1);
+    
+    Lower_v_Rel_1_5 = [];
+    Lower_v_Rel_1_5(:, 1) = Lower_1_5(:, 1) ./ Rel_1_5(:, 1);
+    
     
     bar_fence = repmat('|',length(CDT_Time),1);
 
     table_name = strcat(targetDate, '_dust_cal.csv');
     
-    tableTray = table(bar_fence, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0);
+    tableTray = table(CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
+        bar_fence, CDT_Time, Upper_v_Lower_0, Upper_v_Init_3, Lower_v_Rel_0, Lower_v_Rel_1_5);
 
     writetable(tableTray, table_name);
 
