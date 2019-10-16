@@ -228,7 +228,7 @@ if isDustExist == 'Y'
 
     table_name = strcat(targetDate, '_dust_cal.csv');
     
-    tableTray = table(CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
+    tableTray = table(CDT_Time, Init_3_0, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
         bar_fence, CDT_Time, Upper_v_Lower_0, Upper_v_Init_3, Lower_v_Rel_0, Lower_v_Rel_1_5);
 
     writetable(tableTray, table_name);
@@ -721,7 +721,7 @@ if isWindExist == 'Y'
     % Bulk Richardson Number
     for iteration = 1:11     % As for the theta_v, we are using the lower surface temp
         if iteration == 1
-            upper_height = 4.5;
+                        upper_height = 4.5;
             lower_height = 1.5;
 %             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
             delta_theta_v = windTable{:, 50} - windTable{:, 48};        % Now using virtual temperatures
@@ -749,22 +749,22 @@ if isWindExist == 'Y'
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
-            R_Bulk = [];
+            R_Bulk_uconv_1_5_4_5 = [];
             L_up_low = [];
             L_down_low = [];
-            L_low = [];
+            L_low_uconv_1_5 = [];
             L_up_high = [];
             L_down_high = [];
-            L_high = [];
-            Term_3_low = [];
-            Term_3_high = [];
+            L_high_uconv_4_5 = [];
+            Term_3_uconv_1_5 = [];
+            Term_3_uconv_4_5 = [];
         
             % Try to calculate the R_Bulk
             for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
-                    R_Bulk(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                    R_Bulk_uconv_1_5_4_5(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -774,8 +774,8 @@ if isWindExist == 'Y'
                 try
                     L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
                     L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
-                    L_low(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
-                    Term_3_low(idx, 1) = lower_height ./ L_low(idx, 1);
+                    L_low_uconv_1_5(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_uconv_1_5(idx, 1) = lower_height ./ L_low_uconv_1_5(idx, 1);
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -785,8 +785,8 @@ if isWindExist == 'Y'
                 try
                     L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
                     L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
-                    L_high(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
-                    Term_3_high(idx, 1) = upper_height ./ L_high(idx, 1);
+                    L_high_uconv_4_5(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_uconv_4_5(idx, 1) = upper_height ./ L_high_uconv_4_5(idx, 1);
                 catch
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -794,7 +794,7 @@ if isWindExist == 'Y'
             end
                 
             % Form a csv dump
-            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk, L_low, L_high, Term_3_low, Term_3_high);
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_uconv_1_5_4_5, L_low_uconv_1_5, L_high_uconv_4_5, Term_3_uconv_1_5, Term_3_uconv_4_5);
             table_name_uconv_bulk = strcat(targetDate, '_calculation_uconv_1.5-4.5.csv');
             writetable(tempT_uconv_bulk, table_name_uconv_bulk);
             
@@ -812,7 +812,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), L_low(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high(varStartIdx:varEndIdx, 1), 'g-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), L_low_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
             ylabel('Obukhov Length')
             title(strcat(num2str(dateStamp), ' Upper Convergence Obukhov Length vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
@@ -825,7 +825,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
             ylabel('Term 3 z/L')
             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
@@ -838,7 +838,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk(varStartIdx:varEndIdx, 1), 'r-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_uconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x');
             ylabel('Term 3 z/L')
             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m')
@@ -851,7 +851,7 @@ if isWindExist == 'Y'
             ylabel('Upper Convergence Tower Wind Speed')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g*');
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
             ylabel('Term 3 z/L')
             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Speed'))
             legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', '1.5m Term 3', '4.5m Term 3')
@@ -867,7 +867,7 @@ if isWindExist == 'Y'
             ylabel('Upper Convergence Tower Wind Direction')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_high(varStartIdx:varEndIdx, 1), 'g*');
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
             ylabel('Term 3 z/L')
             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Direction'))
             legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', '1.5m Term 3', '4.5m Term 3')
@@ -891,22 +891,22 @@ if isWindExist == 'Y'
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
-            R_Bulk_A = [];
+            R_Bulk_lconv_1_5_4_5 = [];
             L_up_low = [];
             L_down_low = [];
-            L_low_A = [];
+            L_lconv_1_5 = [];
             L_up_high = [];
             L_down_high = [];
-            L_high_A = [];
-            Term_3_low_A = [];
-            Term_3_high_A = [];
+            L_high_lconv_4_5 = [];
+            Term_3_lconv_1_5 = [];
+            Term_3_lconv_4_5 = [];
         
             % Try to calculate the R_Bulk
             for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
-                    R_Bulk_A(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                    R_Bulk_lconv_1_5_4_5(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -916,8 +916,9 @@ if isWindExist == 'Y'
                 try
                     L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
                     L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
-                    L_low_A(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
-                    Term_3_low_A(idx, 1) = lower_height ./ L_low_A(idx, 1);
+                    L_lconv_1_5(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_lconv_1_5(idx, 1) = lower_height ./ L_lconv_1_5(idx, 1);
+                    L_val_1_5 = L_lconv_1_5;
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -927,8 +928,8 @@ if isWindExist == 'Y'
                 try
                     L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
                     L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
-                    L_high_A(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
-                    Term_3_high_A(idx, 1) = upper_height ./ L_high_A(idx, 1);
+                    L_high_lconv_4_5(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_lconv_4_5(idx, 1) = upper_height ./ L_high_lconv_4_5(idx, 1);
                 catch
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -936,7 +937,7 @@ if isWindExist == 'Y'
             end
             
             % Form a csv dump
-            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk_A, L_low_A, L_high_A, Term_3_low_A, Term_3_high_A);
+            tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk_lconv_1_5_4_5, L_lconv_1_5, L_high_lconv_4_5, Term_3_lconv_1_5, Term_3_lconv_4_5);
             table_name_lconv_bulk1 = strcat(targetDate, '_calculation_lconv_1.5-4.5.csv');
             writetable(tempT_lconv_bulk1, table_name_lconv_bulk1);
             
@@ -964,22 +965,22 @@ if isWindExist == 'Y'
             % Initialization for R_Bulk
             R_Bulk_up = [];
             R_Bulk_down = [];
-            R_Bulk_B = [];
+            R_Bulk_lconv_4_5_8_5 = [];
             L_up_low = [];
             L_down_low = [];
-            L_low_B = [];
+            L_lconv_4_5 = [];
             L_up_high = [];
             L_down_high = [];
-            L_high_B = [];
-            Term_3_low_B = [];
-            Term_3_high_B = [];
+            L_lconv_8_5 = [];
+            Term_3_lconv_4_5 = [];
+            Term_3_lconv_8_5 = [];
         
             % Try to calculate the R_Bulk
             for idx = 1:length(CDT_Time)
                 try
                     R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
                     R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
-                    R_Bulk_B(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                    R_Bulk_lconv_4_5_8_5(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
                 catch
                     errmsg('red','bulk Richardson number is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -989,8 +990,8 @@ if isWindExist == 'Y'
                 try
                     L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
                     L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
-                    L_low_B(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
-                    Term_3_low_B(idx, 1) = lower_height ./ L_low_B(idx, 1);
+                    L_lconv_4_5(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_lconv_4_5(idx, 1) = lower_height ./ L_lconv_4_5(idx, 1);
                 catch
                     errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -1000,8 +1001,8 @@ if isWindExist == 'Y'
                 try
                     L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
                     L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
-                    L_high_B(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
-                    Term_3_high_B(idx, 1) = upper_height ./ L_high_B(idx, 1);
+                    L_lconv_8_5(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_lconv_8_5(idx, 1) = upper_height ./ L_lconv_8_5(idx, 1);
                 catch
                     errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
                     errmsg('blue', '      %s\n',CDT_Time(idx, 1));
@@ -1010,7 +1011,7 @@ if isWindExist == 'Y'
             end
                 
             % Form a csv dump
-            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk_B, L_low_B, L_high_B, Term_3_low_B, Term_3_high_B);
+            tempT_lconv_bulk2 = table(CDT_Time, bar_fence, R_Bulk_lconv_4_5_8_5, L_lconv_4_5, L_lconv_8_5, Term_3_lconv_4_5, Term_3_lconv_8_5);
             table_name_lconv_bulk2 = strcat(targetDate, '_calculation_lconv_4.5-8.5.csv');
             writetable(tempT_lconv_bulk2, table_name_lconv_bulk2);
             
@@ -1028,7 +1029,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), L_low_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_A(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_high_B(varStartIdx:varEndIdx, 1), 'b-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), L_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
             ylabel('Obukhov Length')
             title(strcat(num2str(dateStamp), ' Lower Convergence Obukhov Length vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
@@ -1041,7 +1042,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_low_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_low_B(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_high_B(varStartIdx:varEndIdx, 1), 'b-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
             ylabel('Term 3 z/L')
             title(strcat(num2str(dateStamp), ' Lower Convergence Term 3 vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
@@ -1054,7 +1055,7 @@ if isWindExist == 'Y'
             ylabel('Dust Concentration')
             
             yyaxis right
-            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_A(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_B(varStartIdx:varEndIdx, 1), 'g-x');
+            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
             ylabel('Obukhov Length')
             title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
@@ -1543,8 +1544,51 @@ if isWindExist == 'Y'
             tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_Rel_4_5_6, L_Rel_4_5, L_Rel_6, Term_3_Rel_4_5, Term_3_Rel_6);
             table_name_uconv_bulk = strcat(targetDate, '_calculation_rel_4.5-6.0.csv');
             writetable(tempT_uconv_bulk, table_name_uconv_bulk);
+            
+                        % Plot
+            % Ob Length versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), L_val_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), L_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), L_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), L_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
+            ylabel('Obukhov Length')
+            title(strcat(num2str(dateStamp), ' Obukhov Length vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
+            
+            % Term 3 versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
+            ylabel('Term 3 z/L')
+            title(strcat(num2str(dateStamp), ' Term 3 vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
+            
+            % Richardson Number versus Dust
+            figure
+            yyaxis left
+            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+            xlabel('CDT Time [HH:MM:SS]')
+            ylabel('Dust Concentration')
+            
+            yyaxis right
+            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
+            ylabel('Obukhov Length')
+            title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
+            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
+        
+            
         end
         
+
     end
     
     
