@@ -719,7 +719,7 @@ if isWindExist == 'Y'
     
     
     % Bulk Richardson Number
-    for iteration = 1:11     % As for the theta_v, we are using the lower surface temp
+    for iteration = 1:12     % As for the theta_v, we are using the lower surface temp
         if iteration == 1
                         upper_height = 4.5;
             lower_height = 1.5;
@@ -1584,7 +1584,76 @@ if isWindExist == 'Y'
             ylabel('Obukhov Length')
             title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
-        
+            
+        elseif iteration ==12
+            
+                        % uconv Tower
+            upper_height = 10.0;
+            lower_height = 6;
+            %             delta_theta_v = temperatureTable{:, 19} - temperatureTable{:, 18};
+            delta_theta_v = windTable{:, 52} - windTable{:, 51};        % tc_high_tower - tc_low_tower
+            delta_z = upper_height - lower_height;
+            %             theta_v = temperatureTable{:, 18};
+            theta_v_low = windTable{:, 51} + 273;           % tc_low_tower + 273
+            theta_v_high = windTable{:, 52} + 273;          % tc_high_tower + 273
+            delta_u = windTable{:, 7} - windTable{:, 6};    % u_high_tower - u_low_tower
+            delta_v = windTable{:, 22} - windTable{:, 21};  % v_high_tower - v_low_height
+            u_star_low = (((windTable{:, 81}).*(windTable{:, 81})) + ((windTable{:, 96}).*(windTable{:, 96}))).^(0.25);     % u_w__low_tower * u_w__low_tower   + v_w__low_tower * v_w__low_tower
+            u_star_high = (((windTable{:, 82}).*(windTable{:, 82})) + ((windTable{:, 97}).*(windTable{:, 97}))).^(0.25);    % u_w__high_tower * u_w__high_tower + v_w__high_tower * v_w__high_tower
+            w_theta_v_low = windTable{:, 66};               % w_tc__low_tower
+            w_theta_v_high = windTable{:, 67};              % w_tc__high_tower
+            
+            % uconvialization for R_Bulk
+            R_Bulk_up = [];
+            R_Bulk_down = [];
+            R_Bulk_uconv_6_10 = [];
+            L_up_low = [];
+            L_down_low = [];
+            L_uconv_6 = [];
+            L_up_high = [];
+            L_down_high = [];
+            L_uconv_10 = [];
+            Term_3_uconv_6 = [];
+            Term_3_uconv_10 = [];
+            
+            % Try to calculate the R_Bulk
+            for idx = 1:length(CDT_Time)
+                try
+                    R_Bulk_up(idx, 1) = g .* delta_theta_v(idx, 1) * delta_z;
+                    R_Bulk_down(idx, 1) = theta_v_low(idx, 1) .* ((delta_u(idx, 1).*delta_u(idx, 1)) + (delta_v(idx, 1).*delta_v(idx, 1)));
+                    R_Bulk_uconv_6_10(idx, 1) = R_Bulk_up(idx, 1) ./ R_Bulk_down(idx, 1);
+                catch
+                    errmsg('red','bulk Richardson number is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_low(idx, 1) = -theta_v_low(idx, 1) .* ((u_star_low(idx, 1)).^3);
+                    L_down_low(idx, 1) = k * g .* w_theta_v_low(idx, 1);
+                    L_uconv_6(idx, 1) = L_up_low(idx, 1) ./ L_down_low(idx, 1);
+                    Term_3_uconv_6(idx, 1) = lower_height ./ L_uconv_6(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for lower surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+                
+                % Try to calculate the lower surface Obukhov length
+                try
+                    L_up_high(idx, 1) = -theta_v_high(idx, 1) .* ((u_star_high(idx, 1)).^3);
+                    L_down_high(idx, 1) = k * g .* w_theta_v_high(idx, 1);
+                    L_uconv_10(idx, 1) = L_up_high(idx, 1) ./ L_down_high(idx, 1);
+                    Term_3_uconv_10(idx, 1) = upper_height ./ L_uconv_10(idx, 1);
+                catch
+                    errmsg('red','Obukhov length for higher surface is not calculatable @: \n');
+                    errmsg('blue', '      %s\n',CDT_Time(idx, 1));
+                end
+            end
+            
+            % Form a csv dump
+            tempT_uconv_bulk = table(CDT_Time, bar_fence, R_Bulk_uconv_6_10, L_uconv_6, L_uconv_10, Term_3_uconv_6, Term_3_uconv_10);
+            table_name_uconv_bulk = strcat(targetDate, '_calculation_uconv_6.0-10.0.csv');
+            writetable(tempT_uconv_bulk, table_name_uconv_bulk);
             
         end
         

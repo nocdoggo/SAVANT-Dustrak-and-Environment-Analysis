@@ -227211,3 +227211,50 @@ What would be the starting time? [x:x2:30]
 1:12:30
 What would be the ending time? [x:x7:30]
 2:17:30
+   23-Oct-2019 10:19:52
+
+=============================================================================
+Please enter the name of the input NetCDF file folder: 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run.m', 16)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run.m',16,0)">line 16</a>)
+} 
+analysis
+   23-Oct-2019 10:19:57
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 691)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',691,0)">line 691</a>)
+} 
+   23-Oct-2019 10:26:31
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1018
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 691)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',691,0)">line 691</a>)
+} 
