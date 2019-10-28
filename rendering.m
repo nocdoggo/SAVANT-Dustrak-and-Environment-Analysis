@@ -301,7 +301,7 @@ rangDist = str2num(rang{1});
         else
             ylabel('North-South Distance (m)')
         end
-        title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
+         title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
         
         % If time wanted in the reverse order, do it here.
         %if flipTime == 1
@@ -453,8 +453,8 @@ rangDist = str2num(rang{1});
         image(originalX,originalY,mapBackUD)
         ax = gca;
         % Set the tick interval and labels for the y-axis
-        set(ax,'YTick',[mapHeight(d1) mapHeight(d2) mapHeight(d3) mapHeight(d4) mapHeight(d5) mapHeight(d6) mapHeight(d7) mapHeight(d8) mapHeight(d9) mapHeight(disSize(1))])
-        set(ax,'YTickLabel',{mapHeight(disSize(1)),mapHeight(l1),mapHeight(l2),mapHeight(l3),mapHeight(l4),mapHeight(l5),mapHeight(l6),mapHeight(l7),mapHeight(l8),mapHeight(l9),mapHeight(1)})
+        %set(ax,'YTick',[mapHeight(d1) mapHeight(d2) mapHeight(d3) mapHeight(d4) mapHeight(d5) mapHeight(d6) mapHeight(d7) mapHeight(d8) mapHeight(d9) mapHeight(disSize(1))])
+        %set(ax,'YTickLabel',{mapHeight(disSize(1)),mapHeight(l1),mapHeight(l2),mapHeight(l3),mapHeight(l4),mapHeight(l5),mapHeight(l6),mapHeight(l7),mapHeight(l8),mapHeight(l9),mapHeight(1)})
         % label the x-axis
         if scanType == 'RHI'
             xlabel('Distance (m)')
@@ -462,11 +462,11 @@ rangDist = str2num(rang{1});
             xlabel('East-West Distance (m)')
         end
         % label the y-axis
-        if scanType == 'RHI'
-            ylabel('Altitude (m)')
-        else
-            ylabel('North-South Distance (m)')
-        end
+%         if scanType == 'RHI'
+%             ylabel('Altitude (m)')
+%         else
+%             ylabel('North-South Distance (m)')
+%         end
         title(strcat("Backscatter ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
         %title(strcat("Backscatter ",titleName, ", Angle = ", ang_label))
         % If time wanted in the reverse order, do it here.
