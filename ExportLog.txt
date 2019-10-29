@@ -227258,3 +227258,469 @@ VariableDescriptions property.]
 What would be the starting time? [x:x2:30]
 {Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 691)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',691,0)">line 691</a>)
 } 
+   29-Oct-2019 10:33:42
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1012
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: The DATETIME data was created using format 'MM/dd/uuuu' but also matched 'dd/MM/uuuu'.
+To avoid ambiguity, use a format character vector. e.g. '%{MM/dd/uuuu}D'] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 225)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',225,0)">line 225</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('tabular/verifyCountVars', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\tabular.m', 339)" style="font-weight:bold">tabular/verifyCountVars</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\tabular.m',339,0)">line 339</a>)
+All variables must have the same number of rows.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m', 276)" style="font-weight:bold">table</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m',276,0)">line 276</a>)
+                    numRows = tabular.verifyCountVars(vars);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 231)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',231,0)">line 231</a>)
+    tableTray = table(CDT_Time, Init_3_0, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0,
+    Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
+} 
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',231,0)
+doc try
+analysis
+   29-Oct-2019 10:35:19
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1012
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: The DATETIME data was created using format 'MM/dd/uuuu' but also matched 'dd/MM/uuuu'.
+To avoid ambiguity, use a format character vector. e.g. '%{MM/dd/uuuu}D'] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 225)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',225,0)">line 225</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('tabular/verifyCountVars', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\tabular.m', 339)" style="font-weight:bold">tabular/verifyCountVars</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@tabular\tabular.m',339,0)">line 339</a>)
+All variables must have the same number of rows.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m', 276)" style="font-weight:bold">table</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m',276,0)">line 276</a>)
+                    numRows = tabular.verifyCountVars(vars);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 236)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',236,0)">line 236</a>)
+    tableTray = table(CDT_Time, Init_3_0, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0,
+    Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
+} 
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',236,0)
+size(CDT_Time)
+
+ans =
+
+       32177           1
+
+Size(Init_3_0)
+{Undefined function or variable 'Size'.
+} 
+size(Init_3_0)
+
+ans =
+
+     1     1
+
+analysis
+   29-Oct-2019 10:36:11
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1012
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: The DATETIME data was created using format 'MM/dd/uuuu' but also matched 'dd/MM/uuuu'.
+To avoid ambiguity, use a format character vector. e.g. '%{MM/dd/uuuu}D'] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 225)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',225,0)">line 225</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+7:57:30
+   29-Oct-2019 11:17:48
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1016
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+7:07:30
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 823)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',823,0)">line 823</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 836)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',836,0)">line 836</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 849)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',849,0)">line 849</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1040)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1040,0)">line 1040</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1053)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1053,0)">line 1053</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1066)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1066,0)">line 1066</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1565)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1565,0)">line 1565</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1578)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1578,0)">line 1578</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1591)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1591,0)">line 1591</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1686)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1686,0)">line 1686</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1699)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1699,0)">line 1699</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1738)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1738,0)">line 1738</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1750)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1750,0)">line 1750</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1767)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1767,0)">line 1767</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1779)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1779,0)">line 1779</a>)] 
+   29-Oct-2019 13:25:07
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1030
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+6:57:30
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 823)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',823,0)">line 823</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 836)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',836,0)">line 836</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 849)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',849,0)">line 849</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1040)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1040,0)">line 1040</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1053)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1053,0)">line 1053</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1066)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1066,0)">line 1066</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1565)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1565,0)">line 1565</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1578)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1578,0)">line 1578</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1591)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1591,0)">line 1591</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1686)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1686,0)">line 1686</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1699)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1699,0)">line 1699</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1738)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1738,0)">line 1738</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1750)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1750,0)">line 1750</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1767)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1767,0)">line 1767</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1779)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1779,0)">line 1779</a>)] 
+   29-Oct-2019 13:54:46
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1024
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+6:57:30
+   29-Oct-2019 14:10:36
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1112
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Unable to determine the format of the DATETIME data.
+Try adding a format to the DATETIME specifier. e.g. '%{MM/dd/uuuu}D'.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 225)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',225,0)">line 225</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Unable to determine the format of the DATETIME data.
+Try adding a format to the DATETIME specifier. e.g. '%{MM/dd/uuuu}D'.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 256)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',256,0)">line 256</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+{Undefined operator './' for input arguments of type 'cell'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 190)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',190,0)">line 190</a>)
+    Rel_1_5_v_0_4(:, 1) = dustTable{:, 5} ./ dustTable{:, 3};
+} 
+analysis
+   29-Oct-2019 14:12:12
+
+=============================================================================
+Please enter the name of the input environmental file folder: 
+S
+=============================================================================
+Please enter the date which you would like to analyze: [MMDD] 
+1112
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable exists. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: The DATETIME data was created using format 'MM/dd/uuuu' but also matched 'dd/MM/uuuu'.
+To avoid ambiguity, use a format character vector. e.g. '%{MM/dd/uuuu}D'] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile>textscanReadData', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 554)" style="font-weight:bold">table/readTextFile>textscanReadData</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',554,0)">line 554</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table/readTextFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m', 225)" style="font-weight:bold">table/readTextFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readTextFile.m',225,0)">line 225</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table.readFromFile', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m', 39)" style="font-weight:bold">table.readFromFile</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\readFromFile.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readtable', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m', 197)" style="font-weight:bold">readtable</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\readtable.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 105)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',105,0)">line 105</a>)] 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original names are saved in the
+VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+3:07:30
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 823)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',823,0)">line 823</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 836)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',836,0)">line 836</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 849)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',849,0)">line 849</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1040)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1040,0)">line 1040</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1053)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1053,0)">line 1053</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1066)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1066,0)">line 1066</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1565)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1565,0)">line 1565</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1578)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1578,0)">line 1578</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1591)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1591,0)">line 1591</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1686)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1686,0)">line 1686</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1699)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1699,0)">line 1699</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1738)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1738,0)">line 1738</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1750)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1750,0)">line 1750</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1767)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1767,0)">line 1767</a>)] 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>set_children_and_strings', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 646)" style="font-weight:bold">legend>set_children_and_strings</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',646,0)">line 646</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 316)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',316,0)">line 316</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\scribe\legend.p',259,0)">line 259</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 1779)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',1779,0)">line 1779</a>)] 
