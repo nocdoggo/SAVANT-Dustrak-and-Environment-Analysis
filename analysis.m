@@ -196,13 +196,13 @@ if isDustExist == 'Y'
     Upper_3_0_v_0(:, 1) = dustTable{:, 7} ./ dustTable{:, 9};
     
     % Miscs
-%     try
-%         Init_3_0 = [];
-%         Init_3_0 = str2double(dustTable{:, 17});
-%     catch
+    try
+        Init_3_0 = [];
+        Init_3_0 = str2double(dustTable{:, 17});
+    catch
         Init_3_0 = [];
         Init_3_0(:, 1) = dustTable{:, 17};
-%     end
+    end
     Upper_0 = [];
     Upper_0(:, 1) = dustTable{:, 9};
     Upper_3_0 = [];
