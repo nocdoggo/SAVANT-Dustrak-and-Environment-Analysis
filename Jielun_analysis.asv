@@ -40,11 +40,11 @@ end
 % fprintf('=============================================================================');
 % fprintf('\n');
 
-for daterange = 1101:1128
+for daterange = 910:930
     
     targetDate = num2str(daterange);
     dateStamp = str2double(targetDate);
-    %targetDate = strcat('0', targetDate);
+    targetDate = strcat('0', targetDate);
 
     % Create file list
     speedfile = strcat(file_dir, filesep, strcat(targetDate, '_Speed.csv'));
@@ -430,9 +430,10 @@ for daterange = 1101:1128
         % Format table name
         table_name_tke = strcat(targetDate, '_Speed_vs_Vtke.csv');
         
+        movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun\', targetDate, '_Speed_vs_Vtke.csv'));
+        
         % Output table
         writetable(tempT_tke, table_name_tke);
-        movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun\', targetDate, '_Speed_vs_Vtke.csv'));
         
         
         %         % Initiation tower
