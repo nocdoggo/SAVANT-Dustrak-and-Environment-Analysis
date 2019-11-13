@@ -1,43 +1,42 @@
-    figure
-    subplot(4, 2, 1)
-    plot(spd_lconv_1_5, Vtke_lconv_1_5)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('1.5m')
-    subplot(4, 2, 2)
-    plot(spd_lconv_3, Vtke_lconv_3)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('3.0m')
-    subplot(4, 2, 3)
-    plot(spd_lconv_4_5, Vtke_lconv_4_5)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('4.5m')
-    subplot(4, 2, 4)
-    plot(spd_lconv_6, Vtke_lconv_6)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('6.0m')
-    subplot(4, 2, 5)
-    plot(spd_lconv_8_5, Vtke_lconv_8_5)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('8.5m')
-    subplot(4, 2, 6)
-    plot(spd_lconv_10, Vtke_lconv_10)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('10.0m')
-    subplot(4, 2, 7)
-    plot(spd_lconv_15, Vtke_lconv_15)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('15.0m')
-    subplot(4, 2, 8)
-    plot(spd_lconv_20, Vtke_lconv_20)
-    xlabel('Wind Speed (m/s)')
-    ylabel('V tke')
-    title('20.0m')
-    %set(gcf,'PaperSize',[40 20])
-    print(gcf, strcat(targetDate, '_all_lconv'), '-dpdf','-fillpage');
+C = [0.5 0 1;
+    0.4 0 1;
+    0.3 0 1;
+    0.2 0 1;
+    0.1 0 1;
+    0 0 1;
+    0 0.2 0.8;
+    0 0.3 0.6;
+    0 0.4 0.4;
+    0 0.6 0.2;
+    0 1 0;
+    0.2 1 0.2;
+    0.4 1 0.4;
+    0.6 1 0.6;
+    0.8 1 0.8;
+    1 1 1;
+    1 1 0;
+    1 0.9 0;
+    1 0.85 0;
+    1 0.8 0;
+    1 0.75 0;
+    1 0.7 0;
+    1 0.65 0;
+    1 0.6 0;
+    1 0.55 0;
+    1 0.5 0;
+    1 0.4 0;
+    1 0.3 0;
+    1 0.2 0;
+    1 0.1 0;
+    1 0 0;
+    0 0 0];
+
+x = -pi:pi/10:pi;
+y = tan(sin(x)) - sin(tan(x));
+
+figure
+plot(x,y,'--gs',...
+    'LineWidth',2,...
+    'MarkerSize',10,...
+    'MarkerEdgeColor','b',...
+    'MarkerFaceColor',[0.5,0.5,0.5])
