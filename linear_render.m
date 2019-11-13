@@ -83,7 +83,7 @@ for idx = 1:(gateNum + 1):ending_idx
 %         % Now start with the plot
 %         plot(horizontal_range(cidx, 1), vertical_range(cidx, 1), 'd', 'MarkerEdgeColor','w',  'MarkerFaceColor',[0, color_dict(cidx, 2) , color_dict(cidx, 3)])
         scatter(horizontal_range(cidx, 1), vertical_range(cidx, 1), 20, 'MarkerEdgeColor',[0 0 0], 'MarkerFaceColor',[0, color_dict(cidx, 2) , color_dict(cidx, 3)]);
-        cidx
+        %cidx
         
         % Make sure everything stays on the canvas
         hold on

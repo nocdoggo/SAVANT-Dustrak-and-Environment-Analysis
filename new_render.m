@@ -1,4 +1,4 @@
-clc, clear all, clear all
+clc, clear all, close all
 
 % Grab file
 data_dir = input('Please paste your full data directory here: \n', 's');
@@ -331,9 +331,9 @@ while ang_key > 0
         f = figure;
         
         % Test
-%         bgimage = imread('illini_result.jpg');
-%         imshow(bgimage);
-%         hold on
+        bgimage = imread('bgimg2.png');
+        imshow(bgimage, 'XData', [0, 1800*1.5], 'YData', [-500, 2000]);
+        hold on
         
 %         grayImage = imread('cameraman.tif');
 %         [rows, columns, numberOfColorChannels] = size(grayImage);
@@ -382,6 +382,8 @@ while ang_key > 0
             
             % Color code initialization
             
+            %vertical_range = flipud(vertical_range);
+            
             for cidx = 1:gateNum
                 
                 if (intensity(cidx, 1) >= 1.05)
@@ -398,7 +400,7 @@ while ang_key > 0
                         C_Code = C(1, :);
                     end
                     
-                    plot(horizontal_range(cidx, 1), vertical_range(cidx, 1), 'o', 'MarkerSize',5, 'MarkerEdgeColor','w',  'MarkerFaceColor', C_Code);
+                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',5, 'MarkerEdgeColor','w',  'MarkerFaceColor', C_Code);
                 end
                             
                     
@@ -423,10 +425,12 @@ while ang_key > 0
             % Now start with the plot
             
         end
-        
+        %set(gca,'YDir','reverse')
         % Done with plot
         hold off
-        set(gca,'xdir','reverse','ydir','reverse')
+        set(gca,'XDir','Reverse','Ydir','Reverse')
+        %set(gca,'xdir','reverse')
+        
         %print(gcf,'test.png','-dpng','-r1200'); 
         set(f,'paperunits','centimeter')
         set(f,'papersize',[84.1,118.9])
