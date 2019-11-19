@@ -420,8 +420,8 @@ while ang_key > 0
 %                     else
 %                         C_Code = C(1, :);
 %                     end
-                    
-                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor','w',  'MarkerFaceColor', C_Code);
+                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+                    %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
                 end
                             
                     
