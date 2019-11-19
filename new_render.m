@@ -178,7 +178,9 @@ for r_idx = 1:557:r_total
 end
         
         
-C = [0.5 0 1;
+C = [0 0 0;
+    0.6 0 1;
+    0.5 0 1;
     0.4 0 1;
     0.3 0 1;
     0.2 0 1;
@@ -331,8 +333,8 @@ while ang_key > 0
         f = figure;
         
         % Test
-        bgimage = imread('bgimg2.png');
-        imshow(bgimage, 'XData', [0, 1800*1.5], 'YData', [-500, 2000]);
+        bgimage = imread('bgimg.png');
+        imshow(bgimage, 'XData', [0, 800], 'YData', [-1600/5, 900/5]);
         hold on
         
 %         grayImage = imread('cameraman.tif');
@@ -358,7 +360,10 @@ while ang_key > 0
             start_time = M(idx, 1);
             
             % Obtain the matrix we are working with
-            intensity = M((idx + 1):(idx + gateNum), 3);
+            intensity = M((idx + 1):(idx + gateNum), 2);
+            
+            % Obtain the SNR datalog
+            SNRLog = M((idx + 1):(idx + gateNum), 3);
             
             % Obtain the gate range
             gate_range = M((idx + 1):(idx + gateNum), 1);
@@ -386,21 +391,37 @@ while ang_key > 0
             
             for cidx = 1:gateNum
                 
-                if (intensity(cidx, 1) >= 1.05)
+                if (SNRLog(cidx, 1) >= 1.05)
                     
                     % Initialize color code
                     C_Code = [];
                     % Intensity flagger
-                    temp_flag = round((intensity(cidx, 1) * 2));
+                    temp_flag = intensity(cidx, 1);
                     
-                    % Check temp_flag condition
-                    if (temp_flag <= 33)
-                        C_Code = C((34 - temp_flag), :);
-                    else
+                    % Can't be fucked, use the dumbest if else
+                    % Actually fuck it
+                    temp_flag = round((intensity(cidx, 1) - (0.625/2))/5*8);
+                    
+                    if (temp_flag <= -17)
                         C_Code = C(1, :);
+                    elseif (temp_flag >= 16)
+                        C_Code = C(34, :);
+                    else
+                        C_Code = C(temp_flag + 18, :);
                     end
+                        
+
+%                    temp_flag = round((intensity(cidx, 1) * 2));
+%                     
+%                     % Check temp_flag condition
+%                     if (temp_flag <= 33)
+%                         C_Code = C((34 - temp_flag), :);
+%                       % I am such an idiot to set condition like this
+%                     else
+%                         C_Code = C(1, :);
+%                     end
                     
-                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',5, 'MarkerEdgeColor','w',  'MarkerFaceColor', C_Code);
+                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor','w',  'MarkerFaceColor', C_Code);
                 end
                             
                     

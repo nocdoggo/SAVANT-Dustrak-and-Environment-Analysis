@@ -96,6 +96,8 @@ CBack = [0 0.1 0.4;
      0 0 0;
 ];
 
+% Color map done
+
 % Open starefile
 fid = fopen(filename)
 
