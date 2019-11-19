@@ -369,16 +369,16 @@ while ang_key > 0
             gate_range = M((idx + 1):(idx + gateNum), 1);
             
             % Obtain the height info
-            height_range = gate_range * rangDist * sin(ang / 180);
+            height_range = gate_range * rangDist * sin(ang / 180*pi);
             
             % Obtain the real hrizontal distance info
-            horizontal_range_relative = gate_range * rangDist * cos(ang / 180);
+            horizontal_range_relative = gate_range * rangDist * cos(ang / 180*pi);
             
             % Scale the horizontal distance
-            horizontal_range = horizontal_range_relative * cos((270 - degree) / 180);
+            horizontal_range = horizontal_range_relative * cos((270 - degree) / 180*pi);
             
             % Scale the vertical distance
-            vertical_range = horizontal_range_relative * sin((270 - degree) / 180);
+            vertical_range = horizontal_range_relative * sin((270 - degree) / 180*pi);
             
             % Now try to figure out the color map for the intensity
             
@@ -420,7 +420,7 @@ while ang_key > 0
 %                     else
 %                         C_Code = C(1, :);
 %                     end
-                    plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+                    plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
                     %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
                 end
                             
