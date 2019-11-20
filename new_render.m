@@ -34,13 +34,27 @@ end
 snrBound = 1.05; % The acceptable SNR value to reduce backscatter in the image.
 % filename = 'User1_100_20181018_025017.hpl'; % Change this to the directory and path to your RHI or PPI file.
 
-% Acquire scan type
-type_sel = input('Please enter the scan type: [1] RHI, [2] PPI \n');
+% % Acquire scan type
+% type_sel = input('Please enter the scan type: [1] RHI, [2] PPI \n');
+% 
+% if type_sel == 1
+%     scanType = 'RHI';
+% else
+%     scanType = 'PPI'; % This will be either PPI or RHI
+% end
 
-if type_sel == 1
-    scanType = 'RHI';
+% Hardcode it for now!
+scanType = 'PPI';
+
+% Acquire background level
+bg_lv = input('Please choose your background level: [1] Clear, [2] Altered \n');
+
+if bg_lv == 1
+    bg_sel_1 = 'bgimg.png';
+    bg_sel_2 = 'bgimg.png';
 else
-    scanType = 'PPI'; % This will be either PPI or RHI
+    bg_sel_1 = 'bgimg2.png';
+    bg_sel_2 = 'bgimg3.png';
 end
 
 % fileDate = '20181018';
@@ -213,6 +227,42 @@ C = [0 0 0;
     1 0 0;
     0 0 0];
         
+% Set up the color map for the values
+C_Back = [0 0 0;
+     0 0.1 0.4;
+     0 0.1 0.6;
+     0 0.1 0.8;
+     0 0 1;
+     0 0.2 1;
+     0 0.3 1;
+     0 0.4 1;
+     0 0.5 1;
+     0 0.6 1;
+     0 1 1;
+     0 1 0.6;
+     0 1 0.4;
+     0 1 0;
+     0.4 1 0;
+     0.6 1 0;
+     0.8 1 0;
+     1 1 0;
+     1 0.8 0;
+     1 0.6 0;
+     1 0.4 0;
+     1 0.2 0;
+     1 0 0;
+     1 0.4 0.4;
+     1 0.8 0.8;
+     0.25 0.25 0.25;
+     0.3 0.3 0.3;
+     0.35 0.35 0.35;
+     0.4 0.4 0.4;
+     0.5 0.5 0.5;
+     0.6 0.6 0.6;
+     0.7 0.7 0.7;
+     0.8 0.8 0.8;
+     0.9 0.9 0.9;
+     1 1 1];
     
 ang_key = 22;
 ang_label = "";
@@ -333,8 +383,8 @@ while ang_key > 0
         f = figure;
         
         % Test
-        bgimage = imread('bgimg.png');
-        imshow(bgimage, 'XData', [0, 800], 'YData', [-1600/5, 900/5]);
+        bgimage = imread(bg_sel_1);
+        imshow(bgimage, 'XData', [-5, 945], 'YData', [-1600/5*(580/500), 900/5*(580/500)]);
         hold on
         
 %         grayImage = imread('cameraman.tif');
@@ -347,7 +397,7 @@ while ang_key > 0
 %         hp = impixelinfo
 %         grid on;
         
-        % Start to process the matrix
+        % Start with doppler
         for idx = 1:(gateNum + 1):ending_idx
             
             % Obtain the angle of the scan
@@ -450,15 +500,219 @@ while ang_key > 0
         % Done with plot
         hold off
         set(gca,'XDir','Reverse','Ydir','Reverse')
+        % label the x-axis
+        if scanType == 'RHI'
+            xlabel('Distance (m)')
+        else
+            xlabel('East-West Distance (m)')
+        end
+        % label the y-axis
+        if scanType == 'RHI'
+            ylabel('Altitude (m)')
+        else
+            ylabel('North-South Distance (m)')
+        end
+        colormap(C)
+        h = colorbar();
+        set(h,'YTick',[0/34,8/34,16/34,24/34,32/34],'YTickLabel',{-10,-5,0,5,10})
+        title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
         %set(gca,'xdir','reverse')
         
         %print(gcf,'test.png','-dpng','-r1200'); 
         set(f,'paperunits','centimeter')
         set(f,'papersize',[84.1,118.9])
         set(f,'paperposition',[0 0 84.1 118.9]);
-        print(f,'example.pdf','-dpdf','-opengl');
+        print(f,strcat(scanType, "_", fileDate, "_", num2str(tag_digit), "_", ang_label, "_Doppler.pdf"),'-dpdf','-opengl');
         %close
         %linear_render(M, gateNum, rangDist)
+        
+        
+        % Toggler of the plot
+        g = figure;
+        
+        % Test
+        bgimage = imread(bg_sel_2);
+        imshow(bgimage, 'XData', [-5, 945], 'YData', [-1600/5*(580/500), 900/5*(580/500)]);
+        hold on
+        % Start with backscatter
+        for idx = 1:(gateNum + 1):ending_idx
+            
+            % Obtain the angle of the scan
+            ang = M(idx, 3);
+            
+            % Obtain the degree of the scan
+            degree = M(idx, 2);
+            
+            % Obtain the time of the starting time of each scan
+            start_time = M(idx, 1);
+            
+            % Obtain the matrix we are working with
+            backsity = M((idx + 1):(idx + gateNum), 4);
+            
+            % Obtain the SNR datalog
+            SNRLog = M((idx + 1):(idx + gateNum), 3);
+            
+            % Obtain the gate range
+            gate_range = M((idx + 1):(idx + gateNum), 1);
+            
+            % Obtain the height info
+            height_range = gate_range * rangDist * sin(ang / 180*pi);
+            
+            % Obtain the real hrizontal distance info
+            horizontal_range_relative = gate_range * rangDist * cos(ang / 180*pi);
+            
+            % Scale the horizontal distance
+            horizontal_range = horizontal_range_relative * cos((270 - degree) / 180*pi);
+            
+            % Scale the vertical distance
+            vertical_range = horizontal_range_relative * sin((270 - degree) / 180*pi);
+            
+            % Now try to figure out the color map for the intensity
+            
+            % Initialize the color dict
+            color_dict = zeros(gateNum, 3);
+            
+            % Color code initialization
+            
+            %vertical_range = flipud(vertical_range);
+            
+            for cidx = 1:gateNum
+                
+                if (SNRLog(cidx, 1) >= 1.05)
+                    
+                    % Initialize color code
+                    C_Code = [];
+                    % Intensity flagger
+                    temp_flag = backsity(cidx, 1);
+                    
+                    % Can't be fucked, use the dumbest if else
+                    % Actually fuck it
+                    temp_flag = round((backsity(cidx, 1)*1000000) - 0.5);
+                    
+                    if (temp_flag <= 0)
+                        C_Code = C_Back(1, :);
+                    elseif (temp_flag <= 8)
+                        C_Code = C_Back((1+temp_flag), :);
+                    elseif (temp_flag == 9)
+                        C_Code = C_Back(10, :);
+                    elseif (temp_flag >= 10) && (temp_flag < 15)
+                        C_Code = C_Back(11, :);
+                    elseif (temp_flag >= 15) && (temp_flag < 20)
+                        C_Code = C_Back(12, :);
+                    elseif (temp_flag >= 20) && (temp_flag < 25)
+                        C_Code = C_Back(13, :);
+                    elseif (temp_flag >= 25) && (temp_flag < 30)
+                        C_Code = C_Back(14, :);
+                    elseif (temp_flag >= 30) && (temp_flag < 35)
+                        C_Code = C_Back(15, :);
+                    elseif (temp_flag >= 35) && (temp_flag < 40)
+                        C_Code = C_Back(16, :);
+                    elseif (temp_flag >= 40) && (temp_flag < 45)
+                        C_Code = C_Back(17, :);
+                    elseif (temp_flag >= 45) && (temp_flag < 50)
+                        C_Code = C_Back(18, :);
+                    elseif (temp_flag >= 50) && (temp_flag < 55)
+                        C_Code = C_Back(19, :);
+                    elseif (temp_flag >= 55) && (temp_flag < 60)
+                        C_Code = C_Back(20, :);
+                    elseif (temp_flag >= 60) && (temp_flag < 65)
+                        C_Code = C_Back(21, :);
+                    elseif (temp_flag >= 65) && (temp_flag < 70)
+                        C_Code = C_Back(22, :);
+                    elseif (temp_flag >= 70) && (temp_flag < 75)
+                        C_Code = C_Back(23, :);
+                    elseif (temp_flag >= 75) && (temp_flag < 80)
+                        C_Code = C_Back(24, :);
+                    elseif (temp_flag >= 80) && (temp_flag < 100)
+                        C_Code = C_Back(25, :);
+                    elseif (temp_flag >= 100) && (temp_flag < 200)
+                        C_Code = C_Back(26, :);
+                    elseif (temp_flag >= 200) && (temp_flag < 300)
+                        C_Code = C_Back(27, :);
+                    elseif (temp_flag >= 300) && (temp_flag < 400)
+                        C_Code = C_Back(28, :);
+                    elseif (temp_flag >= 400) && (temp_flag < 500)
+                        C_Code = C_Back(29, :);
+                    elseif (temp_flag >= 500) && (temp_flag < 600)
+                        C_Code = C_Back(30, :);
+                    elseif (temp_flag >= 600) && (temp_flag < 700)
+                        C_Code = C_Back(31, :);
+                    elseif (temp_flag >= 700) && (temp_flag < 800)
+                        C_Code = C_Back(32, :);
+                    elseif (temp_flag >= 800) && (temp_flag < 900)
+                        C_Code = C_Back(33, :);
+                    elseif (temp_flag >= 900) && (temp_flag < 1000)
+                        C_Code = C_Back(34, :);
+                    else
+                        C_Code = C_Back(35, :);
+                    end
+                        
+
+%                    temp_flag = round((intensity(cidx, 1) * 2));
+%                     
+%                     % Check temp_flag condition
+%                     if (temp_flag <= 33)
+%                         C_Code = C((34 - temp_flag), :);
+%                       % I am such an idiot to set condition like this
+%                     else
+%                         C_Code = C(1, :);
+%                     end
+                    plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+                    %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
+                end
+                            
+                    
+                    
+                
+%                 % Check the value
+%                 if (intensity(cidx, 1) < mid_ab) && (intensity(cidx, 1) >= 1.05)
+%                     color_dict(cidx, 2) = (intensity(cidx, 1) - min_ab) / (mid_ab - min_ab);
+%                     plot(horizontal_range(cidx, 1), vertical_range(cidx, 1), 'o', 'MarkerSize',5, 'MarkerEdgeColor','w',  'MarkerFaceColor',[0, 1, 1])
+%                 elseif (intensity(cidx, 1) >= 1.05)
+%                     color_dict(cidx, 3) = (intensity(cidx, 1) - mid_ab) / (max_ab - mid_ab);
+%                     plot(horizontal_range(cidx, 1), vertical_range(cidx, 1), 'o', 'MarkerSize',5, 'MarkerEdgeColor','w',  'MarkerFaceColor',[0, 1, 0])
+%                 end
+%                 %         % Now start with the plot
+%                 % plot(horizontal_range(cidx, 1), vertical_range(cidx, 1), 'd', 'MarkerSize',3, 'MarkerEdgeColor','w',  'MarkerFaceColor',[0, color_dict(cidx, 2)*5 , color_dict(cidx, 3)*5])
+%                 %scatter(horizontal_range(cidx, 1), vertical_range(cidx, 1), 20, 'MarkerEdgeColor',[0 0 0], 'MarkerFaceColor',[0, color_dict(cidx, 2) , color_dict(cidx, 3)]);
+
+                
+                % Make sure everything stays on the canvas
+                hold on
+            end
+            % Now start with the plot
+            
+        end
+        %set(gca,'YDir','reverse')
+        % Done with plot
+        hold off
+        set(gca,'XDir','Reverse','Ydir','Reverse')
+        if scanType == 'RHI'
+            xlabel('Distance (m)')
+        else
+            xlabel('East-West Distance (m)')
+        end
+        % label the y-axis
+        if scanType == 'RHI'
+            ylabel('Altitude (m)')
+        else
+            ylabel('North-South Distance (m)')
+        end
+        colormap(C_Back)
+        h = colorbar();
+        set(h,'YTick',[1/35,3/35,5/35,7/35,10/35,12/35,14/35,16/35,18/35,20/35,22/35,24/35,25/35,27/35,29/35,31/35,34/35],'YTickLabel',{1E-6,3E-6,5E-6,7E-6,1.0E-5,2E-5,3E-5,4E-5,5E-5,6E-5,7E-5,8E-5,1E-4,3E-4,5E-4,7E-4,1E-3})
+        title(strcat("Backscatter ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
+        %set(gca,'xdir','reverse')
+        
+        %print(gcf,'test.png','-dpng','-r1200'); 
+        set(g,'paperunits','centimeter')
+        set(g,'papersize',[84.1,118.9])
+        set(g,'paperposition',[0 0 84.1 118.9]);
+        print(g,strcat(scanType, "_", fileDate, "_", num2str(tag_digit), "_", ang_label, "_Backscater.pdf"),'-dpdf','-opengl');
+        %close
+        %linear_render(M, gateNum, rangDist)
+        
+        
               
         
    

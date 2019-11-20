@@ -368,7 +368,7 @@ for j=1:size(idxR)
     elseif beta(idxR(j),idxC(j)) >= 9E-6 && beta(idxR(j),idxC(j)) < 1E-5 && intensity(idxR(j),idxC(j))>=snrBound
         mapBack(curRow(j),curCol(j)) = 9;
     elseif beta(idxR(j),idxC(j)) >= 1E-5 && beta(idxR(j),idxC(j)) < 1.5E-5 && intensity(idxR(j),idxC(j))>=snrBound
-        map(idxR(j),idxC(j)) = 10;
+        mapBack(curRow(j),curCol(j)) = 10;
     elseif beta(idxR(j),idxC(j)) >= 1.5E-5 && beta(idxR(j),idxC(j)) < 2E-5 && intensity(idxR(j),idxC(j))>=snrBound
         mapBack(curRow(j),curCol(j)) = 11;
     elseif beta(idxR(j),idxC(j)) >= 2E-5 && beta(idxR(j),idxC(j)) < 2.5E-5 && intensity(idxR(j),idxC(j))>=snrBound

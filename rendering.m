@@ -301,7 +301,7 @@ rangDist = str2num(rang{1});
         else
             ylabel('North-South Distance (m)')
         end
-         title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
+        title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
         
         % If time wanted in the reverse order, do it here.
         %if flipTime == 1
