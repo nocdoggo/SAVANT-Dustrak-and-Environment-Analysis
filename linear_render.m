@@ -207,7 +207,15 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',15, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+            
+            % Experimental
+            if (ang == 270)
+                % Add labeling
+                text(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), strcat(cidx));
+                
+            end
+            
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
         end
         
@@ -405,7 +413,7 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',10, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
         end
         
