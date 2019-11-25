@@ -139,6 +139,7 @@ for idx = 1:(gateNum + 1):ending_idx
     
     % Obtain the angle of the scan
     ang = M(idx, 3);
+    %disp(ang)
     
     % Obtain the degree of the scan
     degree = M(idx, 2);
@@ -207,14 +208,17 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',15, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             
             % Experimental
-            if (ang == 270)
+            if (degree == 240) && (cidx <= 22)
                 % Add labeling
-                text(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), strcat(cidx));
-                
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0.9290 0.6940 0.1250]);
             end
+            
+%             if (degree > 320) && (degree < 322) && (cidx > 22)
+%                 text((horizontal_range(cidx, 1)+15), (vertical_range(cidx, 1)), num2str(cidx), 'Color', [0.9290 0.6940 0.1250]);
+%             end
             
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
         end
@@ -413,8 +417,13 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',10, 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
+            % Experimental
+            if (degree == 240) && (cidx <= 22)
+                % Add labeling
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0 0.4470 0.7410]);
+            end
         end
         
         
