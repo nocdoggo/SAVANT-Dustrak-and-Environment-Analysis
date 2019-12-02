@@ -322,67 +322,67 @@ while ang_key > 0
         
         if ang_key == 1
             M = M_total(1:zero_lib, :);
-            ang_label = "0.0ï¿½";
+            ang_label = "0.0°";
         elseif ang_key == 2
             M = M_total((zero_lib +1):zero_5_lib, :);
-            ang_label = "0.5ï¿½";
+            ang_label = "0.5°";
         elseif ang_key == 3
             M = M_total((zero_5_lib +1): one_lib, :);
-            ang_label = "1.0ï¿½";
+            ang_label = "1.0°";
         elseif ang_key == 4
             M = M_total((one_lib +1): one_5_lib, :);
-            ang_label = "1.5ï¿½";
+            ang_label = "1.5°";
         elseif ang_key == 5
             M = M_total((one_5_lib +1): two_lib, :);
-            ang_label = "2.0ï¿½";
+            ang_label = "2.0°";
         elseif ang_key == 6
             M = M_total((two_lib +1): two_5_lib, :);
-            ang_label = "2.5ï¿½";
+            ang_label = "2.5°";
         elseif ang_key == 7
             M = M_total((two_5_lib +1): three_lib, :);
-            ang_label = "3.0ï¿½";
+            ang_label = "3.0°";
         elseif ang_key == 8
             M = M_total((three_lib +1): three_5_lib, :);
-            ang_label = "3.5ï¿½";
+            ang_label = "3.5°";
         elseif ang_key == 9
             M = M_total((three_5_lib +1): four_lib, :);
-            ang_label = "4.0ï¿½";
+            ang_label = "4.0°";
         elseif ang_key == 10
             M = M_total((four_lib +1): four_5_lib, :);
-            ang_label = "4.5ï¿½";
+            ang_label = "4.5°";
         elseif ang_key == 11
             M = M_total((four_5_lib +1): five_lib, :);
-            ang_label = "5.0ï¿½";
+            ang_label = "5.0°";
         elseif ang_key == 12
             M = M_total((five_lib +1): five_5_lib, :);
-            ang_label = "5.5ï¿½";
+            ang_label = "5.5°";
         elseif ang_key == 13
             M = M_total((five_5_lib +1): six_lib, :);
-            ang_label = "6.0ï¿½";
+            ang_label = "6.0°";
         elseif ang_key == 14
             M = M_total((six_lib +1): six_5_lib, :);
-            ang_label = "6.5ï¿½";
+            ang_label = "6.5°";
         elseif ang_key == 15
             M = M_total((six_5_lib +1): seven_lib, :);
-            ang_label = "7.0ï¿½";
+            ang_label = "7.0°";
         elseif ang_key == 16
             M = M_total((seven_lib +1): seven_5_lib, :);
-            ang_label = "7.5ï¿½";
+            ang_label = "7.5°";
         elseif ang_key == 17
             M = M_total((seven_5_lib +1): eight_lib, :);
-            ang_label = "8.0ï¿½";
+            ang_label = "8.0°";
         elseif ang_key == 18
             M = M_total((eight_lib +1): eight_5_lib, :);
-            ang_label = "8.5ï¿½";
+            ang_label = "8.5°";
         elseif ang_key == 19
             M = M_total((eight_5_lib +1): nine_lib, :);
-            ang_label = "9.0ï¿½";
+            ang_label = "9.0°";
         elseif ang_key == 20
             M = M_total((nine_lib +1): nine_5_lib, :);
-            ang_label = "9.5ï¿½";
+            ang_label = "9.5°";
         elseif ang_key == 21
             M = M_total((nine_5_lib +1): r_total, :);
-            ang_label = "10.0ï¿½";
+            ang_label = "10.0°";
         else
             fprintf('Not defined angle!\n');
         end
