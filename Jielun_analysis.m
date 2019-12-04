@@ -7,7 +7,7 @@ clc, clear all, close all
 %fprintf('\n');
 %file_dir = input('Please enter the name of the input environmental file folder: \n', 's');
 
-file_dir = 'S';
+file_dir = 'SD';
 
 % Color code
 c = struct('rr', [0.9047, 0.1918, 0.1988], ...  %Your required color
@@ -40,7 +40,7 @@ end
 % fprintf('=============================================================================');
 % fprintf('\n');
 
-for daterange = 1101:1128
+for daterange = 1001:1031
     
     targetDate = num2str(daterange);
     dateStamp = str2double(targetDate);
@@ -116,12 +116,16 @@ for daterange = 1101:1128
         % Split out time
         CDT_Time = speedTable{:,1};
         
-        % In this part, we hard code the start and end time
-        varStart = '19:02:30';
-        [varLogA, varStartIdx] = ismember(varStart, CDT_Time);
-        
-        varEnd = '6:57:30';
-        [varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
+%         % In this part, we hard code the start and end time
+%         varStart = '19:02:30';
+%         [varLogA, varStartIdx] = ismember(varStart, CDT_Time);
+%         
+%         varEnd = '6:57:30';
+%         [varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
+
+        % Figure out the size of the file
+        varStartIdx = 1;
+        [varEndIdx, whateveritis] = size(speedTable{:,1});
         
         %     % Ask user for time period
         %     fprintf('=============================================================================');
