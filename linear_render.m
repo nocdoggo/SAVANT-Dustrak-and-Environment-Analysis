@@ -179,7 +179,7 @@ for idx = 1:(gateNum + 1):ending_idx
     
     for cidx = 1:gateNum
         
-        if (SNRLog(cidx, 1) >= 1.05)
+        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 296)
             
             % Initialize color code
             C_Code = [];
@@ -211,10 +211,14 @@ for idx = 1:(gateNum + 1):ending_idx
             plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             
             % Experimental
-            if (degree == 240) && (cidx <= 22)
+            %if (degree == 240) && (cidx <= 22)
+            if (abs(degree - 285) < 1)
                 % Add labeling
                 text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0.9290 0.6940 0.1250]);
+            elseif ((abs(degree - 290) < 1))
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) - 125), num2str(round(intensity(cidx, 1)*10)/10), 'Color', [0.9290 0.6940 0.1250], 'FontSize', 6);
             end
+            
             
 %             if (degree > 320) && (degree < 322) && (cidx > 22)
 %                 text((horizontal_range(cidx, 1)+15), (vertical_range(cidx, 1)), num2str(cidx), 'Color', [0.9290 0.6940 0.1250]);
@@ -338,7 +342,9 @@ for idx = 1:(gateNum + 1):ending_idx
     
     for cidx = 1:gateNum
         
-        if (SNRLog(cidx, 1) >= 1.05)
+        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 296)
+            
+            %disp(degree)
             
             % Initialize color code
             C_Code = [];
@@ -420,9 +426,11 @@ for idx = 1:(gateNum + 1):ending_idx
             plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
             % Experimental
-            if (degree == 240) && (cidx <= 22)
+            if (abs(degree - 285) < 1)
                 % Add labeling
                 text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0 0.4470 0.7410]);
+            elseif
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) - 125), num2str(round(backsity(cidx, 1)*10)/10), 'Color', [0 0.4470 0.7410], 'FontSize', 6);
             end
         end
         
