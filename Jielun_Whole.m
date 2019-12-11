@@ -1391,7 +1391,15 @@ print(gcf, strcat( 'all_lconv'), '-dpdf','-fillpage');
 movefile(strcat('all_lconv.pdf'), strcat('Jielun\', 'all_lconv.pdf'));
 
 figure
-scatter(spd_lconv_1_5_ALL, Vtke_lconv_1_5_ALL, 'r-*', spd_lconv_3_ALL, Vtke_lconv_3_ALL, 'g-*', spd_lconv_4_5_ALL, Vtke_lconv_4_5_ALL, 'b-*', spd_lconv_6_ALL, Vtke_lconv_6_ALL, 'c-*', spd_lconv_8_5_ALL, Vtke_lconv_8_5_ALL, 'k-*');
+scatter(spd_lconv_1_5_ALL, Vtke_lconv_1_5_ALL, 'r-*');
+hold on
+scatter(spd_lconv_3_ALL, Vtke_lconv_3_ALL, 'g-*');
+hold on
+scatter(spd_lconv_4_5_ALL, Vtke_lconv_4_5_ALL, 'b-*');
+hold on
+scatter(spd_lconv_6_ALL, Vtke_lconv_6_ALL, 'c-*');
+hold on
+scatter(spd_lconv_8_5_ALL, Vtke_lconv_8_5_ALL, 'k-*');
 hold on
 scatter(spd_lconv_10_ALL, Vtke_lconv_10_ALL, 'Color', c.gl, 'Marker', '*');
 hold on
