@@ -7,7 +7,9 @@ clc, clear all, close all
 %fprintf('\n');
 %file_dir = input('Please enter the name of the input environmental file folder: \n', 's');
 
+% The first ones are the 
 file_dir = 'SD';
+file_dir2 = 'calculations'
 
 % Color code
 c = struct('rr', [0.9047, 0.1918, 0.1988], ...  %Your required color
