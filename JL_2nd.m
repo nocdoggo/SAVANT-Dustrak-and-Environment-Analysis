@@ -3124,7 +3124,7 @@ for daterange = 1114:1123
         % To close all the windows
         close all
         
-        bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
+        %bar_fence = repmat('|',10357);
         
         % Now we can form table
         %         % Group table
@@ -3145,3 +3145,189 @@ for daterange = 1114:1123
     
     
 end
+
+% Now form tables!
+
+% Sort at first based on speed
+[Vtke_init_1_5_sort, TKE_init_1_5_sort, spd_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, spd_init_1_5_ALL, R_Bulk_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL);
+[Vtke_init_3_sort, TKE_init_3_sort, spd_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, spd_init_3_ALL, R_Bulk_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL);
+[Vtke_init_4_5_sort, TKE_init_4_5_sort, spd_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, spd_init_4_5_ALL, R_Bulk_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL);
+[Vtke_init_6_sort, TKE_init_6_sort, spd_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, spd_init_6_ALL, R_Bulk_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL);
+[Vtke_init_10_sort, TKE_init_10_sort, spd_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, spd_init_10_ALL, R_Bulk_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL);
+
+[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, spd_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, spd_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL);
+[Vtke_uconv_3_sort, TKE_uconv_3_sort, spd_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, spd_uconv_3_ALL, R_Bulk_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL);
+[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, spd_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, spd_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL);
+[Vtke_uconv_6_sort, TKE_uconv_6_sort, spd_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, spd_uconv_6_ALL, R_Bulk_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL);
+[Vtke_uconv_10_sort, TKE_uconv_10_sort, spd_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, spd_uconv_10_ALL, R_Bulk_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL);
+
+[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, spd_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, spd_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL);
+[Vtke_rel_3_sort, TKE_rel_3_sort, spd_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, spd_rel_3_ALL, R_Bulk_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL);
+[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, spd_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, spd_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL);
+[Vtke_rel_6_sort, TKE_rel_6_sort, spd_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, spd_rel_6_ALL, R_Bulk_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL);
+[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, spd_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, spd_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL);
+[Vtke_rel_10_sort, TKE_rel_10_sort, spd_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, spd_rel_10_ALL, R_Bulk_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL);
+[Vtke_rel_15_sort, TKE_rel_15_sort, spd_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, spd_rel_15_ALL, R_Bulk_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL);
+[Vtke_rel_20_sort, TKE_rel_20_sort, spd_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, spd_rel_20_ALL, R_Bulk_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL);
+
+[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, spd_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, spd_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL);
+[Vtke_lconv_3_sort, TKE_lconv_3_sort, spd_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, spd_lconv_3_ALL, R_Bulk_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL);
+[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, spd_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, spd_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL);
+[Vtke_lconv_6_sort, TKE_lconv_6_sort, spd_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, spd_lconv_6_ALL, R_Bulk_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL);
+[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, spd_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, spd_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL);
+[Vtke_lconv_10_sort, TKE_lconv_10_sort, spd_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, spd_lconv_10_ALL, R_Bulk_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL);
+[Vtke_lconv_15_sort, TKE_lconv_15_sort, spd_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, spd_lconv_15_ALL, R_Bulk_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL);
+[Vtke_lconv_20_sort, TKE_lconv_20_sort, spd_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, spd_lconv_20_ALL, R_Bulk_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL);
+
+
+% Create bar fence
+bar_fence = repmat('|',length(L_lconv_20_ALL), 1);
+% Group table
+tempT_spd_sort_init = table(spd_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
+    bar_fence, spd_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
+    bar_fence, spd_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
+    bar_fence, spd_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
+    bar_fence, spd_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
+
+tempT_spd_sort_rel = table(spd_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
+    bar_fence, spd_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
+    bar_fence, spd_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
+    bar_fence, spd_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
+    bar_fence, spd_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
+    bar_fence, spd_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
+    bar_fence, spd_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
+    bar_fence, spd_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
+
+tempT_spd_sort_uconv = table(spd_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
+    bar_fence, spd_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
+    bar_fence, spd_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
+    bar_fence, spd_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
+    bar_fence, spd_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
+
+tempT_spd_sort_lconv = table(spd_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
+    bar_fence, spd_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
+    bar_fence, spd_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
+    bar_fence, spd_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
+    bar_fence, spd_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
+    bar_fence, spd_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
+    bar_fence, spd_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
+    bar_fence, spd_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
+
+% Format table name
+table_name_spd_sort_init = 'init_Speed_Sorted.csv';
+table_name_spd_sort_rel = 'rel_Speed_Sorted.csv';
+table_name_spd_sort_uconv = 'uconv_Speed_Sorted.csv';
+table_name_spd_sort_lconv = 'lconv_Speed_Sorted.csv';
+
+% Output tables
+writetable(tempT_spd_sort_init, table_name_spd_sort_init);
+writetable(tempT_spd_sort_rel, table_name_spd_sort_rel);
+writetable(tempT_spd_sort_uconv, table_name_spd_sort_uconv);
+writetable(tempT_spd_sort_lconv, table_name_spd_sort_lconv);
+
+% Sort based on R_Bulk
+[Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, spd_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, R_Bulk_init_1_5_ALL, spd_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL);
+[Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, spd_init_3_sort, L_init_3_sort, Term_3_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, R_Bulk_init_3_ALL, spd_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL);
+[Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, spd_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, R_Bulk_init_4_5_ALL, spd_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL);
+[Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, spd_init_6_sort, L_init_6_sort, Term_3_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, R_Bulk_init_6_ALL, spd_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL);
+[Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, spd_init_10_sort, L_init_10_sort, Term_3_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, R_Bulk_init_10_ALL, spd_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL);
+
+[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, spd_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL);
+[Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, spd_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, R_Bulk_uconv_3_ALL, spd_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL);
+[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, spd_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL);
+[Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, spd_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, R_Bulk_uconv_6_ALL, spd_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL);
+[Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, spd_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, R_Bulk_uconv_10_ALL, spd_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL);
+
+[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, spd_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL);
+[Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, spd_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, R_Bulk_rel_3_ALL, spd_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL);
+[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, spd_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL);
+[Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, spd_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, R_Bulk_rel_6_ALL, spd_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL);
+[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, spd_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL);
+[Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, spd_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, R_Bulk_rel_10_ALL, spd_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL);
+[Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, spd_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, R_Bulk_rel_15_ALL, spd_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL);
+[Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, spd_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, R_Bulk_rel_20_ALL, spd_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL);
+
+[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, spd_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL);
+[Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, spd_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, R_Bulk_lconv_3_ALL, spd_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL);
+[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, spd_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL);
+[Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, spd_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, R_Bulk_lconv_6_ALL, spd_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL);
+[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, spd_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL);
+[Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, spd_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, R_Bulk_lconv_10_ALL, spd_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL);
+[Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, spd_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, R_Bulk_lconv_15_ALL, spd_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL);
+[Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, spd_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, R_Bulk_lconv_20_ALL, spd_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL);
+
+% Create bar fence
+bar_fence = repmat('|',length(L_lconv_20_ALL), 1);
+% Group table
+tempT_Bulk_sort_init = table(R_Bulk_init_1_5_sort, spd_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
+    bar_fence, R_Bulk_init_3_sort, spd_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
+    bar_fence, R_Bulk_init_4_5_sort, spd_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
+    bar_fence, R_Bulk_init_6_sort, spd_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
+    bar_fence, R_Bulk_init_10_sort, spd_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
+
+tempT_Bulk_sort_rel = table(R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
+    bar_fence, R_Bulk_rel_3_sort, spd_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
+    bar_fence, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
+    bar_fence, R_Bulk_rel_6_sort, spd_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
+    bar_fence, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
+    bar_fence, R_Bulk_rel_10_sort, spd_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
+    bar_fence, R_Bulk_rel_15_sort, spd_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
+    bar_fence, R_Bulk_rel_20_sort, spd_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
+
+tempT_Bulk_sort_uconv = table(R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
+    bar_fence, R_Bulk_uconv_3_sort, spd_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
+    bar_fence, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
+    bar_fence, R_Bulk_uconv_6_sort, spd_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
+    bar_fence, R_Bulk_uconv_10_sort, spd_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
+
+tempT_Bulk_sort_lconv = table(R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
+    bar_fence, R_Bulk_lconv_3_sort, spd_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
+    bar_fence, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
+    bar_fence, R_Bulk_lconv_6_sort, spd_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
+    bar_fence, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
+    bar_fence, R_Bulk_lconv_10_sort, spd_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
+    bar_fence, R_Bulk_lconv_15_sort, spd_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
+    bar_fence, R_Bulk_lconv_20_sort, spd_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
+
+% Format table name
+table_name_Bulk_sort_init = 'init_Bulk_Sorted.csv';
+table_name_Bulk_sort_rel = 'rel_Bulk_Sorted.csv';
+table_name_Bulk_sort_uconv = 'uconv_Bulk_Sorted.csv';
+table_name_Bulk_sort_lconv = 'lconv_Bulk_Sorted.csv';
+
+% Output tables
+writetable(tempT_Bulk_sort_init, table_name_Bulk_sort_init);
+writetable(tempT_Bulk_sort_rel, table_name_Bulk_sort_rel);
+writetable(tempT_Bulk_sort_uconv, table_name_Bulk_sort_uconv);
+writetable(tempT_Bulk_sort_lconv, table_name_Bulk_sort_lconv);
+
+% Check on conditions
+[init_1_5_A, init_1_5_B, init_1_5_C] = idx_finder(R_Bulk_init_1_5_sort);
+[init_3_A, init_3_B, init_3_C] = idx_finder(R_Bulk_init_3_sort);
+[init_4_5_A, init_4_5_B, init_4_5_C] = idx_finder(R_Bulk_init_4_5_sort);
+[init_6_A, init_6_B, init_6_C] = idx_finder(R_Bulk_init_6_sort);
+[init_10_A, init_10_B, init_10_C] = idx_finder(R_Bulk_init_10_sort);
+
+[rel_1_5_A, rel_1_5_B, rel_1_5_C] = idx_finder(R_Bulk_rel_1_5_sort);
+[rel_3_A, rel_3_B, rel_3_C] = idx_finder(R_Bulk_rel_3_sort);
+[rel_4_5_A, rel_4_5_B, rel_4_5_C] = idx_finder(R_Bulk_rel_4_5_sort);
+[rel_6_A, rel_6_B, rel_6_C] = idx_finder(R_Bulk_rel_6_sort);
+[rel_8_5_A, rel_8_5_B, rel_8_5_C] = idx_finder(R_Bulk_rel_8_5_sort);
+[rel_10_A, rel_10_B, rel_10_C] = idx_finder(R_Bulk_rel_10_sort);
+[rel_15_A, rel_15_B, rel_15_C] = idx_finder(R_Bulk_rel_15_sort);
+[rel_20_A, rel_20_B, rel_20_C] = idx_finder(R_Bulk_rel_20_sort);
+
+[uconv_1_5_A, uconv_1_5_B, uconv_1_5_C] = idx_finder(R_Bulk_uconv_1_5_sort);
+[uconv_3_A, uconv_3_B, uconv_3_C] = idx_finder(R_Bulk_uconv_3_sort);
+[uconv_4_5_A, uconv_4_5_B, uconv_4_5_C] = idx_finder(R_Bulk_uconv_4_5_sort);
+[uconv_6_A, uconv_6_B, uconv_6_C] = idx_finder(R_Bulk_uconv_6_sort);
+[uconv_10_A, uconv_10_B, uconv_10_C] = idx_finder(R_Bulk_uconv_10_sort);
+
+[lconv_1_5_A, lconv_1_5_B, lconv_1_5_C] = idx_finder(R_Bulk_lconv_1_5_sort);
+[lconv_3_A, lconv_3_B, lconv_3_C] = idx_finder(R_Bulk_lconv_3_sort);
+[lconv_4_5_A, lconv_4_5_B, lconv_4_5_C] = idx_finder(R_Bulk_lconv_4_5_sort);
+[lconv_6_A, lconv_6_B, lconv_6_C] = idx_finder(R_Bulk_lconv_6_sort);
+[lconv_8_5_A, lconv_8_5_B, lconv_8_5_C] = idx_finder(R_Bulk_lconv_8_5_sort);
+[lconv_10_A, lconv_10_B, lconv_10_C] = idx_finder(R_Bulk_lconv_10_sort);
+[lconv_15_A, lconv_15_B, lconv_15_C] = idx_finder(R_Bulk_lconv_15_sort);
+[lconv_20_A, lconv_20_B, lconv_20_C] = idx_finder(R_Bulk_lconv_20_sort);
