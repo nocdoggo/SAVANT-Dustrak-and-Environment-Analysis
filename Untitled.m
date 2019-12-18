@@ -1,42 +1,24 @@
-C = [0.5 0 1;
-    0.4 0 1;
-    0.3 0 1;
-    0.2 0 1;
-    0.1 0 1;
-    0 0 1;
-    0 0.2 0.8;
-    0 0.3 0.6;
-    0 0.4 0.4;
-    0 0.6 0.2;
-    0 1 0;
-    0.2 1 0.2;
-    0.4 1 0.4;
-    0.6 1 0.6;
-    0.8 1 0.8;
-    1 1 1;
-    1 1 0;
-    1 0.9 0;
-    1 0.85 0;
-    1 0.8 0;
-    1 0.75 0;
-    1 0.7 0;
-    1 0.65 0;
-    1 0.6 0;
-    1 0.55 0;
-    1 0.5 0;
-    1 0.4 0;
-    1 0.3 0;
-    1 0.2 0;
-    1 0.1 0;
-    1 0 0;
-    0 0 0];
-
-x = -pi:pi/10:pi;
-y = tan(sin(x)) - sin(tan(x));
-
-figure
-plot(x,y,'--gs',...
-    'LineWidth',2,...
-    'MarkerSize',10,...
-    'MarkerEdgeColor','b',...
-    'MarkerFaceColor',[0.5,0.5,0.5])
+R_Bulk_lconv_1_5_ALL = [];
+L_lconv_1_5_ALL = [];
+Term_3_lconv_1_5_ALL = [];
+R_Bulk_lconv_3_ALL = [];
+L_lconv_3_ALL = [];
+Term_3_lconv_3_ALL = [];
+R_Bulk_lconv_4_5_ALL = [];
+L_lconv_4_5_ALL = [];
+Term_3_lconv_4_5_ALL = [];
+R_Bulk_lconv_6_ALL = [];
+L_lconv_6_ALL = [];
+Term_3_lconv_6_ALL = [];
+R_Bulk_lconv_8_5_ALL = [];
+L_lconv_8_5_ALL = [];
+Term_3_lconv_8_5_ALL = [];
+R_Bulk_lconv_10_ALL = [];
+L_lconv_10_ALL = [];
+Term_3_lconv_10_ALL = [];
+R_Bulk_lconv_15_ALL = [];
+L_lconv_15_ALL = [];
+Term_3_lconv_15_ALL = [];
+R_Bulk_lconv_20_ALL = [];
+L_lconv_20_ALL = [];
+Term_3_lconv_20_ALL = [];

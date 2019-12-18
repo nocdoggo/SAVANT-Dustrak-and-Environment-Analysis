@@ -9,7 +9,7 @@ clc, clear all, close all
 
 % The first ones are the 
 file_dir = 'SD';
-file_dir2 = 'calculations'
+file_dir2 = 'calculations';     % May not be used only if need to cheap out on calculation time.
 
 % Color code
 c = struct('rr', [0.9047, 0.1918, 0.1988], ...  %Your required color
