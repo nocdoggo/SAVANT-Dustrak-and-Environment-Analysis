@@ -3331,3 +3331,6 @@ writetable(tempT_Bulk_sort_lconv, table_name_Bulk_sort_lconv);
 [lconv_10_A, lconv_10_B, lconv_10_C] = idx_finder(R_Bulk_lconv_10_sort);
 [lconv_15_A, lconv_15_B, lconv_15_C] = idx_finder(R_Bulk_lconv_15_sort);
 [lconv_20_A, lconv_20_B, lconv_20_C] = idx_finder(R_Bulk_lconv_20_sort);
+
+
+
