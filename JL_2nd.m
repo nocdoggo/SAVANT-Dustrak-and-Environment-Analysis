@@ -76,6 +76,17 @@ R_Bulk_init_10_ALL = [];
 L_init_10_ALL = [];
 Term_3_init_10_ALL = [];
 
+CDT_Time_init_1_5_ALL = [];
+CDT_Time_init_3_ALL = [];
+CDT_Time_init_4_5_ALL = [];
+CDT_Time_init_6_ALL = [];
+CDT_Time_init_10_ALL = [];
+Date_init_1_5_ALL = [];
+Date_init_3_ALL = [];
+Date_init_4_5_ALL = [];
+Date_init_6_ALL = [];
+Date_init_10_ALL = [];
+
 Vtke_uconv_1_5_ALL= [];
 TKE_uconv_1_5_ALL =[];
 spd_uconv_1_5_ALL = [];
@@ -95,6 +106,17 @@ spd_uconv_6_ALL = [];
 Vtke_uconv_10_ALL= [];
 TKE_uconv_10_ALL =[];
 spd_uconv_10_ALL = [];
+
+CDT_Time_uconv_1_5_ALL = [];
+CDT_Time_uconv_3_ALL = [];
+CDT_Time_uconv_4_5_ALL = [];
+CDT_Time_uconv_6_ALL = [];
+CDT_Time_uconv_10_ALL = [];
+Date_uconv_1_5_ALL = [];
+Date_uconv_3_ALL = [];
+Date_uconv_4_5_ALL = [];
+Date_uconv_6_ALL = [];
+Date_uconv_10_ALL = [];
 
 R_Bulk_uconv_1_5_ALL = [];
 L_uconv_1_5_ALL = [];
@@ -169,6 +191,23 @@ R_Bulk_rel_20_ALL = [];
 L_rel_20_ALL = [];
 Term_3_rel_20_ALL = [];
 
+CDT_Time_rel_1_5_ALL = [];
+CDT_Time_rel_3_ALL = [];
+CDT_Time_rel_4_5_ALL = [];
+CDT_Time_rel_6_ALL = [];
+CDT_Time_rel_8_5_ALL = [];
+CDT_Time_rel_10_ALL = [];
+CDT_Time_rel_15_ALL = [];
+CDT_Time_rel_20_ALL = [];
+Date_rel_1_5_ALL = [];
+Date_rel_3_ALL = [];
+Date_rel_4_5_ALL = [];
+Date_rel_6_ALL = [];
+Date_rel_8_5_ALL = [];
+Date_rel_10_ALL = [];
+Date_rel_15_ALL = [];
+Date_rel_20_ALL = [];
+
 Vtke_lconv_1_5_ALL= [];
 TKE_lconv_1_5_ALL =[];
 spd_lconv_1_5_ALL = [];
@@ -226,11 +265,29 @@ R_Bulk_lconv_20_ALL = [];
 L_lconv_20_ALL = [];
 Term_3_lconv_20_ALL = [];
 
+CDT_Time_lconv_1_5_ALL = [];
+CDT_Time_lconv_3_ALL = [];
+CDT_Time_lconv_4_5_ALL = [];
+CDT_Time_lconv_6_ALL = [];
+CDT_Time_lconv_8_5_ALL = [];
+CDT_Time_lconv_10_ALL = [];
+CDT_Time_lconv_15_ALL = [];
+CDT_Time_lconv_20_ALL = [];
+Date_lconv_1_5_ALL = [];
+Date_lconv_3_ALL = [];
+Date_lconv_4_5_ALL = [];
+Date_lconv_6_ALL = [];
+Date_lconv_8_5_ALL = [];
+Date_lconv_10_ALL = [];
+Date_lconv_15_ALL = [];
+Date_lconv_20_ALL = [];
+
+
 % September
-for daterange = 910:930
+for Date = 910:930
     %daterange = 1018;
     
-    targetDate = num2str(daterange);
+    targetDate = num2str(Date);
     dateStamp = str2double(targetDate);
     targetDate = strcat('0', targetDate);
     
@@ -352,7 +409,7 @@ for daterange = 910:930
         % Figure out the size of the file
         varStartIdx = 1;
         [varEndIdx, whateveritis] = size(speedTable{:,1});
-        
+        Date = repmat(Date, length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Initiation tower
         
@@ -487,11 +544,22 @@ for daterange = 910:930
         Term_3_uconv_10 = uconv_D{:, 7};
         
         
-        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5);
-        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3);
-        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5);
-        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6);
-        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10);
+        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time_init_1_5, Date_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time, Date);
+        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time_init_3, Date_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time, Date);
+        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time_init_4_5, Date_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time, Date);
+        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time_init_6, Date_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time, Date);
+        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time_init_10, Date_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time, Date);
+        
+        CDT_Time_init_1_5_ALL = [CDT_Time_init_1_5_ALL; CDT_Time_init_1_5];
+        Date_init_1_5_ALL = [Date_init_1_5_ALL; Date_init_1_5];
+        CDT_Time_init_3_ALL = [CDT_Time_init_3_ALL; CDT_Time_init_3];
+        Date_init_3_ALL = [Date_init_3_ALL; Date_init_3];
+        CDT_Time_init_4_5_ALL = [CDT_Time_init_4_5_ALL; CDT_Time_init_4_5];
+        Date_init_4_5_ALL = [Date_init_4_5_ALL; Date_init_4_5];
+        CDT_Time_init_6_ALL = [CDT_Time_init_6_ALL; CDT_Time_init_6];
+        Date_init_6_ALL = [Date_init_6_ALL; Date_init_6];
+        CDT_Time_init_10_ALL = [CDT_Time_init_10_ALL; CDT_Time_init_10];
+        Date_init_10_ALL = [Date_init_10_ALL; Date_init_10];
         
         Vtke_init_1_5_ALL = [Vtke_init_1_5_ALL; Vtke_init_1_5];
         TKE_init_1_5_ALL = [TKE_init_1_5_ALL; TKE_init_1_5];
@@ -581,14 +649,33 @@ for daterange = 910:930
         %
         
         % Release tower
-        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5);
-        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3);
-        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5);
-        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6);
-        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5);
-        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10);
-        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15);
-        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20);
+        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time_rel_1_5, Date_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time, Date);
+        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time_rel_3, Date_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time, Date);
+        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time_rel_4_5, Date_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time, Date);
+        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time_rel_6, Date_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time, Date);
+        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time_rel_8_5, Date_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time, Date);
+        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time_rel_10, Date_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time, Date);
+        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time_rel_15, Date_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time, Date);
+        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time_rel_20, Date_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time, Date);
+        
+        
+        CDT_Time_rel_1_5_ALL = [CDT_Time_rel_1_5_ALL; CDT_Time_rel_1_5];
+        Date_rel_1_5_ALL = [Date_rel_1_5_ALL; Date_rel_1_5];
+        CDT_Time_rel_3_ALL = [CDT_Time_rel_3_ALL; CDT_Time_rel_3];
+        Date_rel_3_ALL = [Date_rel_3_ALL; Date_rel_3];
+        CDT_Time_rel_4_5_ALL = [CDT_Time_rel_4_5_ALL; CDT_Time_rel_4_5];
+        Date_rel_4_5_ALL = [Date_rel_4_5_ALL; Date_rel_4_5];
+        CDT_Time_rel_6_ALL = [CDT_Time_rel_6_ALL; CDT_Time_rel_6];
+        Date_rel_6_ALL = [Date_rel_6_ALL; Date_rel_6];
+        CDT_Time_rel_8_5_ALL = [CDT_Time_rel_8_5_ALL; CDT_Time_rel_8_5];
+        Date_rel_8_5_ALL = [Date_rel_8_5_ALL; Date_rel_8_5];
+        CDT_Time_rel_10_ALL = [CDT_Time_rel_10_ALL; CDT_Time_rel_10];
+        Date_rel_10_ALL = [Date_rel_10_ALL; Date_rel_10];
+        CDT_Time_rel_15_ALL = [CDT_Time_rel_15_ALL; CDT_Time_rel_15];
+        Date_rel_15_ALL = [Date_rel_15_ALL; Date_rel_15];
+        CDT_Time_rel_20_ALL = [CDT_Time_rel_20_ALL; CDT_Time_rel_20];
+        Date_rel_20_ALL = [Date_rel_20_ALL; Date_rel_20];
+        
         
         Vtke_rel_1_5_ALL = [Vtke_rel_1_5_ALL; Vtke_rel_1_5];
         TKE_rel_1_5_ALL = [TKE_rel_1_5_ALL; TKE_rel_1_5];
@@ -713,12 +800,22 @@ for daterange = 910:930
         %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun\', targetDate, '_one_rel.png'));
         
         % Upper convergence tower
-        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5);
-        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3);
-        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5);
-        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6);
-        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10);
+        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time_uconv_1_5, Date_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time, Date);
+        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time_uconv_3, Date_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time, Date);
+        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time_uconv_4_5, Date_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time, Date);
+        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time_uconv_6, Date_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time, Date);
+        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time_uconv_10, Date_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time, Date);
         
+        CDT_Time_uconv_1_5_ALL = [CDT_Time_uconv_1_5_ALL; CDT_Time_uconv_1_5];
+        Date_uconv_1_5_ALL = [Date_uconv_1_5_ALL; Date_uconv_1_5];
+        CDT_Time_uconv_3_ALL = [CDT_Time_uconv_3_ALL; CDT_Time_uconv_3];
+        Date_uconv_3_ALL = [Date_uconv_3_ALL; Date_uconv_3];
+        CDT_Time_uconv_4_5_ALL = [CDT_Time_uconv_4_5_ALL; CDT_Time_uconv_4_5];
+        Date_uconv_4_5_ALL = [Date_uconv_4_5_ALL; Date_uconv_4_5];
+        CDT_Time_uconv_6_ALL = [CDT_Time_uconv_6_ALL; CDT_Time_uconv_6];
+        Date_uconv_6_ALL = [Date_uconv_6_ALL; Date_uconv_6];
+        CDT_Time_uconv_10_ALL = [CDT_Time_uconv_10_ALL; CDT_Time_uconv_10];
+        Date_uconv_10_ALL = [Date_uconv_10_ALL; Date_uconv_10];
         
         Vtke_uconv_1_5_ALL = [Vtke_uconv_1_5_ALL; Vtke_uconv_1_5];
         TKE_uconv_1_5_ALL = [TKE_uconv_1_5_ALL; TKE_uconv_1_5];
@@ -799,14 +896,33 @@ for daterange = 910:930
         %         movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun\', targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
-        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5);
-        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3);
-        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5);
-        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6);
-        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5);
-        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10);
-        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15);
-        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20);
+        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time_lconv_1_5, Date_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time, Date);
+        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time_lconv_3, Date_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time, Date);
+        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time_lconv_4_5, Date_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time, Date);
+        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time_lconv_6, Date_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time, Date);
+        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time_lconv_8_5, Date_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time, Date);
+        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time_lconv_10, Date_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time, Date);
+        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time_lconv_15, Date_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time, Date);
+        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time_lconv_20, Date_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time, Date);
+        
+        
+        CDT_Time_lconv_1_5_ALL = [CDT_Time_lconv_1_5_ALL; CDT_Time_lconv_1_5];
+        Date_lconv_1_5_ALL = [Date_lconv_1_5_ALL; Date_lconv_1_5];
+        CDT_Time_lconv_3_ALL = [CDT_Time_lconv_3_ALL; CDT_Time_lconv_3];
+        Date_lconv_3_ALL = [Date_lconv_3_ALL; Date_lconv_3];
+        CDT_Time_lconv_4_5_ALL = [CDT_Time_lconv_4_5_ALL; CDT_Time_lconv_4_5];
+        Date_lconv_4_5_ALL = [Date_lconv_4_5_ALL; Date_lconv_4_5];
+        CDT_Time_lconv_6_ALL = [CDT_Time_lconv_6_ALL; CDT_Time_lconv_6];
+        Date_lconv_6_ALL = [Date_lconv_6_ALL; Date_lconv_6];
+        CDT_Time_lconv_8_5_ALL = [CDT_Time_lconv_8_5_ALL; CDT_Time_lconv_8_5];
+        Date_lconv_8_5_ALL = [Date_lconv_8_5_ALL; Date_lconv_8_5];
+        CDT_Time_lconv_10_ALL = [CDT_Time_lconv_10_ALL; CDT_Time_lconv_10];
+        Date_lconv_10_ALL = [Date_lconv_10_ALL; Date_lconv_10];
+        CDT_Time_lconv_15_ALL = [CDT_Time_lconv_15_ALL; CDT_Time_lconv_15];
+        Date_lconv_15_ALL = [Date_lconv_15_ALL; Date_lconv_15];
+        CDT_Time_lconv_20_ALL = [CDT_Time_lconv_20_ALL; CDT_Time_lconv_20];
+        Date_lconv_20_ALL = [Date_lconv_20_ALL; Date_lconv_20];
+        
         
         Vtke_lconv_1_5_ALL = [Vtke_lconv_1_5_ALL; Vtke_lconv_1_5];
         TKE_lconv_1_5_ALL = [TKE_lconv_1_5_ALL; TKE_lconv_1_5];
@@ -934,7 +1050,7 @@ for daterange = 910:930
         % To close all the windows
         close all
         
-        bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
+        %bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Now we can form table
         %         % Group table
@@ -957,10 +1073,10 @@ for daterange = 910:930
 end
 
 % October
-for daterange = 1001:1031
+for Date = 1001:1031
     %daterange = 1018;
     
-    targetDate = num2str(daterange);
+    targetDate = num2str(Date);
     dateStamp = str2double(targetDate);
     %targetDate = strcat('0', targetDate);
     
@@ -1082,7 +1198,7 @@ for daterange = 1001:1031
         % Figure out the size of the file
         varStartIdx = 1;
         [varEndIdx, whateveritis] = size(speedTable{:,1});
-        
+        Date = repmat(Date, length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Initiation tower
         
@@ -1217,11 +1333,22 @@ for daterange = 1001:1031
         Term_3_uconv_10 = uconv_D{:, 7};
         
         
-        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5);
-        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3);
-        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5);
-        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6);
-        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10);
+        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time_init_1_5, Date_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time, Date);
+        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time_init_3, Date_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time, Date);
+        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time_init_4_5, Date_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time, Date);
+        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time_init_6, Date_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time, Date);
+        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time_init_10, Date_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time, Date);
+        
+        CDT_Time_init_1_5_ALL = [CDT_Time_init_1_5_ALL; CDT_Time_init_1_5];
+        Date_init_1_5_ALL = [Date_init_1_5_ALL; Date_init_1_5];
+        CDT_Time_init_3_ALL = [CDT_Time_init_3_ALL; CDT_Time_init_3];
+        Date_init_3_ALL = [Date_init_3_ALL; Date_init_3];
+        CDT_Time_init_4_5_ALL = [CDT_Time_init_4_5_ALL; CDT_Time_init_4_5];
+        Date_init_4_5_ALL = [Date_init_4_5_ALL; Date_init_4_5];
+        CDT_Time_init_6_ALL = [CDT_Time_init_6_ALL; CDT_Time_init_6];
+        Date_init_6_ALL = [Date_init_6_ALL; Date_init_6];
+        CDT_Time_init_10_ALL = [CDT_Time_init_10_ALL; CDT_Time_init_10];
+        Date_init_10_ALL = [Date_init_10_ALL; Date_init_10];
         
         Vtke_init_1_5_ALL = [Vtke_init_1_5_ALL; Vtke_init_1_5];
         TKE_init_1_5_ALL = [TKE_init_1_5_ALL; TKE_init_1_5];
@@ -1311,14 +1438,33 @@ for daterange = 1001:1031
         %
         
         % Release tower
-        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5);
-        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3);
-        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5);
-        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6);
-        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5);
-        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10);
-        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15);
-        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20);
+        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time_rel_1_5, Date_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time, Date);
+        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time_rel_3, Date_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time, Date);
+        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time_rel_4_5, Date_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time, Date);
+        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time_rel_6, Date_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time, Date);
+        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time_rel_8_5, Date_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time, Date);
+        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time_rel_10, Date_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time, Date);
+        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time_rel_15, Date_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time, Date);
+        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time_rel_20, Date_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time, Date);
+        
+        
+        CDT_Time_rel_1_5_ALL = [CDT_Time_rel_1_5_ALL; CDT_Time_rel_1_5];
+        Date_rel_1_5_ALL = [Date_rel_1_5_ALL; Date_rel_1_5];
+        CDT_Time_rel_3_ALL = [CDT_Time_rel_3_ALL; CDT_Time_rel_3];
+        Date_rel_3_ALL = [Date_rel_3_ALL; Date_rel_3];
+        CDT_Time_rel_4_5_ALL = [CDT_Time_rel_4_5_ALL; CDT_Time_rel_4_5];
+        Date_rel_4_5_ALL = [Date_rel_4_5_ALL; Date_rel_4_5];
+        CDT_Time_rel_6_ALL = [CDT_Time_rel_6_ALL; CDT_Time_rel_6];
+        Date_rel_6_ALL = [Date_rel_6_ALL; Date_rel_6];
+        CDT_Time_rel_8_5_ALL = [CDT_Time_rel_8_5_ALL; CDT_Time_rel_8_5];
+        Date_rel_8_5_ALL = [Date_rel_8_5_ALL; Date_rel_8_5];
+        CDT_Time_rel_10_ALL = [CDT_Time_rel_10_ALL; CDT_Time_rel_10];
+        Date_rel_10_ALL = [Date_rel_10_ALL; Date_rel_10];
+        CDT_Time_rel_15_ALL = [CDT_Time_rel_15_ALL; CDT_Time_rel_15];
+        Date_rel_15_ALL = [Date_rel_15_ALL; Date_rel_15];
+        CDT_Time_rel_20_ALL = [CDT_Time_rel_20_ALL; CDT_Time_rel_20];
+        Date_rel_20_ALL = [Date_rel_20_ALL; Date_rel_20];
+        
         
         Vtke_rel_1_5_ALL = [Vtke_rel_1_5_ALL; Vtke_rel_1_5];
         TKE_rel_1_5_ALL = [TKE_rel_1_5_ALL; TKE_rel_1_5];
@@ -1443,12 +1589,22 @@ for daterange = 1001:1031
         %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun\', targetDate, '_one_rel.png'));
         
         % Upper convergence tower
-        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5);
-        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3);
-        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5);
-        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6);
-        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10);
+        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time_uconv_1_5, Date_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time, Date);
+        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time_uconv_3, Date_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time, Date);
+        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time_uconv_4_5, Date_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time, Date);
+        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time_uconv_6, Date_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time, Date);
+        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time_uconv_10, Date_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time, Date);
         
+        CDT_Time_uconv_1_5_ALL = [CDT_Time_uconv_1_5_ALL; CDT_Time_uconv_1_5];
+        Date_uconv_1_5_ALL = [Date_uconv_1_5_ALL; Date_uconv_1_5];
+        CDT_Time_uconv_3_ALL = [CDT_Time_uconv_3_ALL; CDT_Time_uconv_3];
+        Date_uconv_3_ALL = [Date_uconv_3_ALL; Date_uconv_3];
+        CDT_Time_uconv_4_5_ALL = [CDT_Time_uconv_4_5_ALL; CDT_Time_uconv_4_5];
+        Date_uconv_4_5_ALL = [Date_uconv_4_5_ALL; Date_uconv_4_5];
+        CDT_Time_uconv_6_ALL = [CDT_Time_uconv_6_ALL; CDT_Time_uconv_6];
+        Date_uconv_6_ALL = [Date_uconv_6_ALL; Date_uconv_6];
+        CDT_Time_uconv_10_ALL = [CDT_Time_uconv_10_ALL; CDT_Time_uconv_10];
+        Date_uconv_10_ALL = [Date_uconv_10_ALL; Date_uconv_10];
         
         Vtke_uconv_1_5_ALL = [Vtke_uconv_1_5_ALL; Vtke_uconv_1_5];
         TKE_uconv_1_5_ALL = [TKE_uconv_1_5_ALL; TKE_uconv_1_5];
@@ -1529,14 +1685,33 @@ for daterange = 1001:1031
         %         movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun\', targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
-        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5);
-        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3);
-        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5);
-        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6);
-        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5);
-        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10);
-        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15);
-        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20);
+        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time_lconv_1_5, Date_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time, Date);
+        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time_lconv_3, Date_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time, Date);
+        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time_lconv_4_5, Date_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time, Date);
+        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time_lconv_6, Date_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time, Date);
+        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time_lconv_8_5, Date_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time, Date);
+        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time_lconv_10, Date_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time, Date);
+        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time_lconv_15, Date_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time, Date);
+        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time_lconv_20, Date_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time, Date);
+        
+        
+        CDT_Time_lconv_1_5_ALL = [CDT_Time_lconv_1_5_ALL; CDT_Time_lconv_1_5];
+        Date_lconv_1_5_ALL = [Date_lconv_1_5_ALL; Date_lconv_1_5];
+        CDT_Time_lconv_3_ALL = [CDT_Time_lconv_3_ALL; CDT_Time_lconv_3];
+        Date_lconv_3_ALL = [Date_lconv_3_ALL; Date_lconv_3];
+        CDT_Time_lconv_4_5_ALL = [CDT_Time_lconv_4_5_ALL; CDT_Time_lconv_4_5];
+        Date_lconv_4_5_ALL = [Date_lconv_4_5_ALL; Date_lconv_4_5];
+        CDT_Time_lconv_6_ALL = [CDT_Time_lconv_6_ALL; CDT_Time_lconv_6];
+        Date_lconv_6_ALL = [Date_lconv_6_ALL; Date_lconv_6];
+        CDT_Time_lconv_8_5_ALL = [CDT_Time_lconv_8_5_ALL; CDT_Time_lconv_8_5];
+        Date_lconv_8_5_ALL = [Date_lconv_8_5_ALL; Date_lconv_8_5];
+        CDT_Time_lconv_10_ALL = [CDT_Time_lconv_10_ALL; CDT_Time_lconv_10];
+        Date_lconv_10_ALL = [Date_lconv_10_ALL; Date_lconv_10];
+        CDT_Time_lconv_15_ALL = [CDT_Time_lconv_15_ALL; CDT_Time_lconv_15];
+        Date_lconv_15_ALL = [Date_lconv_15_ALL; Date_lconv_15];
+        CDT_Time_lconv_20_ALL = [CDT_Time_lconv_20_ALL; CDT_Time_lconv_20];
+        Date_lconv_20_ALL = [Date_lconv_20_ALL; Date_lconv_20];
+        
         
         Vtke_lconv_1_5_ALL = [Vtke_lconv_1_5_ALL; Vtke_lconv_1_5];
         TKE_lconv_1_5_ALL = [TKE_lconv_1_5_ALL; TKE_lconv_1_5];
@@ -1664,7 +1839,7 @@ for daterange = 1001:1031
         % To close all the windows
         close all
         
-        bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
+        %bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Now we can form table
         %         % Group table
@@ -1687,10 +1862,10 @@ for daterange = 1001:1031
 end
 
 % Half November
-for daterange = 1101:1112
+for Date = 1101:1112
     %daterange = 1018;
     
-    targetDate = num2str(daterange);
+    targetDate = num2str(Date);
     dateStamp = str2double(targetDate);
     %targetDate = strcat('0', targetDate);
     
@@ -1812,7 +1987,7 @@ for daterange = 1101:1112
         % Figure out the size of the file
         varStartIdx = 1;
         [varEndIdx, whateveritis] = size(speedTable{:,1});
-        
+        Date = repmat(Date, length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Initiation tower
         
@@ -1947,11 +2122,22 @@ for daterange = 1101:1112
         Term_3_uconv_10 = uconv_D{:, 7};
         
         
-        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5);
-        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3);
-        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5);
-        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6);
-        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10);
+        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time_init_1_5, Date_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time, Date);
+        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time_init_3, Date_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time, Date);
+        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time_init_4_5, Date_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time, Date);
+        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time_init_6, Date_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time, Date);
+        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time_init_10, Date_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time, Date);
+        
+        CDT_Time_init_1_5_ALL = [CDT_Time_init_1_5_ALL; CDT_Time_init_1_5];
+        Date_init_1_5_ALL = [Date_init_1_5_ALL; Date_init_1_5];
+        CDT_Time_init_3_ALL = [CDT_Time_init_3_ALL; CDT_Time_init_3];
+        Date_init_3_ALL = [Date_init_3_ALL; Date_init_3];
+        CDT_Time_init_4_5_ALL = [CDT_Time_init_4_5_ALL; CDT_Time_init_4_5];
+        Date_init_4_5_ALL = [Date_init_4_5_ALL; Date_init_4_5];
+        CDT_Time_init_6_ALL = [CDT_Time_init_6_ALL; CDT_Time_init_6];
+        Date_init_6_ALL = [Date_init_6_ALL; Date_init_6];
+        CDT_Time_init_10_ALL = [CDT_Time_init_10_ALL; CDT_Time_init_10];
+        Date_init_10_ALL = [Date_init_10_ALL; Date_init_10];
         
         Vtke_init_1_5_ALL = [Vtke_init_1_5_ALL; Vtke_init_1_5];
         TKE_init_1_5_ALL = [TKE_init_1_5_ALL; TKE_init_1_5];
@@ -2041,14 +2227,33 @@ for daterange = 1101:1112
         %
         
         % Release tower
-        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5);
-        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3);
-        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5);
-        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6);
-        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5);
-        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10);
-        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15);
-        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20);
+        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time_rel_1_5, Date_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time, Date);
+        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time_rel_3, Date_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time, Date);
+        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time_rel_4_5, Date_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time, Date);
+        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time_rel_6, Date_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time, Date);
+        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time_rel_8_5, Date_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time, Date);
+        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time_rel_10, Date_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time, Date);
+        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time_rel_15, Date_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time, Date);
+        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time_rel_20, Date_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time, Date);
+        
+        
+        CDT_Time_rel_1_5_ALL = [CDT_Time_rel_1_5_ALL; CDT_Time_rel_1_5];
+        Date_rel_1_5_ALL = [Date_rel_1_5_ALL; Date_rel_1_5];
+        CDT_Time_rel_3_ALL = [CDT_Time_rel_3_ALL; CDT_Time_rel_3];
+        Date_rel_3_ALL = [Date_rel_3_ALL; Date_rel_3];
+        CDT_Time_rel_4_5_ALL = [CDT_Time_rel_4_5_ALL; CDT_Time_rel_4_5];
+        Date_rel_4_5_ALL = [Date_rel_4_5_ALL; Date_rel_4_5];
+        CDT_Time_rel_6_ALL = [CDT_Time_rel_6_ALL; CDT_Time_rel_6];
+        Date_rel_6_ALL = [Date_rel_6_ALL; Date_rel_6];
+        CDT_Time_rel_8_5_ALL = [CDT_Time_rel_8_5_ALL; CDT_Time_rel_8_5];
+        Date_rel_8_5_ALL = [Date_rel_8_5_ALL; Date_rel_8_5];
+        CDT_Time_rel_10_ALL = [CDT_Time_rel_10_ALL; CDT_Time_rel_10];
+        Date_rel_10_ALL = [Date_rel_10_ALL; Date_rel_10];
+        CDT_Time_rel_15_ALL = [CDT_Time_rel_15_ALL; CDT_Time_rel_15];
+        Date_rel_15_ALL = [Date_rel_15_ALL; Date_rel_15];
+        CDT_Time_rel_20_ALL = [CDT_Time_rel_20_ALL; CDT_Time_rel_20];
+        Date_rel_20_ALL = [Date_rel_20_ALL; Date_rel_20];
+        
         
         Vtke_rel_1_5_ALL = [Vtke_rel_1_5_ALL; Vtke_rel_1_5];
         TKE_rel_1_5_ALL = [TKE_rel_1_5_ALL; TKE_rel_1_5];
@@ -2173,12 +2378,22 @@ for daterange = 1101:1112
         %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun\', targetDate, '_one_rel.png'));
         
         % Upper convergence tower
-        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5);
-        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3);
-        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5);
-        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6);
-        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10);
+        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time_uconv_1_5, Date_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time, Date);
+        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time_uconv_3, Date_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time, Date);
+        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time_uconv_4_5, Date_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time, Date);
+        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time_uconv_6, Date_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time, Date);
+        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time_uconv_10, Date_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time, Date);
         
+        CDT_Time_uconv_1_5_ALL = [CDT_Time_uconv_1_5_ALL; CDT_Time_uconv_1_5];
+        Date_uconv_1_5_ALL = [Date_uconv_1_5_ALL; Date_uconv_1_5];
+        CDT_Time_uconv_3_ALL = [CDT_Time_uconv_3_ALL; CDT_Time_uconv_3];
+        Date_uconv_3_ALL = [Date_uconv_3_ALL; Date_uconv_3];
+        CDT_Time_uconv_4_5_ALL = [CDT_Time_uconv_4_5_ALL; CDT_Time_uconv_4_5];
+        Date_uconv_4_5_ALL = [Date_uconv_4_5_ALL; Date_uconv_4_5];
+        CDT_Time_uconv_6_ALL = [CDT_Time_uconv_6_ALL; CDT_Time_uconv_6];
+        Date_uconv_6_ALL = [Date_uconv_6_ALL; Date_uconv_6];
+        CDT_Time_uconv_10_ALL = [CDT_Time_uconv_10_ALL; CDT_Time_uconv_10];
+        Date_uconv_10_ALL = [Date_uconv_10_ALL; Date_uconv_10];
         
         Vtke_uconv_1_5_ALL = [Vtke_uconv_1_5_ALL; Vtke_uconv_1_5];
         TKE_uconv_1_5_ALL = [TKE_uconv_1_5_ALL; TKE_uconv_1_5];
@@ -2259,14 +2474,33 @@ for daterange = 1101:1112
         %         movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun\', targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
-        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5);
-        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3);
-        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5);
-        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6);
-        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5);
-        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10);
-        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15);
-        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20);
+        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time_lconv_1_5, Date_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time, Date);
+        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time_lconv_3, Date_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time, Date);
+        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time_lconv_4_5, Date_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time, Date);
+        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time_lconv_6, Date_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time, Date);
+        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time_lconv_8_5, Date_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time, Date);
+        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time_lconv_10, Date_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time, Date);
+        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time_lconv_15, Date_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time, Date);
+        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time_lconv_20, Date_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time, Date);
+        
+        
+        CDT_Time_lconv_1_5_ALL = [CDT_Time_lconv_1_5_ALL; CDT_Time_lconv_1_5];
+        Date_lconv_1_5_ALL = [Date_lconv_1_5_ALL; Date_lconv_1_5];
+        CDT_Time_lconv_3_ALL = [CDT_Time_lconv_3_ALL; CDT_Time_lconv_3];
+        Date_lconv_3_ALL = [Date_lconv_3_ALL; Date_lconv_3];
+        CDT_Time_lconv_4_5_ALL = [CDT_Time_lconv_4_5_ALL; CDT_Time_lconv_4_5];
+        Date_lconv_4_5_ALL = [Date_lconv_4_5_ALL; Date_lconv_4_5];
+        CDT_Time_lconv_6_ALL = [CDT_Time_lconv_6_ALL; CDT_Time_lconv_6];
+        Date_lconv_6_ALL = [Date_lconv_6_ALL; Date_lconv_6];
+        CDT_Time_lconv_8_5_ALL = [CDT_Time_lconv_8_5_ALL; CDT_Time_lconv_8_5];
+        Date_lconv_8_5_ALL = [Date_lconv_8_5_ALL; Date_lconv_8_5];
+        CDT_Time_lconv_10_ALL = [CDT_Time_lconv_10_ALL; CDT_Time_lconv_10];
+        Date_lconv_10_ALL = [Date_lconv_10_ALL; Date_lconv_10];
+        CDT_Time_lconv_15_ALL = [CDT_Time_lconv_15_ALL; CDT_Time_lconv_15];
+        Date_lconv_15_ALL = [Date_lconv_15_ALL; Date_lconv_15];
+        CDT_Time_lconv_20_ALL = [CDT_Time_lconv_20_ALL; CDT_Time_lconv_20];
+        Date_lconv_20_ALL = [Date_lconv_20_ALL; Date_lconv_20];
+        
         
         Vtke_lconv_1_5_ALL = [Vtke_lconv_1_5_ALL; Vtke_lconv_1_5];
         TKE_lconv_1_5_ALL = [TKE_lconv_1_5_ALL; TKE_lconv_1_5];
@@ -2394,7 +2628,7 @@ for daterange = 1101:1112
         % To close all the windows
         close all
         
-        bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
+        %bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Now we can form table
         %         % Group table
@@ -2417,10 +2651,10 @@ for daterange = 1101:1112
 end
 
 % Half November
-for daterange = 1114:1123
+for Date = 1114:1123
     %daterange = 1018;
     
-    targetDate = num2str(daterange);
+    targetDate = num2str(Date);
     dateStamp = str2double(targetDate);
     %targetDate = strcat('0', targetDate);
     
@@ -2542,7 +2776,7 @@ for daterange = 1114:1123
         % Figure out the size of the file
         varStartIdx = 1;
         [varEndIdx, whateveritis] = size(speedTable{:,1});
-        
+        Date = repmat(Date, length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Initiation tower
         
@@ -2677,11 +2911,22 @@ for daterange = 1114:1123
         Term_3_uconv_10 = uconv_D{:, 7};
         
         
-        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5);
-        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3);
-        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5);
-        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6);
-        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10);
+        [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time_init_1_5, Date_init_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 213}, windTable{varStartIdx:varEndIdx, 243}, windTable{varStartIdx:varEndIdx, 273}, speedTable{varStartIdx:varEndIdx, 4}, R_Bulk_init_1_5, L_init_1_5, Term_3_init_1_5, CDT_Time, Date);
+        [Vtke_init_3, TKE_init_3, spd_init_3, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time_init_3, Date_init_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 214}, windTable{varStartIdx:varEndIdx, 244}, windTable{varStartIdx:varEndIdx, 274}, speedTable{varStartIdx:varEndIdx, 5}, R_Bulk_init_3, L_init_3, Term_3_init_3, CDT_Time, Date);
+        [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time_init_4_5, Date_init_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 215}, windTable{varStartIdx:varEndIdx, 245}, windTable{varStartIdx:varEndIdx, 275}, speedTable{varStartIdx:varEndIdx, 6}, R_Bulk_init_4_5, L_init_4_5, Term_3_init_4_5, CDT_Time, Date);
+        [Vtke_init_6, TKE_init_6, spd_init_6, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time_init_6, Date_init_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 216}, windTable{varStartIdx:varEndIdx, 246}, windTable{varStartIdx:varEndIdx, 276}, speedTable{varStartIdx:varEndIdx, 7}, R_Bulk_init_6, L_init_6, Term_3_init_6, CDT_Time, Date);
+        [Vtke_init_10, TKE_init_10, spd_init_10, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time_init_10, Date_init_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 217}, windTable{varStartIdx:varEndIdx, 247}, windTable{varStartIdx:varEndIdx, 277}, speedTable{varStartIdx:varEndIdx, 8}, R_Bulk_init_10, L_init_10, Term_3_init_10, CDT_Time, Date);
+        
+        CDT_Time_init_1_5_ALL = [CDT_Time_init_1_5_ALL; CDT_Time_init_1_5];
+        Date_init_1_5_ALL = [Date_init_1_5_ALL; Date_init_1_5];
+        CDT_Time_init_3_ALL = [CDT_Time_init_3_ALL; CDT_Time_init_3];
+        Date_init_3_ALL = [Date_init_3_ALL; Date_init_3];
+        CDT_Time_init_4_5_ALL = [CDT_Time_init_4_5_ALL; CDT_Time_init_4_5];
+        Date_init_4_5_ALL = [Date_init_4_5_ALL; Date_init_4_5];
+        CDT_Time_init_6_ALL = [CDT_Time_init_6_ALL; CDT_Time_init_6];
+        Date_init_6_ALL = [Date_init_6_ALL; Date_init_6];
+        CDT_Time_init_10_ALL = [CDT_Time_init_10_ALL; CDT_Time_init_10];
+        Date_init_10_ALL = [Date_init_10_ALL; Date_init_10];
         
         Vtke_init_1_5_ALL = [Vtke_init_1_5_ALL; Vtke_init_1_5];
         TKE_init_1_5_ALL = [TKE_init_1_5_ALL; TKE_init_1_5];
@@ -2771,14 +3016,33 @@ for daterange = 1114:1123
         %
         
         % Release tower
-        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5);
-        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3);
-        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5);
-        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6);
-        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5);
-        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10);
-        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15);
-        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20);
+        [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time_rel_1_5, Date_rel_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 219}, windTable{varStartIdx:varEndIdx, 249}, windTable{varStartIdx:varEndIdx, 279}, speedTable{varStartIdx:varEndIdx, 11}, R_Bulk_rel_1_5, L_rel_1_5, Term_3_rel_1_5, CDT_Time, Date);
+        [Vtke_rel_3, TKE_rel_3, spd_rel_3, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time_rel_3, Date_rel_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 220}, windTable{varStartIdx:varEndIdx, 250}, windTable{varStartIdx:varEndIdx, 280}, speedTable{varStartIdx:varEndIdx, 12}, R_Bulk_rel_3, L_rel_3, Term_3_rel_3, CDT_Time, Date);
+        [Vtke_rel_4_5, TKE_rel_4_5, spd_rel_4_5, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time_rel_4_5, Date_rel_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 221}, windTable{varStartIdx:varEndIdx, 251}, windTable{varStartIdx:varEndIdx, 281}, speedTable{varStartIdx:varEndIdx, 13}, R_Bulk_rel_4_5, L_rel_4_5, Term_3_rel_4_5, CDT_Time, Date);
+        [Vtke_rel_6, TKE_rel_6, spd_rel_6, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time_rel_6, Date_rel_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 222}, windTable{varStartIdx:varEndIdx, 252}, windTable{varStartIdx:varEndIdx, 282}, speedTable{varStartIdx:varEndIdx, 14}, R_Bulk_rel_6, L_rel_6, Term_3_rel_6, CDT_Time, Date);
+        [Vtke_rel_8_5, TKE_rel_8_5, spd_rel_8_5, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time_rel_8_5, Date_rel_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 223}, windTable{varStartIdx:varEndIdx, 253}, windTable{varStartIdx:varEndIdx, 283}, speedTable{varStartIdx:varEndIdx, 31}, R_Bulk_rel_8_5, L_rel_8_5, Term_3_rel_8_5, CDT_Time, Date);
+        [Vtke_rel_10, TKE_rel_10, spd_rel_10, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time_rel_10, Date_rel_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 224}, windTable{varStartIdx:varEndIdx, 254}, windTable{varStartIdx:varEndIdx, 284}, speedTable{varStartIdx:varEndIdx, 15}, R_Bulk_rel_10, L_rel_10, Term_3_rel_10, CDT_Time, Date);
+        [Vtke_rel_15, TKE_rel_15, spd_rel_15, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time_rel_15, Date_rel_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 225}, windTable{varStartIdx:varEndIdx, 255}, windTable{varStartIdx:varEndIdx, 285}, speedTable{varStartIdx:varEndIdx, 33}, R_Bulk_rel_15, L_rel_15, Term_3_rel_15, CDT_Time, Date);
+        [Vtke_rel_20, TKE_rel_20, spd_rel_20, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time_rel_20, Date_rel_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 226}, windTable{varStartIdx:varEndIdx, 256}, windTable{varStartIdx:varEndIdx, 286}, speedTable{varStartIdx:varEndIdx, 35}, R_Bulk_rel_20, L_rel_20, Term_3_rel_20, CDT_Time, Date);
+        
+        
+        CDT_Time_rel_1_5_ALL = [CDT_Time_rel_1_5_ALL; CDT_Time_rel_1_5];
+        Date_rel_1_5_ALL = [Date_rel_1_5_ALL; Date_rel_1_5];
+        CDT_Time_rel_3_ALL = [CDT_Time_rel_3_ALL; CDT_Time_rel_3];
+        Date_rel_3_ALL = [Date_rel_3_ALL; Date_rel_3];
+        CDT_Time_rel_4_5_ALL = [CDT_Time_rel_4_5_ALL; CDT_Time_rel_4_5];
+        Date_rel_4_5_ALL = [Date_rel_4_5_ALL; Date_rel_4_5];
+        CDT_Time_rel_6_ALL = [CDT_Time_rel_6_ALL; CDT_Time_rel_6];
+        Date_rel_6_ALL = [Date_rel_6_ALL; Date_rel_6];
+        CDT_Time_rel_8_5_ALL = [CDT_Time_rel_8_5_ALL; CDT_Time_rel_8_5];
+        Date_rel_8_5_ALL = [Date_rel_8_5_ALL; Date_rel_8_5];
+        CDT_Time_rel_10_ALL = [CDT_Time_rel_10_ALL; CDT_Time_rel_10];
+        Date_rel_10_ALL = [Date_rel_10_ALL; Date_rel_10];
+        CDT_Time_rel_15_ALL = [CDT_Time_rel_15_ALL; CDT_Time_rel_15];
+        Date_rel_15_ALL = [Date_rel_15_ALL; Date_rel_15];
+        CDT_Time_rel_20_ALL = [CDT_Time_rel_20_ALL; CDT_Time_rel_20];
+        Date_rel_20_ALL = [Date_rel_20_ALL; Date_rel_20];
+        
         
         Vtke_rel_1_5_ALL = [Vtke_rel_1_5_ALL; Vtke_rel_1_5];
         TKE_rel_1_5_ALL = [TKE_rel_1_5_ALL; TKE_rel_1_5];
@@ -2903,12 +3167,22 @@ for daterange = 1114:1123
         %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun\', targetDate, '_one_rel.png'));
         
         % Upper convergence tower
-        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5);
-        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3);
-        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5);
-        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6);
-        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10);
+        [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time_uconv_1_5, Date_uconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18}, R_Bulk_uconv_1_5, L_uconv_1_5, Term_3_uconv_1_5, CDT_Time, Date);
+        [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time_uconv_3, Date_uconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 229}, windTable{varStartIdx:varEndIdx, 259}, windTable{varStartIdx:varEndIdx, 289}, speedTable{varStartIdx:varEndIdx, 19}, R_Bulk_uconv_3, L_uconv_3, Term_3_uconv_3, CDT_Time, Date);
+        [Vtke_uconv_4_5, TKE_uconv_4_5, spd_uconv_4_5, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time_uconv_4_5, Date_uconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 230}, windTable{varStartIdx:varEndIdx, 260}, windTable{varStartIdx:varEndIdx, 290}, speedTable{varStartIdx:varEndIdx, 20}, R_Bulk_uconv_4_5, L_uconv_4_5, Term_3_uconv_4_5, CDT_Time, Date);
+        [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time_uconv_6, Date_uconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 231}, windTable{varStartIdx:varEndIdx, 261}, windTable{varStartIdx:varEndIdx, 291}, speedTable{varStartIdx:varEndIdx, 21}, R_Bulk_uconv_6, L_uconv_6, Term_3_uconv_6, CDT_Time, Date);
+        [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time_uconv_10, Date_uconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 232}, windTable{varStartIdx:varEndIdx, 262}, windTable{varStartIdx:varEndIdx, 292}, speedTable{varStartIdx:varEndIdx, 22}, R_Bulk_uconv_10, L_uconv_10, Term_3_uconv_10, CDT_Time, Date);
         
+        CDT_Time_uconv_1_5_ALL = [CDT_Time_uconv_1_5_ALL; CDT_Time_uconv_1_5];
+        Date_uconv_1_5_ALL = [Date_uconv_1_5_ALL; Date_uconv_1_5];
+        CDT_Time_uconv_3_ALL = [CDT_Time_uconv_3_ALL; CDT_Time_uconv_3];
+        Date_uconv_3_ALL = [Date_uconv_3_ALL; Date_uconv_3];
+        CDT_Time_uconv_4_5_ALL = [CDT_Time_uconv_4_5_ALL; CDT_Time_uconv_4_5];
+        Date_uconv_4_5_ALL = [Date_uconv_4_5_ALL; Date_uconv_4_5];
+        CDT_Time_uconv_6_ALL = [CDT_Time_uconv_6_ALL; CDT_Time_uconv_6];
+        Date_uconv_6_ALL = [Date_uconv_6_ALL; Date_uconv_6];
+        CDT_Time_uconv_10_ALL = [CDT_Time_uconv_10_ALL; CDT_Time_uconv_10];
+        Date_uconv_10_ALL = [Date_uconv_10_ALL; Date_uconv_10];
         
         Vtke_uconv_1_5_ALL = [Vtke_uconv_1_5_ALL; Vtke_uconv_1_5];
         TKE_uconv_1_5_ALL = [TKE_uconv_1_5_ALL; TKE_uconv_1_5];
@@ -2989,14 +3263,33 @@ for daterange = 1114:1123
         %         movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun\', targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
-        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5);
-        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3);
-        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5);
-        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6);
-        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5);
-        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10);
-        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15);
-        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20);
+        [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time_lconv_1_5, Date_lconv_1_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25}, R_Bulk_lconv_1_5, L_lconv_1_5, Term_3_lconv_1_5, CDT_Time, Date);
+        [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time_lconv_3, Date_lconv_3] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 235}, windTable{varStartIdx:varEndIdx, 265}, windTable{varStartIdx:varEndIdx, 295}, speedTable{varStartIdx:varEndIdx, 26}, R_Bulk_lconv_3, L_lconv_3, Term_3_lconv_3, CDT_Time, Date);
+        [Vtke_lconv_4_5, TKE_lconv_4_5, spd_lconv_4_5, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time_lconv_4_5, Date_lconv_4_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 236}, windTable{varStartIdx:varEndIdx, 266}, windTable{varStartIdx:varEndIdx, 296}, speedTable{varStartIdx:varEndIdx, 27}, R_Bulk_lconv_4_5, L_lconv_4_5, Term_3_lconv_4_5, CDT_Time, Date);
+        [Vtke_lconv_6, TKE_lconv_6, spd_lconv_6, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time_lconv_6, Date_lconv_6] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 237}, windTable{varStartIdx:varEndIdx, 267}, windTable{varStartIdx:varEndIdx, 297}, speedTable{varStartIdx:varEndIdx, 28}, R_Bulk_lconv_6, L_lconv_6, Term_3_lconv_6, CDT_Time, Date);
+        [Vtke_lconv_8_5, TKE_lconv_8_5, spd_lconv_8_5, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time_lconv_8_5, Date_lconv_8_5] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 238}, windTable{varStartIdx:varEndIdx, 268}, windTable{varStartIdx:varEndIdx, 298}, speedTable{varStartIdx:varEndIdx, 32}, R_Bulk_lconv_8_5, L_lconv_8_5, Term_3_lconv_8_5, CDT_Time, Date);
+        [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time_lconv_10, Date_lconv_10] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 239}, windTable{varStartIdx:varEndIdx, 269}, windTable{varStartIdx:varEndIdx, 299}, speedTable{varStartIdx:varEndIdx, 29}, R_Bulk_lconv_10, L_lconv_10, Term_3_lconv_10, CDT_Time, Date);
+        [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time_lconv_15, Date_lconv_15] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 240}, windTable{varStartIdx:varEndIdx, 270}, windTable{varStartIdx:varEndIdx, 300}, speedTable{varStartIdx:varEndIdx, 34}, R_Bulk_lconv_15, L_lconv_15, Term_3_lconv_15, CDT_Time, Date);
+        [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time_lconv_20, Date_lconv_20] = Jielun_TKE(windTable{varStartIdx:varEndIdx, 241}, windTable{varStartIdx:varEndIdx, 271}, windTable{varStartIdx:varEndIdx, 301}, speedTable{varStartIdx:varEndIdx, 36}, R_Bulk_lconv_20, L_lconv_20, Term_3_lconv_20, CDT_Time, Date);
+        
+        
+        CDT_Time_lconv_1_5_ALL = [CDT_Time_lconv_1_5_ALL; CDT_Time_lconv_1_5];
+        Date_lconv_1_5_ALL = [Date_lconv_1_5_ALL; Date_lconv_1_5];
+        CDT_Time_lconv_3_ALL = [CDT_Time_lconv_3_ALL; CDT_Time_lconv_3];
+        Date_lconv_3_ALL = [Date_lconv_3_ALL; Date_lconv_3];
+        CDT_Time_lconv_4_5_ALL = [CDT_Time_lconv_4_5_ALL; CDT_Time_lconv_4_5];
+        Date_lconv_4_5_ALL = [Date_lconv_4_5_ALL; Date_lconv_4_5];
+        CDT_Time_lconv_6_ALL = [CDT_Time_lconv_6_ALL; CDT_Time_lconv_6];
+        Date_lconv_6_ALL = [Date_lconv_6_ALL; Date_lconv_6];
+        CDT_Time_lconv_8_5_ALL = [CDT_Time_lconv_8_5_ALL; CDT_Time_lconv_8_5];
+        Date_lconv_8_5_ALL = [Date_lconv_8_5_ALL; Date_lconv_8_5];
+        CDT_Time_lconv_10_ALL = [CDT_Time_lconv_10_ALL; CDT_Time_lconv_10];
+        Date_lconv_10_ALL = [Date_lconv_10_ALL; Date_lconv_10];
+        CDT_Time_lconv_15_ALL = [CDT_Time_lconv_15_ALL; CDT_Time_lconv_15];
+        Date_lconv_15_ALL = [Date_lconv_15_ALL; Date_lconv_15];
+        CDT_Time_lconv_20_ALL = [CDT_Time_lconv_20_ALL; CDT_Time_lconv_20];
+        Date_lconv_20_ALL = [Date_lconv_20_ALL; Date_lconv_20];
+        
         
         Vtke_lconv_1_5_ALL = [Vtke_lconv_1_5_ALL; Vtke_lconv_1_5];
         TKE_lconv_1_5_ALL = [TKE_lconv_1_5_ALL; TKE_lconv_1_5];
@@ -3124,7 +3417,7 @@ for daterange = 1114:1123
         % To close all the windows
         close all
         
-        %bar_fence = repmat('|',10357);
+        %bar_fence = repmat('|',length(CDT_Time(varStartIdx:varEndIdx)),1);
         
         % Now we can form table
         %         % Group table
@@ -3149,75 +3442,75 @@ end
 % Now form tables!
 
 % Sort at first based on speed
-[Vtke_init_1_5_sort, TKE_init_1_5_sort, spd_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, spd_init_1_5_ALL, R_Bulk_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL);
-[Vtke_init_3_sort, TKE_init_3_sort, spd_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, spd_init_3_ALL, R_Bulk_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL);
-[Vtke_init_4_5_sort, TKE_init_4_5_sort, spd_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, spd_init_4_5_ALL, R_Bulk_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL);
-[Vtke_init_6_sort, TKE_init_6_sort, spd_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, spd_init_6_ALL, R_Bulk_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL);
-[Vtke_init_10_sort, TKE_init_10_sort, spd_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, spd_init_10_ALL, R_Bulk_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL);
+[Vtke_init_1_5_sort, TKE_init_1_5_sort, spd_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort, CDT_Time_init_1_5_sort, Date_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, spd_init_1_5_ALL, R_Bulk_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL, CDT_Time_init_1_5_ALL, Date_init_1_5_ALL);
+[Vtke_init_3_sort, TKE_init_3_sort, spd_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort, CDT_Time_init_3_sort, Date_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, spd_init_3_ALL, R_Bulk_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL, CDT_Time_init_3_ALL, Date_init_3_ALL);
+[Vtke_init_4_5_sort, TKE_init_4_5_sort, spd_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort, CDT_Time_init_4_5_sort, Date_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, spd_init_4_5_ALL, R_Bulk_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL, CDT_Time_init_4_5_ALL, Date_init_4_5_ALL);
+[Vtke_init_6_sort, TKE_init_6_sort, spd_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort, CDT_Time_init_6_sort, Date_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, spd_init_6_ALL, R_Bulk_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL, CDT_Time_init_6_ALL, Date_init_6_ALL);
+[Vtke_init_10_sort, TKE_init_10_sort, spd_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort, CDT_Time_init_10_sort, Date_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, spd_init_10_ALL, R_Bulk_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL, CDT_Time_init_10_ALL, Date_init_10_ALL);
 
-[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, spd_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, spd_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL);
-[Vtke_uconv_3_sort, TKE_uconv_3_sort, spd_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, spd_uconv_3_ALL, R_Bulk_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL);
-[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, spd_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, spd_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL);
-[Vtke_uconv_6_sort, TKE_uconv_6_sort, spd_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, spd_uconv_6_ALL, R_Bulk_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL);
-[Vtke_uconv_10_sort, TKE_uconv_10_sort, spd_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, spd_uconv_10_ALL, R_Bulk_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL);
+[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, spd_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort, CDT_Time_uconv_1_5_sort, Date_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, spd_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL, CDT_Time_uconv_1_5_ALL, Date_uconv_1_5_ALL);
+[Vtke_uconv_3_sort, TKE_uconv_3_sort, spd_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort, CDT_Time_uconv_3_sort, Date_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, spd_uconv_3_ALL, R_Bulk_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL, CDT_Time_uconv_3_ALL, Date_uconv_3_ALL);
+[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, spd_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort, CDT_Time_uconv_4_5_sort, Date_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, spd_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL, CDT_Time_uconv_4_5_ALL, Date_uconv_4_5_ALL);
+[Vtke_uconv_6_sort, TKE_uconv_6_sort, spd_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort, CDT_Time_uconv_6_sort, Date_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, spd_uconv_6_ALL, R_Bulk_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL, CDT_Time_uconv_6_ALL, Date_uconv_6_ALL);
+[Vtke_uconv_10_sort, TKE_uconv_10_sort, spd_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort, CDT_Time_uconv_10_sort, Date_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, spd_uconv_10_ALL, R_Bulk_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL, CDT_Time_uconv_10_ALL, Date_uconv_10_ALL);
 
-[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, spd_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, spd_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL);
-[Vtke_rel_3_sort, TKE_rel_3_sort, spd_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, spd_rel_3_ALL, R_Bulk_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL);
-[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, spd_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, spd_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL);
-[Vtke_rel_6_sort, TKE_rel_6_sort, spd_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, spd_rel_6_ALL, R_Bulk_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL);
-[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, spd_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, spd_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL);
-[Vtke_rel_10_sort, TKE_rel_10_sort, spd_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, spd_rel_10_ALL, R_Bulk_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL);
-[Vtke_rel_15_sort, TKE_rel_15_sort, spd_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, spd_rel_15_ALL, R_Bulk_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL);
-[Vtke_rel_20_sort, TKE_rel_20_sort, spd_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, spd_rel_20_ALL, R_Bulk_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL);
+[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, spd_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort, CDT_Time_rel_1_5_sort, Date_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, spd_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL, CDT_Time_rel_1_5_ALL, Date_rel_1_5_ALL);
+[Vtke_rel_3_sort, TKE_rel_3_sort, spd_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort, CDT_Time_rel_3_sort, Date_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, spd_rel_3_ALL, R_Bulk_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL, CDT_Time_rel_3_ALL, Date_rel_3_ALL);
+[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, spd_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort, CDT_Time_rel_4_5_sort, Date_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, spd_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL, CDT_Time_rel_4_5_ALL, Date_rel_4_5_ALL);
+[Vtke_rel_6_sort, TKE_rel_6_sort, spd_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort, CDT_Time_rel_6_sort, Date_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, spd_rel_6_ALL, R_Bulk_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL, CDT_Time_rel_6_ALL, Date_rel_6_ALL);
+[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, spd_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort, CDT_Time_rel_8_5_sort, Date_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, spd_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL, CDT_Time_rel_8_5_ALL, Date_rel_8_5_ALL);
+[Vtke_rel_10_sort, TKE_rel_10_sort, spd_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort, CDT_Time_rel_10_sort, Date_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, spd_rel_10_ALL, R_Bulk_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL, CDT_Time_rel_10_ALL, Date_rel_10_ALL);
+[Vtke_rel_15_sort, TKE_rel_15_sort, spd_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort, CDT_Time_rel_15_sort, Date_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, spd_rel_15_ALL, R_Bulk_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL, CDT_Time_rel_15_ALL, Date_rel_15_ALL);
+[Vtke_rel_20_sort, TKE_rel_20_sort, spd_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort, CDT_Time_rel_20_sort, Date_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, spd_rel_20_ALL, R_Bulk_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL, CDT_Time_rel_20_ALL, Date_rel_20_ALL);
 
-[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, spd_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, spd_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL);
-[Vtke_lconv_3_sort, TKE_lconv_3_sort, spd_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, spd_lconv_3_ALL, R_Bulk_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL);
-[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, spd_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, spd_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL);
-[Vtke_lconv_6_sort, TKE_lconv_6_sort, spd_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, spd_lconv_6_ALL, R_Bulk_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL);
-[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, spd_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, spd_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL);
-[Vtke_lconv_10_sort, TKE_lconv_10_sort, spd_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, spd_lconv_10_ALL, R_Bulk_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL);
-[Vtke_lconv_15_sort, TKE_lconv_15_sort, spd_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, spd_lconv_15_ALL, R_Bulk_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL);
-[Vtke_lconv_20_sort, TKE_lconv_20_sort, spd_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, spd_lconv_20_ALL, R_Bulk_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL);
+[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, spd_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort, CDT_Time_lconv_1_5_sort, Date_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, spd_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL, CDT_Time_lconv_1_5_ALL, Date_lconv_1_5_ALL);
+[Vtke_lconv_3_sort, TKE_lconv_3_sort, spd_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort, CDT_Time_lconv_3_sort, Date_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, spd_lconv_3_ALL, R_Bulk_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL, CDT_Time_lconv_3_ALL, Date_lconv_3_ALL);
+[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, spd_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort, CDT_Time_lconv_4_5_sort, Date_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, spd_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL, CDT_Time_lconv_4_5_ALL, Date_lconv_4_5_ALL);
+[Vtke_lconv_6_sort, TKE_lconv_6_sort, spd_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort, CDT_Time_lconv_6_sort, Date_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, spd_lconv_6_ALL, R_Bulk_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL, CDT_Time_lconv_6_ALL, Date_lconv_6_ALL);
+[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, spd_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort, CDT_Time_lconv_8_5_sort, Date_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, spd_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL, CDT_Time_lconv_8_5_ALL, Date_lconv_8_5_ALL);
+[Vtke_lconv_10_sort, TKE_lconv_10_sort, spd_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort, CDT_Time_lconv_10_sort, Date_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, spd_lconv_10_ALL, R_Bulk_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL, CDT_Time_lconv_10_ALL, Date_lconv_10_ALL);
+[Vtke_lconv_15_sort, TKE_lconv_15_sort, spd_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort, CDT_Time_lconv_15_sort, Date_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, spd_lconv_15_ALL, R_Bulk_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL, CDT_Time_lconv_15_ALL, Date_lconv_15_ALL);
+[Vtke_lconv_20_sort, TKE_lconv_20_sort, spd_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort, CDT_Time_lconv_20_sort, Date_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, spd_lconv_20_ALL, R_Bulk_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL, CDT_Time_lconv_20_ALL, Date_lconv_20_ALL);
 
 
 % Create bar fence
 bar_fence = repmat('|',length(L_lconv_20_ALL), 1);
 % Group table
-tempT_spd_sort_init = table(spd_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
-    bar_fence, spd_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
-    bar_fence, spd_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
-    bar_fence, spd_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
-    bar_fence, spd_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
+tempT_spd_sort_init = table(spd_init_1_5_sort, CDT_Time_init_1_5_sort, Date_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
+    bar_fence, spd_init_3_sort, CDT_Time_init_3_sort, Date_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
+    bar_fence, spd_init_4_5_sort, CDT_Time_init_4_5_sort, Date_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
+    bar_fence, spd_init_6_sort, CDT_Time_init_6_sort, Date_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
+    bar_fence, spd_init_10_sort, CDT_Time_init_10_sort, Date_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
 
-tempT_spd_sort_rel = table(spd_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
-    bar_fence, spd_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
-    bar_fence, spd_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
-    bar_fence, spd_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
-    bar_fence, spd_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
-    bar_fence, spd_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
-    bar_fence, spd_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
-    bar_fence, spd_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
+tempT_spd_sort_rel = table(spd_rel_1_5_sort, CDT_Time_rel_1_5_sort, Date_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
+    bar_fence, spd_rel_3_sort, CDT_Time_rel_3_sort, Date_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
+    bar_fence, spd_rel_4_5_sort, CDT_Time_rel_4_5_sort, Date_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
+    bar_fence, spd_rel_6_sort, CDT_Time_rel_6_sort, Date_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
+    bar_fence, spd_rel_8_5_sort, CDT_Time_rel_8_5_sort, Date_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
+    bar_fence, spd_rel_10_sort, CDT_Time_rel_10_sort, Date_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
+    bar_fence, spd_rel_15_sort, CDT_Time_rel_15_sort, Date_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
+    bar_fence, spd_rel_20_sort, CDT_Time_rel_20_sort, Date_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
 
-tempT_spd_sort_uconv = table(spd_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
-    bar_fence, spd_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
-    bar_fence, spd_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
-    bar_fence, spd_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
-    bar_fence, spd_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
+tempT_spd_sort_uconv = table(spd_uconv_1_5_sort, CDT_Time_uconv_1_5_sort, Date_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
+    bar_fence, spd_uconv_3_sort, CDT_Time_uconv_3_sort, Date_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
+    bar_fence, spd_uconv_4_5_sort, CDT_Time_uconv_4_5_sort, Date_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
+    bar_fence, spd_uconv_6_sort, CDT_Time_uconv_6_sort, Date_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
+    bar_fence, spd_uconv_10_sort, CDT_Time_uconv_10_sort, Date_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
 
-tempT_spd_sort_lconv = table(spd_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
-    bar_fence, spd_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
-    bar_fence, spd_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
-    bar_fence, spd_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
-    bar_fence, spd_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
-    bar_fence, spd_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
-    bar_fence, spd_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
-    bar_fence, spd_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
+tempT_spd_sort_lconv = table(spd_lconv_1_5_sort, CDT_Time_lconv_1_5_sort, Date_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
+    bar_fence, spd_lconv_3_sort, CDT_Time_lconv_3_sort, Date_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
+    bar_fence, spd_lconv_4_5_sort, CDT_Time_lconv_4_5_sort, Date_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
+    bar_fence, spd_lconv_6_sort, CDT_Time_lconv_6_sort, Date_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
+    bar_fence, spd_lconv_8_5_sort, CDT_Time_lconv_8_5_sort, Date_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
+    bar_fence, spd_lconv_10_sort, CDT_Time_lconv_10_sort, Date_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
+    bar_fence, spd_lconv_15_sort, CDT_Time_lconv_15_sort, Date_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
+    bar_fence, spd_lconv_20_sort, CDT_Time_lconv_20_sort, Date_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
 
 % Format table name
-table_name_spd_sort_init = 'init_Speed_Sorted.csv';
-table_name_spd_sort_rel = 'rel_Speed_Sorted.csv';
-table_name_spd_sort_uconv = 'uconv_Speed_Sorted.csv';
-table_name_spd_sort_lconv = 'lconv_Speed_Sorted.csv';
+table_name_spd_sort_init = 'init_Speed_Sorted.xlsx';
+table_name_spd_sort_rel = 'rel_Speed_Sorted.xlsx';
+table_name_spd_sort_uconv = 'uconv_Speed_Sorted.xlsx';
+table_name_spd_sort_lconv = 'lconv_Speed_Sorted.xlsx';
 
 % Output tables
 writetable(tempT_spd_sort_init, table_name_spd_sort_init);
@@ -3226,74 +3519,74 @@ writetable(tempT_spd_sort_uconv, table_name_spd_sort_uconv);
 writetable(tempT_spd_sort_lconv, table_name_spd_sort_lconv);
 
 % Sort based on R_Bulk
-[Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, spd_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, R_Bulk_init_1_5_ALL, spd_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL);
-[Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, spd_init_3_sort, L_init_3_sort, Term_3_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, R_Bulk_init_3_ALL, spd_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL);
-[Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, spd_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, R_Bulk_init_4_5_ALL, spd_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL);
-[Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, spd_init_6_sort, L_init_6_sort, Term_3_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, R_Bulk_init_6_ALL, spd_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL);
-[Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, spd_init_10_sort, L_init_10_sort, Term_3_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, R_Bulk_init_10_ALL, spd_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL);
+[Vtke_init_1_5_sort, TKE_init_1_5_sort, R_Bulk_init_1_5_sort, spd_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort, CDT_Time_init_1_5_sort, Date_init_1_5_sort] = reference_sort(Vtke_init_1_5_ALL, TKE_init_1_5_ALL, R_Bulk_init_1_5_ALL, spd_init_1_5_ALL, L_init_1_5_ALL, Term_3_init_1_5_ALL, CDT_Time_init_1_5_ALL, Date_init_1_5_ALL);
+[Vtke_init_3_sort, TKE_init_3_sort, R_Bulk_init_3_sort, spd_init_3_sort, L_init_3_sort, Term_3_init_3_sort, CDT_Time_init_3_sort, Date_init_3_sort] = reference_sort(Vtke_init_3_ALL, TKE_init_3_ALL, R_Bulk_init_3_ALL, spd_init_3_ALL, L_init_3_ALL, Term_3_init_3_ALL, CDT_Time_init_3_ALL, Date_init_3_ALL);
+[Vtke_init_4_5_sort, TKE_init_4_5_sort, R_Bulk_init_4_5_sort, spd_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort, CDT_Time_init_4_5_sort, Date_init_4_5_sort] = reference_sort(Vtke_init_4_5_ALL, TKE_init_4_5_ALL, R_Bulk_init_4_5_ALL, spd_init_4_5_ALL, L_init_4_5_ALL, Term_3_init_4_5_ALL, CDT_Time_init_4_5_ALL, Date_init_4_5_ALL);
+[Vtke_init_6_sort, TKE_init_6_sort, R_Bulk_init_6_sort, spd_init_6_sort, L_init_6_sort, Term_3_init_6_sort, CDT_Time_init_6_sort, Date_init_6_sort] = reference_sort(Vtke_init_6_ALL, TKE_init_6_ALL, R_Bulk_init_6_ALL, spd_init_6_ALL, L_init_6_ALL, Term_3_init_6_ALL, CDT_Time_init_6_ALL, Date_init_6_ALL);
+[Vtke_init_10_sort, TKE_init_10_sort, R_Bulk_init_10_sort, spd_init_10_sort, L_init_10_sort, Term_3_init_10_sort, CDT_Time_init_10_sort, Date_init_10_sort] = reference_sort(Vtke_init_10_ALL, TKE_init_10_ALL, R_Bulk_init_10_ALL, spd_init_10_ALL, L_init_10_ALL, Term_3_init_10_ALL, CDT_Time_init_10_ALL, Date_init_10_ALL);
 
-[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, spd_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL);
-[Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, spd_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, R_Bulk_uconv_3_ALL, spd_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL);
-[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, spd_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL);
-[Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, spd_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, R_Bulk_uconv_6_ALL, spd_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL);
-[Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, spd_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, R_Bulk_uconv_10_ALL, spd_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL);
+[Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort, CDT_Time_uconv_1_5_sort, Date_uconv_1_5_sort] = reference_sort(Vtke_uconv_1_5_ALL, TKE_uconv_1_5_ALL, R_Bulk_uconv_1_5_ALL, spd_uconv_1_5_ALL, L_uconv_1_5_ALL, Term_3_uconv_1_5_ALL, CDT_Time_uconv_1_5_ALL, Date_uconv_1_5_ALL);
+[Vtke_uconv_3_sort, TKE_uconv_3_sort, R_Bulk_uconv_3_sort, spd_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort, CDT_Time_uconv_3_sort, Date_uconv_3_sort] = reference_sort(Vtke_uconv_3_ALL, TKE_uconv_3_ALL, R_Bulk_uconv_3_ALL, spd_uconv_3_ALL, L_uconv_3_ALL, Term_3_uconv_3_ALL, CDT_Time_uconv_3_ALL, Date_uconv_3_ALL);
+[Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort, CDT_Time_uconv_4_5_sort, Date_uconv_4_5_sort] = reference_sort(Vtke_uconv_4_5_ALL, TKE_uconv_4_5_ALL, R_Bulk_uconv_4_5_ALL, spd_uconv_4_5_ALL, L_uconv_4_5_ALL, Term_3_uconv_4_5_ALL, CDT_Time_uconv_4_5_ALL, Date_uconv_4_5_ALL);
+[Vtke_uconv_6_sort, TKE_uconv_6_sort, R_Bulk_uconv_6_sort, spd_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort, CDT_Time_uconv_6_sort, Date_uconv_6_sort] = reference_sort(Vtke_uconv_6_ALL, TKE_uconv_6_ALL, R_Bulk_uconv_6_ALL, spd_uconv_6_ALL, L_uconv_6_ALL, Term_3_uconv_6_ALL, CDT_Time_uconv_1_5_ALL, Date_uconv_6_ALL);
+[Vtke_uconv_10_sort, TKE_uconv_10_sort, R_Bulk_uconv_10_sort, spd_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort, CDT_Time_uconv_10_sort, Date_uconv_10_sort] = reference_sort(Vtke_uconv_10_ALL, TKE_uconv_10_ALL, R_Bulk_uconv_10_ALL, spd_uconv_10_ALL, L_uconv_10_ALL, Term_3_uconv_10_ALL, CDT_Time_uconv_1_5_ALL, Date_uconv_1_5_ALL);
 
-[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, spd_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL);
-[Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, spd_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, R_Bulk_rel_3_ALL, spd_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL);
-[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, spd_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL);
-[Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, spd_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, R_Bulk_rel_6_ALL, spd_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL);
-[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, spd_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL);
-[Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, spd_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, R_Bulk_rel_10_ALL, spd_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL);
-[Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, spd_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, R_Bulk_rel_15_ALL, spd_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL);
-[Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, spd_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, R_Bulk_rel_20_ALL, spd_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL);
+[Vtke_rel_1_5_sort, TKE_rel_1_5_sort, R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort, CDT_Time_rel_1_5_sort, Date_rel_1_5_sort] = reference_sort(Vtke_rel_1_5_ALL, TKE_rel_1_5_ALL, R_Bulk_rel_1_5_ALL, spd_rel_1_5_ALL, L_rel_1_5_ALL, Term_3_rel_1_5_ALL, CDT_Time_rel_1_5_ALL, Date_rel_1_5_ALL);
+[Vtke_rel_3_sort, TKE_rel_3_sort, R_Bulk_rel_3_sort, spd_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort, CDT_Time_rel_3_sort, Date_rel_3_sort] = reference_sort(Vtke_rel_3_ALL, TKE_rel_3_ALL, R_Bulk_rel_3_ALL, spd_rel_3_ALL, L_rel_3_ALL, Term_3_rel_3_ALL, CDT_Time_rel_3_ALL, Date_rel_3_ALL);
+[Vtke_rel_4_5_sort, TKE_rel_4_5_sort, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort, CDT_Time_rel_4_5_sort, Date_rel_4_5_sort] = reference_sort(Vtke_rel_4_5_ALL, TKE_rel_4_5_ALL, R_Bulk_rel_4_5_ALL, spd_rel_4_5_ALL, L_rel_4_5_ALL, Term_3_rel_4_5_ALL, CDT_Time_rel_4_5_ALL, Date_rel_4_5_ALL);
+[Vtke_rel_6_sort, TKE_rel_6_sort, R_Bulk_rel_6_sort, spd_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort, CDT_Time_rel_6_sort, Date_rel_6_sort] = reference_sort(Vtke_rel_6_ALL, TKE_rel_6_ALL, R_Bulk_rel_6_ALL, spd_rel_6_ALL, L_rel_6_ALL, Term_3_rel_6_ALL, CDT_Time_rel_6_ALL, Date_rel_6_ALL);
+[Vtke_rel_8_5_sort, TKE_rel_8_5_sort, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort, CDT_Time_rel_8_5_sort, Date_rel_8_5_sort] = reference_sort(Vtke_rel_8_5_ALL, TKE_rel_8_5_ALL, R_Bulk_rel_8_5_ALL, spd_rel_8_5_ALL, L_rel_8_5_ALL, Term_3_rel_8_5_ALL, CDT_Time_rel_8_5_ALL, Date_rel_8_5_ALL);
+[Vtke_rel_10_sort, TKE_rel_10_sort, R_Bulk_rel_10_sort, spd_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort, CDT_Time_rel_10_sort, Date_rel_10_sort] = reference_sort(Vtke_rel_10_ALL, TKE_rel_10_ALL, R_Bulk_rel_10_ALL, spd_rel_10_ALL, L_rel_10_ALL, Term_3_rel_10_ALL, CDT_Time_rel_10_ALL, Date_rel_10_ALL);
+[Vtke_rel_15_sort, TKE_rel_15_sort, R_Bulk_rel_15_sort, spd_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort, CDT_Time_rel_15_sort, Date_rel_15_sort] = reference_sort(Vtke_rel_15_ALL, TKE_rel_15_ALL, R_Bulk_rel_15_ALL, spd_rel_15_ALL, L_rel_15_ALL, Term_3_rel_15_ALL, CDT_Time_rel_15_ALL, Date_rel_15_ALL);
+[Vtke_rel_20_sort, TKE_rel_20_sort, R_Bulk_rel_20_sort, spd_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort, CDT_Time_rel_20_sort, Date_rel_20_sort] = reference_sort(Vtke_rel_20_ALL, TKE_rel_20_ALL, R_Bulk_rel_20_ALL, spd_rel_20_ALL, L_rel_20_ALL, Term_3_rel_20_ALL, CDT_Time_rel_20_ALL, Date_rel_20_ALL);
 
-[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, spd_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL);
-[Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, spd_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, R_Bulk_lconv_3_ALL, spd_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL);
-[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, spd_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL);
-[Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, spd_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, R_Bulk_lconv_6_ALL, spd_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL);
-[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, spd_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL);
-[Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, spd_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, R_Bulk_lconv_10_ALL, spd_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL);
-[Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, spd_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, R_Bulk_lconv_15_ALL, spd_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL);
-[Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, spd_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, R_Bulk_lconv_20_ALL, spd_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL);
+[Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort, CDT_Time_lconv_1_5_sort, Date_lconv_1_5_sort] = reference_sort(Vtke_lconv_1_5_ALL, TKE_lconv_1_5_ALL, R_Bulk_lconv_1_5_ALL, spd_lconv_1_5_ALL, L_lconv_1_5_ALL, Term_3_lconv_1_5_ALL, CDT_Time_lconv_1_5_ALL, Date_lconv_1_5_ALL);
+[Vtke_lconv_3_sort, TKE_lconv_3_sort, R_Bulk_lconv_3_sort, spd_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort, CDT_Time_lconv_3_sort, Date_lconv_3_sort] = reference_sort(Vtke_lconv_3_ALL, TKE_lconv_3_ALL, R_Bulk_lconv_3_ALL, spd_lconv_3_ALL, L_lconv_3_ALL, Term_3_lconv_3_ALL, CDT_Time_lconv_3_ALL, Date_lconv_3_ALL);
+[Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort, CDT_Time_lconv_4_5_sort, Date_lconv_4_5_sort] = reference_sort(Vtke_lconv_4_5_ALL, TKE_lconv_4_5_ALL, R_Bulk_lconv_4_5_ALL, spd_lconv_4_5_ALL, L_lconv_4_5_ALL, Term_3_lconv_4_5_ALL, CDT_Time_lconv_4_5_ALL, Date_lconv_4_5_ALL);
+[Vtke_lconv_6_sort, TKE_lconv_6_sort, R_Bulk_lconv_6_sort, spd_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort, CDT_Time_lconv_6_sort, Date_lconv_6_sort] = reference_sort(Vtke_lconv_6_ALL, TKE_lconv_6_ALL, R_Bulk_lconv_6_ALL, spd_lconv_6_ALL, L_lconv_6_ALL, Term_3_lconv_6_ALL, CDT_Time_lconv_6_ALL, Date_lconv_6_ALL);
+[Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort, CDT_Time_lconv_8_5_sort, Date_lconv_8_5_sort] = reference_sort(Vtke_lconv_8_5_ALL, TKE_lconv_8_5_ALL, R_Bulk_lconv_8_5_ALL, spd_lconv_8_5_ALL, L_lconv_8_5_ALL, Term_3_lconv_8_5_ALL, CDT_Time_lconv_8_5_ALL, Date_lconv_8_5_ALL);
+[Vtke_lconv_10_sort, TKE_lconv_10_sort, R_Bulk_lconv_10_sort, spd_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort, CDT_Time_lconv_10_sort, Date_lconv_10_sort] = reference_sort(Vtke_lconv_10_ALL, TKE_lconv_10_ALL, R_Bulk_lconv_10_ALL, spd_lconv_10_ALL, L_lconv_10_ALL, Term_3_lconv_10_ALL, CDT_Time_lconv_10_ALL, Date_lconv_10_ALL);
+[Vtke_lconv_15_sort, TKE_lconv_15_sort, R_Bulk_lconv_15_sort, spd_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort, CDT_Time_lconv_15_sort, Date_lconv_15_sort] = reference_sort(Vtke_lconv_15_ALL, TKE_lconv_15_ALL, R_Bulk_lconv_15_ALL, spd_lconv_15_ALL, L_lconv_15_ALL, Term_3_lconv_15_ALL, CDT_Time_lconv_15_ALL, Date_lconv_15_ALL);
+[Vtke_lconv_20_sort, TKE_lconv_20_sort, R_Bulk_lconv_20_sort, spd_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort, CDT_Time_lconv_20_sort, Date_lconv_20_sort] = reference_sort(Vtke_lconv_20_ALL, TKE_lconv_20_ALL, R_Bulk_lconv_20_ALL, spd_lconv_20_ALL, L_lconv_20_ALL, Term_3_lconv_20_ALL, CDT_Time_lconv_20_ALL, Date_lconv_20_ALL);
 
 % Create bar fence
 bar_fence = repmat('|',length(L_lconv_20_ALL), 1);
 % Group table
-tempT_Bulk_sort_init = table(R_Bulk_init_1_5_sort, spd_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
-    bar_fence, R_Bulk_init_3_sort, spd_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
-    bar_fence, R_Bulk_init_4_5_sort, spd_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
-    bar_fence, R_Bulk_init_6_sort, spd_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
-    bar_fence, R_Bulk_init_10_sort, spd_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
+tempT_Bulk_sort_init = table(CDT_Time_init_1_5_sort, Date_init_1_5_sort, R_Bulk_init_1_5_sort, spd_init_1_5_sort, Vtke_init_1_5_sort, TKE_init_1_5_sort, L_init_1_5_sort, Term_3_init_1_5_sort,...
+    bar_fence, CDT_Time_init_3_sort, Date_init_3_sort, R_Bulk_init_3_sort, spd_init_3_sort, Vtke_init_3_sort, TKE_init_3_sort, L_init_3_sort, Term_3_init_3_sort,...
+    bar_fence, CDT_Time_init_4_5_sort, Date_init_4_5_sort, R_Bulk_init_4_5_sort, spd_init_4_5_sort, Vtke_init_4_5_sort, TKE_init_4_5_sort, L_init_4_5_sort, Term_3_init_4_5_sort,...
+    bar_fence, CDT_Time_init_6_sort, Date_init_6_sort, R_Bulk_init_6_sort, spd_init_6_sort, Vtke_init_6_sort, TKE_init_6_sort, L_init_6_sort, Term_3_init_6_sort,...
+    bar_fence, CDT_Time_init_10_sort, Date_init_10_sort, R_Bulk_init_10_sort, spd_init_10_sort, Vtke_init_10_sort, TKE_init_10_sort, L_init_10_sort, Term_3_init_10_sort);
 
-tempT_Bulk_sort_rel = table(R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
-    bar_fence, R_Bulk_rel_3_sort, spd_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
-    bar_fence, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
-    bar_fence, R_Bulk_rel_6_sort, spd_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
-    bar_fence, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
-    bar_fence, R_Bulk_rel_10_sort, spd_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
-    bar_fence, R_Bulk_rel_15_sort, spd_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
-    bar_fence, R_Bulk_rel_20_sort, spd_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
+tempT_Bulk_sort_rel = table(CDT_Time_rel_1_5_sort, Date_rel_1_5_sort, R_Bulk_rel_1_5_sort, spd_rel_1_5_sort, Vtke_rel_1_5_sort, TKE_rel_1_5_sort, L_rel_1_5_sort, Term_3_rel_1_5_sort,...
+    bar_fence, CDT_Time_rel_3_sort, Date_rel_3_sort, R_Bulk_rel_3_sort, spd_rel_3_sort, Vtke_rel_3_sort, TKE_rel_3_sort, L_rel_3_sort, Term_3_rel_3_sort,...
+    bar_fence, CDT_Time_rel_4_5_sort, Date_rel_4_5_sort, R_Bulk_rel_4_5_sort, spd_rel_4_5_sort, Vtke_rel_4_5_sort, TKE_rel_4_5_sort, L_rel_4_5_sort, Term_3_rel_4_5_sort,...
+    bar_fence, CDT_Time_rel_6_sort, Date_rel_6_sort, R_Bulk_rel_6_sort, spd_rel_6_sort, Vtke_rel_6_sort, TKE_rel_6_sort, L_rel_6_sort, Term_3_rel_6_sort,...
+    bar_fence, CDT_Time_rel_8_5_sort, Date_rel_8_5_sort, R_Bulk_rel_8_5_sort, spd_rel_8_5_sort, Vtke_rel_8_5_sort, TKE_rel_8_5_sort, L_rel_8_5_sort, Term_3_rel_8_5_sort,...
+    bar_fence, CDT_Time_rel_10_sort, Date_rel_10_sort, R_Bulk_rel_10_sort, spd_rel_10_sort, Vtke_rel_10_sort, TKE_rel_10_sort, L_rel_10_sort, Term_3_rel_10_sort,...
+    bar_fence, CDT_Time_rel_15_sort, Date_rel_15_sort, R_Bulk_rel_15_sort, spd_rel_15_sort, Vtke_rel_15_sort, TKE_rel_15_sort, L_rel_15_sort, Term_3_rel_15_sort,...
+    bar_fence, CDT_Time_rel_20_sort, Date_rel_20_sort, R_Bulk_rel_20_sort, spd_rel_20_sort, Vtke_rel_20_sort, TKE_rel_20_sort, L_rel_20_sort, Term_3_rel_20_sort);
 
-tempT_Bulk_sort_uconv = table(R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
-    bar_fence, R_Bulk_uconv_3_sort, spd_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
-    bar_fence, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
-    bar_fence, R_Bulk_uconv_6_sort, spd_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
-    bar_fence, R_Bulk_uconv_10_sort, spd_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
+tempT_Bulk_sort_uconv = table(CDT_Time_uconv_1_5_sort, Date_uconv_1_5_sort, R_Bulk_uconv_1_5_sort, spd_uconv_1_5_sort, Vtke_uconv_1_5_sort, TKE_uconv_1_5_sort, L_uconv_1_5_sort, Term_3_uconv_1_5_sort,...
+    bar_fence, CDT_Time_uconv_3_sort, Date_uconv_3_sort, R_Bulk_uconv_3_sort, spd_uconv_3_sort, Vtke_uconv_3_sort, TKE_uconv_3_sort, L_uconv_3_sort, Term_3_uconv_3_sort,...
+    bar_fence, CDT_Time_uconv_4_5_sort, Date_uconv_4_5_sort, R_Bulk_uconv_4_5_sort, spd_uconv_4_5_sort, Vtke_uconv_4_5_sort, TKE_uconv_4_5_sort, L_uconv_4_5_sort, Term_3_uconv_4_5_sort,...
+    bar_fence, CDT_Time_uconv_6_sort, Date_uconv_6_sort, R_Bulk_uconv_6_sort, spd_uconv_6_sort, Vtke_uconv_6_sort, TKE_uconv_6_sort, L_uconv_6_sort, Term_3_uconv_6_sort,...
+    bar_fence, CDT_Time_uconv_10_sort, Date_uconv_10_sort, R_Bulk_uconv_10_sort, spd_uconv_10_sort, Vtke_uconv_10_sort, TKE_uconv_10_sort, L_uconv_10_sort, Term_3_uconv_10_sort);
 
-tempT_Bulk_sort_lconv = table(R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
-    bar_fence, R_Bulk_lconv_3_sort, spd_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
-    bar_fence, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
-    bar_fence, R_Bulk_lconv_6_sort, spd_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
-    bar_fence, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
-    bar_fence, R_Bulk_lconv_10_sort, spd_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
-    bar_fence, R_Bulk_lconv_15_sort, spd_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
-    bar_fence, R_Bulk_lconv_20_sort, spd_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
+tempT_Bulk_sort_lconv = table(CDT_Time_lconv_1_5_sort, Date_lconv_1_5_sort, R_Bulk_lconv_1_5_sort, spd_lconv_1_5_sort, Vtke_lconv_1_5_sort, TKE_lconv_1_5_sort, L_lconv_1_5_sort, Term_3_lconv_1_5_sort,...
+    bar_fence, CDT_Time_lconv_3_sort, Date_lconv_3_sort, R_Bulk_lconv_3_sort, spd_lconv_3_sort, Vtke_lconv_3_sort, TKE_lconv_3_sort, L_lconv_3_sort, Term_3_lconv_3_sort,...
+    bar_fence, CDT_Time_lconv_4_5_sort, Date_lconv_4_5_sort, R_Bulk_lconv_4_5_sort, spd_lconv_4_5_sort, Vtke_lconv_4_5_sort, TKE_lconv_4_5_sort, L_lconv_4_5_sort, Term_3_lconv_4_5_sort,...
+    bar_fence, CDT_Time_lconv_6_sort, Date_lconv_6_sort, R_Bulk_lconv_6_sort, spd_lconv_6_sort, Vtke_lconv_6_sort, TKE_lconv_6_sort, L_lconv_6_sort, Term_3_lconv_6_sort,...
+    bar_fence, CDT_Time_lconv_8_5_sort, Date_lconv_8_5_sort, R_Bulk_lconv_8_5_sort, spd_lconv_8_5_sort, Vtke_lconv_8_5_sort, TKE_lconv_8_5_sort, L_lconv_8_5_sort, Term_3_lconv_8_5_sort,...
+    bar_fence, CDT_Time_lconv_10_sort, Date_lconv_10_sort, R_Bulk_lconv_10_sort, spd_lconv_10_sort, Vtke_lconv_10_sort, TKE_lconv_10_sort, L_lconv_10_sort, Term_3_lconv_10_sort,...
+    bar_fence, CDT_Time_lconv_15_sort, Date_lconv_15_sort, R_Bulk_lconv_15_sort, spd_lconv_15_sort, Vtke_lconv_15_sort, TKE_lconv_15_sort, L_lconv_15_sort, Term_3_lconv_15_sort,...
+    bar_fence, CDT_Time_lconv_20_sort, Date_lconv_20_sort, R_Bulk_lconv_20_sort, spd_lconv_20_sort, Vtke_lconv_20_sort, TKE_lconv_20_sort, L_lconv_20_sort, Term_3_lconv_20_sort);
 
 % Format table name
-table_name_Bulk_sort_init = 'init_Bulk_Sorted.csv';
-table_name_Bulk_sort_rel = 'rel_Bulk_Sorted.csv';
-table_name_Bulk_sort_uconv = 'uconv_Bulk_Sorted.csv';
-table_name_Bulk_sort_lconv = 'lconv_Bulk_Sorted.csv';
+table_name_Bulk_sort_init = 'init_Bulk_Sorted.xlsx';
+table_name_Bulk_sort_rel = 'rel_Bulk_Sorted.xlsx';
+table_name_Bulk_sort_uconv = 'uconv_Bulk_Sorted.xlsx';
+table_name_Bulk_sort_lconv = 'lconv_Bulk_Sorted.xlsx';
 
 % Output tables
 writetable(tempT_Bulk_sort_init, table_name_Bulk_sort_init);
