@@ -150,7 +150,7 @@ for idx = 1:(gateNum + 1):ending_idx
     % Obtain the matrix we are working with
     intensity = M((idx + 1):(idx + gateNum), 2);
     
-    % Obtain the SNR datalog
+    % Obtain the SNR datalogx
     SNRLog = M((idx + 1):(idx + gateNum), 3);
     
     % Obtain the gate range
