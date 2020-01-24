@@ -150,7 +150,7 @@ for idx = 1:(gateNum + 1):ending_idx
     % Obtain the matrix we are working with
     intensity = M((idx + 1):(idx + gateNum), 2);
     
-    % Obtain the SNR datalogx
+    % Obtain the SNR datalog
     SNRLog = M((idx + 1):(idx + gateNum), 3);
     
     % Obtain the gate range
@@ -179,7 +179,7 @@ for idx = 1:(gateNum + 1):ending_idx
     
     for cidx = 1:gateNum
         
-        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 306)
+        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 296)
             
             % Initialize color code
             C_Code = [];
@@ -188,7 +188,7 @@ for idx = 1:(gateNum + 1):ending_idx
             
             % Can't be fucked, use the dumbest if else
             % Actually fuck it
-            temp_flag = round((intensity(cidx, 1) - (0.50/2))/5*20);
+            temp_flag = round((intensity(cidx, 1) - (0.50/2))/5*10);
             
             if (temp_flag <= -21)
                 C_Code = C(1, :);
@@ -208,13 +208,7 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            
-            % For plotting intensity
-            if (abs(degree - 290) >= 1)
-                plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
-            else
-                plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code, 'MarkerEdgeColor','w');
-            end
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             
             % Experimental
             %if (degree == 240) && (cidx <= 22)
@@ -222,7 +216,7 @@ for idx = 1:(gateNum + 1):ending_idx
                 % Add labeling
                 text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0.9290 0.6940 0.1250]);
             elseif ((abs(degree - 290) < 1))
-                text((horizontal_range(cidx, 1)+15), (vertical_range(cidx, 1) + 125), num2str(round(intensity(cidx, 1)*100)/100), 'Color', [0.9290 0.6940 0.1250], 'FontSize', 7);
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) - 125), num2str(round(intensity(cidx, 1)*10)/10), 'Color', [0.9290 0.6940 0.1250], 'FontSize', 6);
             end
             
             
@@ -283,7 +277,7 @@ else
 end
 colormap(C)
 h = colorbar();
-set(h,'YTick',[0/42,5/42,10/42,15/42,20/42,25/42,30/42,35/42,40/42],'YTickLabel',{-10/2,-7.5/2,-5/2,-2.5/2,0,2.5/2,5/2,7.5/2,10/2})
+set(h,'YTick',[0/42,5/42,10/42,15/42,20/42,25/42,30/42,35/42,40/42],'YTickLabel',{-10,-7.5,-5,-2.5,0,2.5,5,7.5,10})
 title(strcat("Doppler ",scanType, " ", fileDate," ", num2str(tag_digit), " ", ang_label, " ", num2str(snrBound)))
 %set(gca,'xdir','reverse')
 
@@ -348,7 +342,7 @@ for idx = 1:(gateNum + 1):ending_idx
     
     for cidx = 1:gateNum
         
-        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 305)
+        if (SNRLog(cidx, 1) >= 1.05) && (degree > 284) && (degree < 296)
             
             %disp(degree)
             
@@ -429,20 +423,14 @@ for idx = 1:(gateNum + 1):ending_idx
             %                     else
             %                         C_Code = C(1, :);
             %                     end
-            
-            if (abs(degree - 290) >= 1)
-                plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
-            else
-                plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code, 'MarkerEdgeColor','r');
-            end
-            
+            plot(horizontal_range(cidx, 1), (vertical_range(cidx, 1)), 'o', 'MarkerSize',(3.5 + 13 * cidx/50), 'MarkerEdgeColor', C_Code,  'MarkerFaceColor', C_Code);
             %plot(horizontal_range(cidx, 1), -(vertical_range(cidx, 1)), 'o', 'MarkerSize',3, 'MarkerFaceColor', C_Code);
             % Experimental
             if (abs(degree - 285) < 1)
                 % Add labeling
                 text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) + 15), num2str(cidx), 'Color', [0 0.4470 0.7410]);
-            elseif ((abs(degree - 290) < 1))
-                text((horizontal_range(cidx, 1)+15), (vertical_range(cidx, 1) +125), num2str(round(backsity(cidx, 1)*100)/100), 'Color', [0 0.4470 0.7410], 'FontSize', 7);
+            elseif
+                text((horizontal_range(cidx, 1)), (vertical_range(cidx, 1) - 125), num2str(round(backsity(cidx, 1)*10)/10), 'Color', [0 0.4470 0.7410], 'FontSize', 6);
             end
         end
         

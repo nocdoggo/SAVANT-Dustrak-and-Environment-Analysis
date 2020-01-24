@@ -57,8 +57,6 @@ else
     bg_sel_2 = 'bgimg3.png';
 end
 
-
-
 % fileDate = '20181018';
 fileDate = currName(11:18);
 
@@ -85,9 +83,6 @@ fid = fopen(strcat(data_dir, filesep, filename));
 gatesStr = textscan(fid,'%s',1,'delimiter','\n','headerlines',2);
 gS = strsplit(gatesStr{1}{1},':');
 Gs = strtrim(gS(2));
-
-% No need for str2double, since it kinda just make higher RAM utilization.
-% Here the part we using are all integers.
 gateNum = str2num(Gs{1});
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
