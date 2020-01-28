@@ -37,11 +37,11 @@ else
     num_csv = length(csv_group);
 end
 
-%daterange = 1018;
-Nic = [925:930];
-Nic = [Nic, 1001:1031];
+daterange = 1018;
+% Nic = [925:930];
+% Nic = [Nic, 1001:1031];
 
-for daterange = Nic
+%for daterange = Nic
     if daterange > 1000
         targetDate = num2str(daterange);
         dateStamp = str2double(targetDate);
@@ -282,7 +282,7 @@ for daterange = Nic
         part_A = varMidIdx - varStartIdx + 1;
         part_B = varEndIdx - varMidIdx;
         
-                spd_0_2m_lconv_A = speedTable{varStartIdx:varMidIdx, 24};
+        spd_0_2m_lconv_A = speedTable{varStartIdx:varMidIdx, 24};
         spd_1_5m_lconv_A = speedTable{varStartIdx:varMidIdx, 25};
         spd_3m_lconv_A = speedTable{varStartIdx:varMidIdx, 26};
         spd_4_5m_lconv_A = speedTable{varStartIdx:varMidIdx, 27};
@@ -342,201 +342,595 @@ for daterange = Nic
         % V versus z
         
         
-        for hours = 1:12
-            figure
-            y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            set(gca, 'LooseInset', get(gca,'TightInset'))
-            %daspect([1.75,5,1])
-            for iteration = 1:7
-                x_arr = [spd_0_2m_init_A(iteration), spd_1_5m_init_A(iteration), spd_3m_init_A(iteration), spd_4_5m_init_A(iteration), spd_6m_init_A(iteration), spd_10m_init_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
-                
-                hold on
-            end
-            
-            for iteration = 8:12
-                x_arr = [spd_0_2m_init_A(iteration), spd_1_5m_init_A(iteration), spd_3m_init_A(iteration), spd_4_5m_init_A(iteration), spd_6m_init_A(iteration), spd_10m_init_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
-                
-                hold on
-            end
-            
-            hold off
-            %pbaspect([1,0.252676659528908,0.252676659528908])
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            % MaximizeFigureWindow()
-            set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
-            % daspect([1.75,5,1])
-            %axis fill
-            xlabel('V (m/s)')
-            ylabel('z (m)')
-            %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
-            tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
-            set(tempLegend, 'Location', 'best')
-            
-            temp_tag = char(CDT_Time((1+(hours-1)*12)));
-            if temp_tag(1)== '0'
-                title(strcat(targetDate, ' Initiation Tower @ ', temp_tag(2), " o'clock"))
-                print(gcf, strcat(targetDate, '_init_', temp_tag(1:2), '.png'), '-dpng','-r350');
-                movefile(strcat(targetDate, '_init_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_init_', temp_tag(1:2), '.png'));
-            else
-                title(strcat(preDate, ' Initiation Tower @ ', temp_tag(1:2), " o'clock"))
-                print(gcf, strcat(preDate, '_init_', temp_tag(1:2),'.png'), '-dpng','-r350');
-                movefile(strcat(preDate, '_init_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_init_', temp_tag(1:2),'.png'));
-            end
-            
-            %print(gcf, strcat(targetDate, '_init_', '.png'), '-dpng','-r800');
-            
-            figure
-            y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            set(gca, 'LooseInset', get(gca,'TightInset'))
-            %daspect([1.75,5,1])
-            for iteration = 1:7
-                x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
-                
-                hold on
-            end
-            
-            for iteration = 8:12
-                x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
-                
-                hold on
-            end
-            
-            hold off
-            %pbaspect([1,0.252676659528908,0.252676659528908])
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            % MaximizeFigureWindow()
-            set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
-            % daspect([1.75,5,1])
-            %axis fill
-            xlabel('V (m/s)')
-            ylabel('z (m)')
-            %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
-            tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
-            set(tempLegend, 'Location', 'best')
-            
-            temp_tag = char(CDT_Time((1+(hours-1)*12)));
-            if temp_tag(1)== '0'
-                title(strcat(targetDate, ' Upper Conv Tower @ ', temp_tag(2), " o'clock"))
-                print(gcf, strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
-                movefile(strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_uconv_', temp_tag(1:2), '.png'));
-            else
-                title(strcat(preDate, ' Upper Conv Tower @ ', temp_tag(1:2), " o'clock"))
-                print(gcf, strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
-                movefile(strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_uconv_', temp_tag(1:2),'.png'));
-            end
-            
-            %print(gcf, strcat(targetDate, '_uconv_', '.png'), '-dpng','-r800');
-            
-            figure
-            y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            set(gca, 'LooseInset', get(gca,'TightInset'))
-            %daspect([1.75,5,1])
-            for iteration = 1:7
-                x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
-                
-                hold on
-            end
-            
-            for iteration = 8:12
-                x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
-                
-                hold on
-            end
-            
-            hold off
-            %pbaspect([1,0.252676659528908,0.252676659528908])
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            % MaximizeFigureWindow()
-            set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
-            % daspect([1.75,5,1])
-            %axis fill
-            xlabel('V (m/s)')
-            ylabel('z (m)')
-            %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
-            tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
-            set(tempLegend, 'Location', 'best')
-            
-            temp_tag = char(CDT_Time((1+(hours-1)*12)));
-            if temp_tag(1)== '0'
-                title(strcat(targetDate, ' Release Tower @ ', temp_tag(2), " o'clock"))
-                print(gcf, strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), '-dpng','-r350');
-                movefile(strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_rel_', temp_tag(1:2), '.png'));
-            else
-                title(strcat(preDate, ' Release Tower @ ', temp_tag(1:2), " o'clock"))
-                print(gcf, strcat(preDate, '_rel_', temp_tag(1:2),'.png'), '-dpng','-r350');
-                movefile(strcat(preDate, '_rel_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_rel_', temp_tag(1:2),'.png'));
-            end
-            
-            %print(gcf, strcat(targetDate, '_rel_', '.png'), '-dpng','-r800');
-            
-            figure
-            y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            set(gca, 'LooseInset', get(gca,'TightInset'))
-            %daspect([1.75,5,1])
-            for iteration = 1:7
-                x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
-                
-                hold on
-            end
-            
-            for iteration = 8:12
-                x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
-                
-                plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
-                
-                hold on
-            end
-            
-            hold off
-            %pbaspect([1,0.252676659528908,0.252676659528908])
-            %set(gca, 'DataAspectRatioMode', 'auto')
-            % MaximizeFigureWindow()
-            set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
-            % daspect([1.75,5,1])
-            %axis fill
-            xlabel('V (m/s)')
-            ylabel('z (m)')
-            %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
-            tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
-            set(tempLegend, 'Location', 'best')
-            
-            temp_tag = char(CDT_Time((1+(hours-1)*12)));
-            if temp_tag(1)== '0'
-                title(strcat(targetDate, ' Lower Conv Tower @ ', temp_tag(2), " o'clock"))
-                print(gcf, strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
-                movefile(strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_lconv_', temp_tag(1:2), '.png'));
-            else
-                title(strcat(preDate, ' Lower Conv Tower @ ', temp_tag(1:2), " o'clock"))
-                print(gcf, strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
-                movefile(strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_lconv_', temp_tag(1:2),'.png'));
-            end
-            
-            %print(gcf, strcat(targetDate, '_lconv_', '.png'), '-dpng','-r800');
-            
-            
-        end
-        
-        
-    end
+%         for hours = 1:12
+%             figure
+%             y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             set(gca, 'LooseInset', get(gca,'TightInset'))
+%             %daspect([1.75,5,1])
+%             for iteration = 1:7
+%                 x_arr = [spd_0_2m_init_A(iteration), spd_1_5m_init_A(iteration), spd_3m_init_A(iteration), spd_4_5m_init_A(iteration), spd_6m_init_A(iteration), spd_10m_init_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%                 
+%                 hold on
+%             end
+%             
+%             for iteration = 8:12
+%                 x_arr = [spd_0_2m_init_A(iteration), spd_1_5m_init_A(iteration), spd_3m_init_A(iteration), spd_4_5m_init_A(iteration), spd_6m_init_A(iteration), spd_10m_init_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%                 
+%                 hold on
+%             end
+%             
+%             hold off
+%             %pbaspect([1,0.252676659528908,0.252676659528908])
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             % MaximizeFigureWindow()
+%             set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%             % daspect([1.75,5,1])
+%             %axis fill
+%             xlabel('V (m/s)')
+%             ylabel('z (m)')
+%             %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%             tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%             set(tempLegend, 'Location', 'best')
+%             
+%             temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%             if temp_tag(1)== '0'
+%                 title(strcat(targetDate, ' Initiation Tower @ ', temp_tag(2), " o'clock"))
+%                 print(gcf, strcat(targetDate, '_init_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%                 movefile(strcat(targetDate, '_init_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_init_', temp_tag(1:2), '.png'));
+%             else
+%                 title(strcat(preDate, ' Initiation Tower @ ', temp_tag(1:2), " o'clock"))
+%                 print(gcf, strcat(preDate, '_init_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%                 movefile(strcat(preDate, '_init_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_init_', temp_tag(1:2),'.png'));
+%             end
+%             
+%             %print(gcf, strcat(targetDate, '_init_', '.png'), '-dpng','-r800');
+%             
+%             figure
+%             y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             set(gca, 'LooseInset', get(gca,'TightInset'))
+%             %daspect([1.75,5,1])
+%             for iteration = 1:7
+%                 x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%                 
+%                 hold on
+%             end
+%             
+%             for iteration = 8:12
+%                 x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%                 
+%                 hold on
+%             end
+%             
+%             hold off
+%             %pbaspect([1,0.252676659528908,0.252676659528908])
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             % MaximizeFigureWindow()
+%             set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%             % daspect([1.75,5,1])
+%             %axis fill
+%             xlabel('V (m/s)')
+%             ylabel('z (m)')
+%             %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%             tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%             set(tempLegend, 'Location', 'best')
+%             
+%             temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%             if temp_tag(1)== '0'
+%                 title(strcat(targetDate, ' Upper Conv Tower @ ', temp_tag(2), " o'clock"))
+%                 print(gcf, strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%                 movefile(strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_uconv_', temp_tag(1:2), '.png'));
+%             else
+%                 title(strcat(preDate, ' Upper Conv Tower @ ', temp_tag(1:2), " o'clock"))
+%                 print(gcf, strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%                 movefile(strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_uconv_', temp_tag(1:2),'.png'));
+%             end
+%             
+%             %print(gcf, strcat(targetDate, '_uconv_', '.png'), '-dpng','-r800');
+%             
+%             figure
+%             y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             set(gca, 'LooseInset', get(gca,'TightInset'))
+%             %daspect([1.75,5,1])
+%             for iteration = 1:7
+%                 x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%                 
+%                 hold on
+%             end
+%             
+%             for iteration = 8:12
+%                 x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%                 
+%                 hold on
+%             end
+%             
+%             hold off
+%             %pbaspect([1,0.252676659528908,0.252676659528908])
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             % MaximizeFigureWindow()
+%             set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%             % daspect([1.75,5,1])
+%             %axis fill
+%             xlabel('V (m/s)')
+%             ylabel('z (m)')
+%             %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%             tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%             set(tempLegend, 'Location', 'best')
+%             
+%             temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%             if temp_tag(1)== '0'
+%                 title(strcat(targetDate, ' Release Tower @ ', temp_tag(2), " o'clock"))
+%                 print(gcf, strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%                 movefile(strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_rel_', temp_tag(1:2), '.png'));
+%             else
+%                 title(strcat(preDate, ' Release Tower @ ', temp_tag(1:2), " o'clock"))
+%                 print(gcf, strcat(preDate, '_rel_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%                 movefile(strcat(preDate, '_rel_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_rel_', temp_tag(1:2),'.png'));
+%             end
+%             
+%             %print(gcf, strcat(targetDate, '_rel_', '.png'), '-dpng','-r800');
+%             
+%             figure
+%             y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             set(gca, 'LooseInset', get(gca,'TightInset'))
+%             %daspect([1.75,5,1])
+%             for iteration = 1:7
+%                 x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%                 
+%                 hold on
+%             end
+%             
+%             for iteration = 8:12
+%                 x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
+%                 
+%                 plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%                 
+%                 hold on
+%             end
+%             
+%             hold off
+%             %pbaspect([1,0.252676659528908,0.252676659528908])
+%             %set(gca, 'DataAspectRatioMode', 'auto')
+%             % MaximizeFigureWindow()
+%             set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%             % daspect([1.75,5,1])
+%             %axis fill
+%             xlabel('V (m/s)')
+%             ylabel('z (m)')
+%             %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%             tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%             set(tempLegend, 'Location', 'best')
+%             
+%             temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%             if temp_tag(1)== '0'
+%                 title(strcat(targetDate, ' Lower Conv Tower @ ', temp_tag(2), " o'clock"))
+%                 print(gcf, strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%                 movefile(strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_lconv_', temp_tag(1:2), '.png'));
+%             else
+%                 title(strcat(preDate, ' Lower Conv Tower @ ', temp_tag(1:2), " o'clock"))
+%                 print(gcf, strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%                 movefile(strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_lconv_', temp_tag(1:2),'.png'));
+%             end
+%             
+%             %print(gcf, strcat(targetDate, '_lconv_', '.png'), '-dpng','-r800');
+%             
+%             
+%         end
+%         
+%         
+%     end
+%     
+%     close all
+
     
-    close all
+ 
+
+figure
+tempStart = 1;
+
+set(gca, 'LooseInset', get(gca,'TightInset'))
+for hours = 1:5
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+    %set(gca, 'DataAspectRatioMode', 'auto')
     
+    %daspect([1.75,5,1])
+    
+
+    x_arr = [mean(spd_0_2m_init_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
+        mean(spd_1_5m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+    hold on
+end
+
+for hours = 6:12
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+    hours = hours - 5;
+        x_arr = [mean(spd_0_2m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_1_5m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            
+    plot(x_arr, y_arr, 'Color', c.(names(hours )), 'LineStyle', '--', 'Marker', 'o')
+        
+    hold on
+    
+end
+hold off
+
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+xlabel('V (m/s)')
+ylabel('z (m)')
+tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+    '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+set(tempLegend, 'Location', 'best')
+title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Initiation Tower', ' Hourly Average'))
+print(gcf, strcat(targetDate,'_hourly_', '_init_' ,'.png'), '-dpng','-r500');
+movefile(strcat(targetDate,'_hourly_', '_init_' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_', '_init_' ,'.png'));
+
+
+figure
+tempStart = 1;
+
+set(gca, 'LooseInset', get(gca,'TightInset'))
+for hours = 1:5
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+    %set(gca, 'DataAspectRatioMode', 'auto')
+    
+    %daspect([1.75,5,1])
+    
+
+    x_arr = [mean(spd_0_2m_uconv_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
+        mean(spd_1_5m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+    hold on
+end
+
+for hours = 6:12
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+    hours = hours - 5;
+        x_arr = [mean(spd_0_2m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_1_5m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            
+    plot(x_arr, y_arr, 'Color', c.(names(hours )), 'LineStyle', '--', 'Marker', 'o')
+        
+    hold on
+    
+end
+hold off
+
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+xlabel('V (m/s)')
+ylabel('z (m)')
+tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+    '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+set(tempLegend, 'Location', 'best')
+title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Upper Conv Tower', ' Hourly Average'))
+print(gcf, strcat(targetDate,'_hourly_', '_uconv_' ,'.png'), '-dpng','-r500');
+movefile(strcat(targetDate,'_hourly_', '_uconv_' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_', '_uconv_' ,'.png'));
+
+figure
+tempStart = 1;
+
+set(gca, 'LooseInset', get(gca,'TightInset'))
+for hours = 1:5
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+    %set(gca, 'DataAspectRatioMode', 'auto')
+    
+    %daspect([1.75,5,1])
+    
+
+    x_arr = [mean(spd_0_2m_rel_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
+        mean(spd_1_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_8_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_15m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_20m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+    hold on
+end
+
+for hours = 6:12
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+    hours = hours - 5;
+        x_arr = [mean(spd_0_2m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_1_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_8_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_15m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_20m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+    hold on
+    
+end
+hold off
+
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+xlabel('V (m/s)')
+ylabel('z (m)')
+tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+    '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+set(tempLegend, 'Location', 'best')
+title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Release Tower', ' Hourly Average'))
+print(gcf, strcat(targetDate,'_hourly_', '_rel_' ,'.png'), '-dpng','-r500');
+movefile(strcat(targetDate,'_hourly_', '_rel_' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_', '_rel_' ,'.png'));
+
+figure
+tempStart = 1;
+
+set(gca, 'LooseInset', get(gca,'TightInset'))
+for hours = 1:5
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+    %set(gca, 'DataAspectRatioMode', 'auto')
+    
+    %daspect([1.75,5,1])
+    
+
+    x_arr = [mean(spd_0_2m_lconv_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
+        mean(spd_1_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_8_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_15m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_20m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+    hold on
+end
+
+for hours = 6:12
+    y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+    hours = hours - 5;
+        x_arr = [mean(spd_0_2m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_1_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_3m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_4_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_6m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_8_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_10m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_15m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+        mean(spd_20m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            
+    plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+    hold on
+    
+end
+hold off
+
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+xlabel('V (m/s)')
+ylabel('z (m)')
+tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+    '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+set(tempLegend, 'Location', 'best')
+title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Lower Conv Tower', ' Hourly Average'))
+print(gcf, strcat(targetDate,'_hourly_', '_lconv_' ,'.png'), '-dpng','-r500');
+movefile(strcat(targetDate,'_hourly_', '_lconv_' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_', '_lconv_' ,'.png'));
+
+
+%     
+%     
+%     hold off
+%     %pbaspect([1,0.252676659528908,0.252676659528908])
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     % MaximizeFigureWindow()
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%     % daspect([1.75,5,1])
+%     %axis fill
+%     xlabel('V (m/s)')
+%     ylabel('z (m)')
+%     %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%     tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%     set(tempLegend, 'Location', 'best')
+%     
+%     temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%     if temp_tag(1)== '0'
+%         title(strcat(targetDate, ' Initiation Tower @ ', temp_tag(2), " o'clock"))
+%         print(gcf, strcat(targetDate, '_init_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%         movefile(strcat(targetDate, '_init_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_init_', temp_tag(1:2), '.png'));
+%     else
+%         title(strcat(preDate, ' Initiation Tower @ ', temp_tag(1:2), " o'clock"))
+%         print(gcf, strcat(preDate, '_init_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%         movefile(strcat(preDate, '_init_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_init_', temp_tag(1:2),'.png'));
+%     end
+%     
+%     %print(gcf, strcat(targetDate, '_init_', '.png'), '-dpng','-r800');
+%     
+%     figure
+%     y_arr = [0.2, 1.5, 3, 4.5, 6, 10];
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     %daspect([1.75,5,1])
+%     for iteration = 1:7
+%         x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for iteration = 8:12
+%         x_arr = [spd_0_2m_uconv_A(iteration), spd_1_5m_uconv_A(iteration), spd_3m_uconv_A(iteration), spd_4_5m_uconv_A(iteration), spd_6m_uconv_A(iteration), spd_10m_uconv_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%     end
+%     
+%     hold off
+%     %pbaspect([1,0.252676659528908,0.252676659528908])
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     % MaximizeFigureWindow()
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%     % daspect([1.75,5,1])
+%     %axis fill
+%     xlabel('V (m/s)')
+%     ylabel('z (m)')
+%     %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%     tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%     set(tempLegend, 'Location', 'best')
+%     
+%     temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%     if temp_tag(1)== '0'
+%         title(strcat(targetDate, ' Upper Conv Tower @ ', temp_tag(2), " o'clock"))
+%         print(gcf, strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%         movefile(strcat(targetDate, '_uconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_uconv_', temp_tag(1:2), '.png'));
+%     else
+%         title(strcat(preDate, ' Upper Conv Tower @ ', temp_tag(1:2), " o'clock"))
+%         print(gcf, strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%         movefile(strcat(preDate, '_uconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_uconv_', temp_tag(1:2),'.png'));
+%     end
+%     
+%     %print(gcf, strcat(targetDate, '_uconv_', '.png'), '-dpng','-r800');
+%     
+%     figure
+%     y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     %daspect([1.75,5,1])
+%     for iteration = 1:7
+%         x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for iteration = 8:12
+%         x_arr = [spd_0_2m_rel_A(iteration), spd_1_5m_rel_A(iteration), spd_3m_rel_A(iteration), spd_4_5m_rel_A(iteration), spd_6m_rel_A(iteration), spd_8_5m_rel_A(iteration), spd_10m_rel_A(iteration), spd_15m_rel_A(iteration), spd_20m_rel_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%     end
+%     
+%     hold off
+%     %pbaspect([1,0.252676659528908,0.252676659528908])
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     % MaximizeFigureWindow()
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%     % daspect([1.75,5,1])
+%     %axis fill
+%     xlabel('V (m/s)')
+%     ylabel('z (m)')
+%     %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%     tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%     set(tempLegend, 'Location', 'best')
+%     
+%     temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%     if temp_tag(1)== '0'
+%         title(strcat(targetDate, ' Release Tower @ ', temp_tag(2), " o'clock"))
+%         print(gcf, strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%         movefile(strcat(targetDate, '_rel_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_rel_', temp_tag(1:2), '.png'));
+%     else
+%         title(strcat(preDate, ' Release Tower @ ', temp_tag(1:2), " o'clock"))
+%         print(gcf, strcat(preDate, '_rel_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%         movefile(strcat(preDate, '_rel_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_rel_', temp_tag(1:2),'.png'));
+%     end
+%     
+%     %print(gcf, strcat(targetDate, '_rel_', '.png'), '-dpng','-r800');
+%     
+%     figure
+%     y_arr = [0.2, 1.5, 3, 4.5, 6, 8.5, 10, 15, 20];
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     %daspect([1.75,5,1])
+%     for iteration = 1:7
+%         x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for iteration = 8:12
+%         x_arr = [spd_0_2m_lconv_A(iteration), spd_1_5m_lconv_A(iteration), spd_3m_lconv_A(iteration), spd_4_5m_lconv_A(iteration), spd_6m_lconv_A(iteration), spd_8_5m_lconv_A(iteration), spd_10m_lconv_A(iteration), spd_15m_lconv_A(iteration), spd_20m_lconv_A(iteration)];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(iteration - 7)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%     end
+%     
+%     hold off
+%     %pbaspect([1,0.252676659528908,0.252676659528908])
+%     %set(gca, 'DataAspectRatioMode', 'auto')
+%     % MaximizeFigureWindow()
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.5, 0.45]);
+%     % daspect([1.75,5,1])
+%     %axis fill
+%     xlabel('V (m/s)')
+%     ylabel('z (m)')
+%     %legend(CDT_Time(1), CDT_Time(2), CDT_Time(3), CDT_Time(4), CDT_Time(5), CDT_Time(6), CDT_Time(7), CDT_Time(8), CDT_Time(9), CDT_Time(10), CDT_Time(11), CDT_Time(12))
+%     tempLegend = legend(char(CDT_Time((1+(hours-1)*12):12+(hours-1)*12)));
+%     set(tempLegend, 'Location', 'best')
+%     
+%     temp_tag = char(CDT_Time((1+(hours-1)*12)));
+%     if temp_tag(1)== '0'
+%         title(strcat(targetDate, ' Lower Conv Tower @ ', temp_tag(2), " o'clock"))
+%         print(gcf, strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), '-dpng','-r350');
+%         movefile(strcat(targetDate, '_lconv_', temp_tag(1:2), '.png'), strcat('v_VS_z\', targetDate, '_lconv_', temp_tag(1:2), '.png'));
+%     else
+%         title(strcat(preDate, ' Lower Conv Tower @ ', temp_tag(1:2), " o'clock"))
+%         print(gcf, strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), '-dpng','-r350');
+%         movefile(strcat(preDate, '_lconv_', temp_tag(1:2),'.png'), strcat('v_VS_z\', preDate, '_lconv_', temp_tag(1:2),'.png'));
+%     end
+%     
+%     %print(gcf, strcat(targetDate, '_lconv_', '.png'), '-dpng','-r800');
+%     
+%     
+% end
+% 
+% 
+%     end
+%     
+%     close all
+%     
 end
