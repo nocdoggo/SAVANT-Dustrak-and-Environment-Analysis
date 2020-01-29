@@ -37931,3 +37931,207 @@ i3,1x,f6.4,1x,f8.6,1x,e12.6 - repeat for no. gates
 {Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fgetl', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\fgetl.m', 32)" style="font-weight:bold">fgetl</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\iofun\fgetl.m',32,0)">line 32</a>)
 } 
 Your MATLAB session has timed out.  All license keys have been returned.
+   29-Jan-2020 10:08:34
+
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.internal.builtinhelper.repmat', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\elmat\+matlab\+internal\+builtinhelper\repmat.m', 52)" style="font-weight:bold">matlab.internal.builtinhelper.repmat</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\elmat\+matlab\+internal\+builtinhelper\repmat.m',52,0)">line 52</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('table', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m', 296)" style="font-weight:bold">table</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datatypes\@table\table.m',296,0)">line 296</a>)
+                        varnames = repmat({''},1,numVars);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('analysis', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m', 955)" style="font-weight:bold">analysis</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\analysis.m',955,0)">line 955</a>)
+                tempT_lconv_bulk1 = table(CDT_Time, bar_fence, R_Bulk_lconv_1_5_3,
+                L_lconv_1_5, L_high_lconv_3, Term_3_lconv_1_5, Term_3_lconv_3);
+} 
+uiopen('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\Jielun_Whole.m',1)
+uiopen('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\bulk.m',1)
+uiopen('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\jielun.m',1)
+uiopen('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',1)
+R_Bulk_new
+   29-Jan-2020 10:14:11
+
+=============================================================================
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info does not exist. 
+=============================================================================
+{Undefined function or variable 'dustStartIdx'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('R_Bulk_new', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m', 823)" style="font-weight:bold">R_Bulk_new</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',823,0)">line 823</a>)
+                            plot(dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,7}, 'r*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,9}, 'g*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,11}, 'b*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,13}, 'c*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+} 
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',823,0)
+R_Bulk_new
+   29-Jan-2020 10:15:06
+
+=============================================================================
+
+daterange =
+
+        1018
+
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info exists. 
+=============================================================================
+{Undefined function or variable 'dustStartIdx'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('R_Bulk_new', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m', 825)" style="font-weight:bold">R_Bulk_new</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',825,0)">line 825</a>)
+                            plot(dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,7}, 'r*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,9}, 'g*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,11}, 'b*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,13}, 'c*',
+                            dustTable{dustStartIdx:dustEndIdx,2},
+                            dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+} 
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',825,0)
+R_Bulk_new
+   29-Jan-2020 10:16:18
+
+=============================================================================
+
+daterange =
+
+        1018
+
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info exists. 
+=============================================================================
+What would be the starting time? [x:x2:30]
+00:02:30
+What would be the ending time? [x:x7:30]
+06:37:30
+{Undefined variable "dustTable" or class "dustTable".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('R_Bulk_new', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m', 707)" style="font-weight:bold">R_Bulk_new</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',707,0)">line 707</a>)
+    [dustLogA, dustStartIdx] = ismember(varStart, dustTable{:,2});
+} 
+R_Bulk_new
+   29-Jan-2020 10:17:38
+
+=============================================================================
+
+daterange =
+
+        1018
+
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original
+names are saved in the VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+00:02:30
+What would be the ending time? [x:x7:30]
+06:37:30
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot')" style="font-weight:bold">plot</a>
+Data must be a single matrix Y or a list of pairs X,Y.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('R_Bulk_new', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m', 1713)" style="font-weight:bold">R_Bulk_new</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',1713,0)">line 1713</a>)
+    plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x',
+    CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+} 
+opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',1713,0)
+close all
+R_Bulk_new
+   29-Jan-2020 10:20:10
+
+=============================================================================
+
+daterange =
+
+        1018
+
+Wind speed variable exists. 
+Wind direction variable exists. 
+Temperature variable does not exist. 
+3DWind variable exists. 
+Dustrak info exists. 
+[Warning: Variable names were modified to make them valid MATLAB identifiers. The original
+names are saved in the VariableDescriptions property.] 
+=============================================================================
+What would be the starting time? [x:x2:30]
+0:02:30
+What would be the ending time? [x:x7:30]
+6:02:30
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot')" style="font-weight:bold">plot</a>
+Data must be a single matrix Y or a list of pairs X,Y.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('R_Bulk_new', 'C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m', 1713)" style="font-weight:bold">R_Bulk_new</a> (<a href="matlab: opentoline('C:\Users\wzhang77\Documents\GitHub\SAVANT-Dustrak-and-Environment-Analysis\R_Bulk_new.m',1713,0)">line 1713</a>)
+    plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x',
+    CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+} 
+close all

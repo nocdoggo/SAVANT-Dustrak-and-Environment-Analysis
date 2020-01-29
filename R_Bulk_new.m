@@ -1,3 +1,5 @@
+
+%http://datavis.eol.ucar.edu/ncharts/projects/SAVANT/noqc_geo_tiltcor
 %function analysis
 
 % Initialize memory space
@@ -38,7 +40,9 @@ end
 % fprintf('=============================================================================');
 % fprintf('\n');
 
-for daterange = 1114:1128
+%for daterange = 1114:1128
+
+daterange = 1018
     
     targetDate = num2str(daterange);
     dateStamp = str2double(targetDate);
@@ -105,149 +109,149 @@ for daterange = 1114:1128
         errmsg('red','Dustrak info does not exist. \n');
     end
     
-    % if isDustExist == 'Y'
+    if isDustExist == 'Y'
+    
+        dustTable = readtable(dustfile);
+    
+        % Split out time
+        CDT_Time = dustTable{:,2};
+    
+        % Logger
+        DT6 = {};
+        DT7 = {};
+        DT8 = {};
+        Upper_3_0_v_0 = [];
+        DT3 = {};
+        DT10 = {};
+        DT9 = {};
+        DT5 = {};
+        Rel_1_5_v_0_4 = [];
+        Lower_1_5_v_0 = [];
+    
+        % Find 0:00:01
+        [dustLogicA, dustStart] = ismember('0:02:30', dustTable{:,2});
+        [dustLogicB, dustEnd] = ismember('6:02:30', dustTable{:,2});
+    
+        % Loop through
+    %     for cursor = dustStart:dustEnd
     %
-    %     dustTable = readtable(dustfile);
+    %         % Check condition
+    %         if (dustTable{cursor, 3} >= 0.1)
+    %             DT6{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 3} >= 0)
+    %             DT6{cursor, 1} = 'N';
+    %         else
+    %             DT6{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Split out time
-    %     CDT_Time = dustTable{:,2};
+    %         if (dustTable{cursor, 5} >= 0.1)
+    %             DT5{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 5} >= 0)
+    %             DT5{cursor, 1} = 'N';
+    %         else
+    %             DT5{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Logger
-    %     DT6 = {};
-    %     DT7 = {};
-    %     DT8 = {};
-    %     Upper_3_0_v_0 = [];
-    %     DT3 = {};
-    %     DT10 = {};
-    %     DT9 = {};
-    %     DT5 = {};
-    %     Rel_1_5_v_0_4 = [];
-    %     Lower_1_5_v_0 = [];
+    %         if (dustTable{cursor, 7} >= 0.1)
+    %             DT8{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 7} >= 0)
+    %             DT8{cursor, 1} = 'N';
+    %         else
+    %             DT8{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Find 0:00:01
-    %     [dustLogicA, dustStart] = ismember('0:00:01', dustTable{:,2});
-    %     [dustLogicB, dustEnd] = ismember('7:02:30', dustTable{:,2});
+    %         if (dustTable{cursor, 9} >= 0.1)
+    %             DT2{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 9} >= 0)
+    %             DT2{cursor, 1} = 'N';
+    %         else
+    %             DT2{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Loop through
-    % %     for cursor = dustStart:dustEnd
-    % %
-    % %         % Check condition
-    % %         if (dustTable{cursor, 3} >= 0.1)
-    % %             DT6{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 3} >= 0)
-    % %             DT6{cursor, 1} = 'N';
-    % %         else
-    % %             DT6{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 5} >= 0.1)
-    % %             DT5{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 5} >= 0)
-    % %             DT5{cursor, 1} = 'N';
-    % %         else
-    % %             DT5{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 7} >= 0.1)
-    % %             DT8{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 7} >= 0)
-    % %             DT8{cursor, 1} = 'N';
-    % %         else
-    % %             DT8{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 9} >= 0.1)
-    % %             DT2{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 9} >= 0)
-    % %             DT2{cursor, 1} = 'N';
-    % %         else
-    % %             DT2{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 11} >= 0.1)
-    % %             DT3{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 11} >= 0)
-    % %             DT3{cursor, 1} = 'N';
-    % %         else
-    % %             DT3{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 13} >= 0.1)
-    % %             DT10{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 13} >= 0)
-    % %             DT10{cursor, 1} = 'N';
-    % %         else
-    % %             DT10{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %         if (dustTable{cursor, 15} >= 0.1)
-    % %             DT9{cursor, 1} = 'Y';
-    % %         elseif (dustTable{cursor, 15} >= 0)
-    % %             DT9{cursor, 1} = 'N';
-    % %         else
-    % %             DT9{cursor, 1} = 'ERROR';
-    % %         end
-    % %
-    % %
-    % %     end
+    %         if (dustTable{cursor, 11} >= 0.1)
+    %             DT3{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 11} >= 0)
+    %             DT3{cursor, 1} = 'N';
+    %         else
+    %             DT3{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Calculate Release tower
-    %     Rel_1_5_v_0_4(:, 1) = dustTable{:, 5} ./ dustTable{:, 3};
+    %         if (dustTable{cursor, 13} >= 0.1)
+    %             DT10{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 13} >= 0)
+    %             DT10{cursor, 1} = 'N';
+    %         else
+    %             DT10{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Calculate Lower convergence tower
-    %     Lower_1_5_v_0(:, 1) = dustTable{:, 13} ./ dustTable{:, 11};
+    %         if (dustTable{cursor, 15} >= 0.1)
+    %             DT9{cursor, 1} = 'Y';
+    %         elseif (dustTable{cursor, 15} >= 0)
+    %             DT9{cursor, 1} = 'N';
+    %         else
+    %             DT9{cursor, 1} = 'ERROR';
+    %         end
     %
-    %     % Calculate Upper convergence tower
-    %     Upper_3_0_v_0(:, 1) = dustTable{:, 7} ./ dustTable{:, 9};
     %
-    %     % Miscs
-    %     try
-    %         Init_3_0 = [];
-    %         Init_3_0 = str2double(dustTable{:, 17});
-    %     catch
-    %         Init_3_0 = [];
-    %         Init_3_0(:, 1) = dustTable{:, 17};
     %     end
-    %     Upper_0 = [];
-    %     Upper_0(:, 1) = dustTable{:, 9};
-    %     Upper_3_0 = [];
-    %     Upper_3_0(:, 1) = dustTable{:, 7};
-    %     Rel_1_5 = [];
-    %     Rel_1_5(:, 1) = dustTable{:, 5};
-    %     Rel_0_4 = [];
-    %     Rel_0_4(:, 1) = dustTable{:, 3};
-    %     Lower_1_5 = [];
-    %     Lower_1_5(:, 1) = dustTable{:, 13};
-    %     Lower_0 = [];
-    %     Lower_0(:, 1) = dustTable{:, 11};
-    %
-    %     Upper_v_Lower_0 = [];
-    %     Upper_v_Lower_0(:, 1) = Upper_0(:, 1) ./ Lower_0(:, 1);
-    %
-    %     Upper_v_Init_3 = [];
-    %     Upper_v_Init_3(:, 1) = Upper_3_0(:, 1) ./ Init_3_0(:, 1);
-    %
-    %     Lower_v_Rel_0 = [];
-    %     Lower_v_Rel_0(:, 1) = Lower_0(:, 1) ./ Rel_0_4(:, 1);
-    %
-    %     Lower_v_Rel_1_5 = [];
-    %     Lower_v_Rel_1_5(:, 1) = Lower_1_5(:, 1) ./ Rel_1_5(:, 1);
-    %
-    %
-    %     bar_fence = repmat('|',length(CDT_Time),1);
-    %
-    %     table_name = strcat(targetDate, '_dust_cal.csv');
-    %
-    %     tableTray = table(CDT_Time, Init_3_0, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
-    %         bar_fence, CDT_Time, Upper_v_Lower_0, Upper_v_Init_3, Lower_v_Rel_0, Lower_v_Rel_1_5);
-    %
-    %     writetable(tableTray, table_name);
-    %
-    %
-    %
-    %
-    %
-    % end
+    
+        % Calculate Release tower
+        Rel_1_5_v_0_4(:, 1) = dustTable{:, 5} ./ dustTable{:, 3};
+    
+        % Calculate Lower convergence tower
+        Lower_1_5_v_0(:, 1) = dustTable{:, 13} ./ dustTable{:, 11};
+    
+        % Calculate Upper convergence tower
+        Upper_3_0_v_0(:, 1) = dustTable{:, 7} ./ dustTable{:, 9};
+    
+        % Miscs
+        try
+            Init_3_0 = [];
+            Init_3_0 = str2double(dustTable{:, 17});
+        catch
+            Init_3_0 = [];
+            Init_3_0(:, 1) = dustTable{:, 17};
+        end
+        Upper_0 = [];
+        Upper_0(:, 1) = dustTable{:, 9};
+        Upper_3_0 = [];
+        Upper_3_0(:, 1) = dustTable{:, 7};
+        Rel_1_5 = [];
+        Rel_1_5(:, 1) = dustTable{:, 5};
+        Rel_0_4 = [];
+        Rel_0_4(:, 1) = dustTable{:, 3};
+        Lower_1_5 = [];
+        Lower_1_5(:, 1) = dustTable{:, 13};
+        Lower_0 = [];
+        Lower_0(:, 1) = dustTable{:, 11};
+    
+        Upper_v_Lower_0 = [];
+        Upper_v_Lower_0(:, 1) = Upper_0(:, 1) ./ Lower_0(:, 1);
+    
+        Upper_v_Init_3 = [];
+        Upper_v_Init_3(:, 1) = Upper_3_0(:, 1) ./ Init_3_0(:, 1);
+    
+        Lower_v_Rel_0 = [];
+        Lower_v_Rel_0(:, 1) = Lower_0(:, 1) ./ Rel_0_4(:, 1);
+    
+        Lower_v_Rel_1_5 = [];
+        Lower_v_Rel_1_5(:, 1) = Lower_1_5(:, 1) ./ Rel_1_5(:, 1);
+    
+    
+%         bar_fence = repmat('|',length(CDT_Time),1);
+%     
+%         table_name = strcat(targetDate, '_dust_cal.csv');
+%     
+%         tableTray = table(CDT_Time, Init_3_0, CDT_Time, Rel_1_5, Rel_0_4, Rel_1_5_v_0_4, bar_fence, Upper_3_0, Upper_0, Upper_3_0_v_0, bar_fence, CDT_Time, Lower_1_5, Lower_0, Lower_1_5_v_0,...
+%             bar_fence, CDT_Time, Upper_v_Lower_0, Upper_v_Init_3, Lower_v_Rel_0, Lower_v_Rel_1_5);
+%     
+%         writetable(tableTray, table_name);
+    
+    
+    
+    
+    
+    end
     
     % Import data
     speedTable = readtable(speedfile);
@@ -698,12 +702,12 @@ for daterange = 1114:1128
     % Start Time
     fprintf('=============================================================================');
     fprintf('\n');
-    % varStart = input('What would be the starting time? [x:x2:30]\n', 's');
-    % varEnd = input('What would be the ending time? [x:x7:30]\n', 's');
-    % [varLogA, varStartIdx] = ismember(varStart, CDT_Time);
-    % [varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
-    % [dustLogA, dustStartIdx] = ismember(varStart, dustTable{:,2});
-    % [dustLogB, dustEndIdx] = ismember(varEnd, dustTable{:,2});
+    varStart = input('What would be the starting time? [x:x2:30]\n', 's');
+    varEnd = input('What would be the ending time? [x:x7:30]\n', 's');
+    [varLogA, varStartIdx] = ismember(varStart, CDT_Time);
+    [varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
+    [dustLogA, dustStartIdx] = ismember(varStart, dustTable{:,2});
+    [dustLogB, dustEndIdx] = ismember(varEnd, dustTable{:,2});
     
     varStartIdx = 1;
     [varEndIdx, whateveritis] = size(speedTable{:,1});
@@ -816,74 +820,74 @@ for daterange = 1114:1128
                 table_name_uconv_dump = strcat(targetDate, '_dump_uconv_1.5-4.5.csv');
                 writetable(tempT_uconv_dump, table_name_uconv_dump);
                 
-                % Plot
-                % Ob Length versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), L_low_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
-                %             ylabel('Obukhov Length')
-                %             title(strcat(num2str(dateStamp), ' Upper Convergence Obukhov Length vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
-                %
-                %             % Term 3 versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
-                %
-                %             % Richardson Number versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_uconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m')
-                %
-                %             % Wind Speed versus Term 3
-                %             figure
-                %             yyaxis left
-                %             plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 19}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 20}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 21}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 22}, 'k-x');
-                %             xlabel('CDT Time')
-                %             ylabel('Upper Convergence Tower Wind Speed')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Speed'))
-                %             legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', '1.5m Term 3', '4.5m Term 3')
-                %
-                %             % Wind Direction versus Term 3
-                %             low_bar = ones(length(CDT_Time), 1) * 290;
-                %             high_bar = ones(length(CDT_Time), 1) * 310;
-                %
-                %             figure
-                %             yyaxis left
-                %             plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
-                %             xlabel('CDT Time')
-                %             ylabel('Upper Convergence Tower Wind Direction')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Direction'))
-                %             legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', '1.5m Term 3', '4.5m Term 3')
+%                 Plot
+%                 Ob Length versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), L_low_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
+                            ylabel('Obukhov Length')
+                            title(strcat(num2str(dateStamp), ' Upper Convergence Obukhov Length vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
+                
+                            % Term 3 versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g-x');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m')
+                
+                            % Richardson Number versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_uconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m')
+                
+                            % Wind Speed versus Term 3
+                            figure
+                            yyaxis left
+                            plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 19}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 20}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 21}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 22}, 'k-x');
+                            xlabel('CDT Time')
+                            ylabel('Upper Convergence Tower Wind Speed')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Speed'))
+                            legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', '1.5m Term 3', '4.5m Term 3')
+                
+                            % Wind Direction versus Term 3
+                            low_bar = ones(length(CDT_Time), 1) * 290;
+                            high_bar = ones(length(CDT_Time), 1) * 310;
+                
+                            figure
+                            yyaxis left
+                            plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
+                            xlabel('CDT Time')
+                            ylabel('Upper Convergence Tower Wind Direction')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_1_5(varStartIdx:varEndIdx, 1), 'r*', CDT_Time(varStartIdx:varEndIdx), Term_3_uconv_4_5(varStartIdx:varEndIdx, 1), 'g*');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Upper Convergence Term 3 vs Wind Direction'))
+                            legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', '1.5m Term 3', '4.5m Term 3')
                 
             elseif iteration == 2
                 upper_height = 4.5;
@@ -1033,45 +1037,45 @@ for daterange = 1114:1128
                 table_name_uconv_dump = strcat(targetDate, '_dump_lconv_4.5-8.5.csv');
                 writetable(tempT_uconv_dump, table_name_uconv_dump);
                 
-                % Plot
-                %             % Ob Length versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), L_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
-                %             ylabel('Obukhov Length')
-                %             title(strcat(num2str(dateStamp), ' Lower Convergence Obukhov Length vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
-                %
-                %             % Term 3 versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Lower Convergence Term 3 vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
-                %
-                %             % Richardson Number versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
-                %             ylabel('Obukhov Length')
-                %             title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
+                %Plot
+                            % Ob Length versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), L_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
+                            ylabel('Obukhov Length')
+                            title(strcat(num2str(dateStamp), ' Lower Convergence Obukhov Length vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
+                
+                            % Term 3 versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Lower Convergence Term 3 vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m', '4.5m', '8.5m')
+                
+                            % Richardson Number versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
+                            ylabel('Obukhov Length')
+                            title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
                 
             elseif iteration == 5
                 % Init Tower
@@ -1560,43 +1564,43 @@ for daterange = 1114:1128
                 
                 % Plot
                 %             % Ob Length versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), L_val_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), L_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), L_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), L_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
-                %             ylabel('Obukhov Length')
-                %             title(strcat(num2str(dateStamp), ' Obukhov Length vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
-                %
-                %             % Term 3 versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
-                %             ylabel('Term 3 z/L')
-                %             title(strcat(num2str(dateStamp), ' Term 3 vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
-                %
-                %             % Richardson Number versus Dust
-                %             figure
-                %             yyaxis left
-                %             plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-                %             xlabel('CDT Time [HH:MM:SS]')
-                %             ylabel('Dust Concentration')
-                %
-                %             yyaxis right
-                %             plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
-                %             ylabel('Obukhov Length')
-                %             title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
-                %             legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), L_val_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), L_high_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), L_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), L_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), L_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), L_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
+                            ylabel('Obukhov Length')
+                            title(strcat(num2str(dateStamp), ' Obukhov Length vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
+                
+                            % Term 3 versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_1_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_4_5(varStartIdx:varEndIdx, 1), 'g-x', CDT_Time(varStartIdx:varEndIdx), Term_3_lconv_8_5(varStartIdx:varEndIdx, 1), 'b-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_6(varStartIdx:varEndIdx, 1), 'y-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Init_10(varStartIdx:varEndIdx, 1), 'k-x', CDT_Time(varStartIdx:varEndIdx), Term_3_Rel_10(varStartIdx:varEndIdx, 1), 'c-x');
+                            ylabel('Term 3 z/L')
+                            title(strcat(num2str(dateStamp), ' Term 3 vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', 'lconv-1.5m', 'lconv-4.5m', 'lconv-8.5m', 'Init-6.0m', 'Init-10m', 'Rel-10m')
+                
+                            % Richardson Number versus Dust
+                            figure
+                            yyaxis left
+                            plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+                            xlabel('CDT Time [HH:MM:SS]')
+                            ylabel('Dust Concentration')
+                
+                            yyaxis right
+                            plot(CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_1_5_4_5(varStartIdx:varEndIdx, 1), 'r-x', CDT_Time(varStartIdx:varEndIdx), R_Bulk_lconv_4_5_8_5(varStartIdx:varEndIdx, 1), 'g-x');
+                            ylabel('Obukhov Length')
+                            title(strcat(num2str(dateStamp), ' Lower Convergence Richardson Number vs Dustrak'))
+                            legend('Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6', '1.5m-4.5m', '4.5m-8.5m')
                 
             elseif iteration ==12
                 
@@ -1679,114 +1683,114 @@ for daterange = 1114:1128
     
     % Try with double y-axis
     
-    % % Speed
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 19}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 20}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 21}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 22}, 'k-x');
-    % xlabel('CDT Time')
-    % ylabel('Upper Convergence Tower Wind Speed')
-    %
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
-    %
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 29}, 'k-x');
-    % xlabel('CDT Time')
-    % ylabel('Lower Convergence Tower Wind Speed')
-    %
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    % Speed
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 19}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 20}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 21}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 22}, 'k-x');
+    xlabel('CDT Time')
+    ylabel('Upper Convergence Tower Wind Speed')
     
-    % figure  % Upper average
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
-    % xlabel('CDT Time')
-    % ylabel('Uower Convergence Tower Wind Speed AVG')
-    %
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
     
-    % figure  % Lower average
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), lconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), lconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
-    % xlabel('CDT Time')
-    % ylabel('Lower Convergence Tower Wind Speed AVG')
-    %
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
     
-    % % Temp
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 19}, 'b-x');
-    % xlabel('CDT Time')
-    % ylabel('Upper Convergence Tower Temp')
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('0.2m', '1.5m', '4.5m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
-    %
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 29}, 'k-x');
-    % xlabel('CDT Time')
-    % ylabel('Lower Convergence Tower Temp')
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('0.2m', '1.5m', '4.5m', '8.5m', '15m', '20m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
-    %
-    % % Direction
-    %
-    % low_bar = ones(length(CDT_Time), 1) * 290;
-    % high_bar = ones(length(CDT_Time), 1) * 310;
-    %
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
-    % xlabel('CDT Time')
-    % ylabel('Upper Convergence Tower Wind Direction')
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend( '1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
-    %
-    % figure
-    % yyaxis left
-    % plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
-    % xlabel('CDT Time')
-    % ylabel('Lower Convergence Tower Wind Direction')
-    %
-    % yyaxis right
-    % plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
-    % ylabel('Dust Concentration')
-    % title(strcat(num2str(dateStamp), ' Data'))
-    % legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), speedTable{varStartIdx:varEndIdx, 29}, 'k-x');
+    xlabel('CDT Time')
+    ylabel('Lower Convergence Tower Wind Speed')
     
-end
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('0.2m', '1.5m', '3.0m', '4.5m', '6.0m', '10m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    figure  % Upper average
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), uconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), uconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+    xlabel('CDT Time')
+    ylabel('Uower Convergence Tower Wind Speed AVG')
+    
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    figure  % Lower average
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), lconv_low_speed{varStartIdx:varEndIdx, 1}, 'r-x', CDT_Time(varStartIdx:varEndIdx), lconv_high_speed{varStartIdx:varEndIdx, 1}, 'g-x');
+    xlabel('CDT Time')
+    ylabel('Lower Convergence Tower Wind Speed AVG')
+    
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('1.5 + 3.0', '4.5 + 6.0', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    % Temp
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 17}, 'r-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 19}, 'b-x');
+    xlabel('CDT Time')
+    ylabel('Upper Convergence Tower Temp')
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('0.2m', '1.5m', '4.5m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), temperatureTable{varStartIdx:varEndIdx, 29}, 'k-x');
+    xlabel('CDT Time')
+    ylabel('Lower Convergence Tower Temp')
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('0.2m', '1.5m', '4.5m', '8.5m', '15m', '20m', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    % Direction
+    
+    low_bar = ones(length(CDT_Time), 1) * 290;
+    high_bar = ones(length(CDT_Time), 1) * 310;
+    
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 18}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 19}, 'b-*', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 20}, 'r-.', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 21}, 'c-+', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 22}, 'k>', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
+    xlabel('CDT Time')
+    ylabel('Upper Convergence Tower Wind Direction')
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend( '1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    figure
+    yyaxis left
+    plot(CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 24}, 'r-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 25}, 'g-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 26}, 'b-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 27}, 'c-x', CDT_Time(varStartIdx:varEndIdx), directionTable{varStartIdx:varEndIdx, 28}, 'm-x', CDT_Time(varStartIdx:varEndIdx), high_bar(varStartIdx:varEndIdx), 'k', CDT_Time(varStartIdx:varEndIdx), low_bar(varStartIdx:varEndIdx), 'k');
+    xlabel('CDT Time')
+    ylabel('Lower Convergence Tower Wind Direction')
+    
+    yyaxis right
+    plot(dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,7}, 'r*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,9}, 'g*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,11}, 'b*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,13}, 'c*', dustTable{dustStartIdx:dustEndIdx,2}, dustTable{dustStartIdx:dustEndIdx,15}, 'k*');
+    ylabel('Dust Concentration')
+    title(strcat(num2str(dateStamp), ' Data'))
+    legend('1.5m', '3.0m', '4.5m', '6m', '10m', '310', '290', 'Up3.0', 'Up0', 'Low0', 'Low1.5', 'Low6')
+    
+    %end
 
 
 diary off;
