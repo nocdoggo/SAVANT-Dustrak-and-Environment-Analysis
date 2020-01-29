@@ -168,12 +168,24 @@ daterange = 1018;
         spd_6m_init_A = speedTable{varStartIdx:varMidIdx, 7};
         spd_10m_init_A = speedTable{varStartIdx:varMidIdx, 8};
         
+        dspd_0_85m_init_A = (spd_1_5m_init_A - spd_0_2m_init_A) / (1.5 - 0.2);
+        dspd_2_25m_init_A = (spd_3m_init_A - spd_1_5m_init_A) / (3 - 1.5);
+        dspd_3_75m_init_A = (spd_4_5m_init_A - spd_3m_init_A) / (4.5 - 3);
+        dspd_5_25m_init_A = (spd_6m_init_A - spd_4_5m_init_A) / (6 - 4.5);
+        dspd_8m_init_A = (spd_10m_init_A - spd_6m_init_A) / (10 - 6);
+        
         spd_0_2m_init_B = speedTable{(varMidIdx+1):varEndIdx, 3};
         spd_1_5m_init_B = speedTable{(varMidIdx+1):varEndIdx, 4};
         spd_3m_init_B = speedTable{(varMidIdx+1):varEndIdx, 5};
         spd_4_5m_init_B = speedTable{(varMidIdx+1):varEndIdx, 6};
         spd_6m_init_B = speedTable{(varMidIdx+1):varEndIdx, 7};
         spd_10m_init_B = speedTable{(varMidIdx+1):varEndIdx, 8};
+        
+        dspd_0_85m_init_B = (spd_1_5m_init_B - spd_0_2m_init_B) / (1.5 - 0.2);
+        dspd_2_25m_init_B = (spd_3m_init_B - spd_1_5m_init_B) / (3 - 1.5);
+        dspd_3_75m_init_B = (spd_4_5m_init_B - spd_3m_init_B) / (4.5 - 3);
+        dspd_5_25m_init_B = (spd_6m_init_B - spd_4_5m_init_B) / (6 - 4.5);
+        dspd_8m_init_B = (spd_10m_init_B - spd_6m_init_B) / (10 - 6);
         
         spd_0_2m_uconv_A = speedTable{varStartIdx:varMidIdx, 17};
         spd_1_5m_uconv_A = speedTable{varStartIdx:varMidIdx, 18};
@@ -182,12 +194,24 @@ daterange = 1018;
         spd_6m_uconv_A = speedTable{varStartIdx:varMidIdx, 21};
         spd_10m_uconv_A = speedTable{varStartIdx:varMidIdx, 22};
         
+        dspd_0_85m_uconv_A = (spd_1_5m_uconv_A - spd_0_2m_uconv_A) / (1.5 - 0.2);
+        dspd_2_25m_uconv_A = (spd_3m_uconv_A - spd_1_5m_uconv_A) / (3 - 1.5);
+        dspd_3_75m_uconv_A = (spd_4_5m_uconv_A - spd_3m_uconv_A) / (4.5 - 3);
+        dspd_5_25m_uconv_A = (spd_6m_uconv_A - spd_4_5m_uconv_A) / (6 - 4.5);
+        dspd_8m_uconv_A = (spd_10m_uconv_A - spd_6m_uconv_A) / (10 - 6);
+        
         spd_0_2m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 17};
         spd_1_5m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 18};
         spd_3m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 19};
         spd_4_5m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 20};
         spd_6m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 21};
         spd_10m_uconv_B = speedTable{(varMidIdx+1):varEndIdx, 22};
+        
+        dspd_0_85m_uconv_B = (spd_1_5m_uconv_B - spd_0_2m_uconv_B) / (1.5 - 0.2);
+        dspd_2_25m_uconv_B = (spd_3m_uconv_B - spd_1_5m_uconv_B) / (3 - 1.5);
+        dspd_3_75m_uconv_B = (spd_4_5m_uconv_B - spd_3m_uconv_B) / (4.5 - 3);
+        dspd_5_25m_uconv_B = (spd_6m_uconv_B - spd_4_5m_uconv_B) / (6 - 4.5);
+        dspd_8m_uconv_B = (spd_10m_uconv_B - spd_6m_uconv_B) / (10 - 6);
         
         part_A = varMidIdx - varStartIdx + 1;
         part_B = varEndIdx - varMidIdx;
@@ -269,6 +293,15 @@ daterange = 1018;
         spd_15m_rel_A = speedTable{varStartIdx:varMidIdx, 33};
         spd_20m_rel_A = speedTable{varStartIdx:varMidIdx, 35};
         
+        dspd_0_85m_rel_A = (spd_1_5m_rel_A - spd_0_2m_rel_A) / (1.5 - 0.2);
+        dspd_2_25m_rel_A = (spd_3m_rel_A - spd_1_5m_rel_A) / (3 - 1.5);
+        dspd_3_75m_rel_A = (spd_4_5m_rel_A - spd_3m_rel_A) / (4.5 - 3);
+        dspd_5_25m_rel_A = (spd_6m_rel_A - spd_4_5m_rel_A) / (6 - 4.5);
+        dspd_7_25m_rel_A = (spd_8_5m_rel_A - spd_6m_rel_A) / (8.5 - 6);
+        dspd_9_25m_rel_A = (spd_10m_rel_A - spd_8_5m_rel_A) / (10 - 8.5);
+        dspd_12_5m_rel_A = (spd_15m_rel_A - spd_10m_rel_A) / (15 - 10);
+        dspd_17_5m_rel_A = (spd_20m_rel_A - spd_15m_rel_A) / (20 - 15);
+        
         spd_0_2m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 10};
         spd_1_5m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 11};
         spd_3m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 12};
@@ -278,6 +311,15 @@ daterange = 1018;
         spd_8_5m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 31};
         spd_15m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 33};
         spd_20m_rel_B = speedTable{(varMidIdx+1):varEndIdx, 35};
+        
+        dspd_0_85m_rel_B = (spd_1_5m_rel_B - spd_0_2m_rel_B) / (1.5 - 0.2);
+        dspd_2_25m_rel_B = (spd_3m_rel_B - spd_1_5m_rel_B) / (3 - 1.5);
+        dspd_3_75m_rel_B = (spd_4_5m_rel_B - spd_3m_rel_B) / (4.5 - 3);
+        dspd_5_25m_rel_B = (spd_6m_rel_B - spd_4_5m_rel_B) / (6 - 4.5);
+        dspd_7_25m_rel_B = (spd_8_5m_rel_B - spd_6m_rel_B) / (8.5 - 6);
+        dspd_9_25m_rel_B = (spd_10m_rel_B - spd_8_5m_rel_B) / (10 - 8.5);
+        dspd_12_5m_rel_B = (spd_15m_rel_B - spd_10m_rel_B) / (15 - 10);
+        dspd_17_5m_rel_B = (spd_20m_rel_B - spd_15m_rel_B) / (20 - 15);
         
         part_A = varMidIdx - varStartIdx + 1;
         part_B = varEndIdx - varMidIdx;
@@ -292,6 +334,15 @@ daterange = 1018;
         spd_15m_lconv_A = speedTable{varStartIdx:varMidIdx, 34};
         spd_20m_lconv_A = speedTable{varStartIdx:varMidIdx, 36};
         
+        dspd_0_85m_lconv_A = (spd_1_5m_lconv_A - spd_0_2m_lconv_A) / (1.5 - 0.2);
+        dspd_2_25m_lconv_A = (spd_3m_lconv_A - spd_1_5m_lconv_A) / (3 - 1.5);
+        dspd_3_75m_lconv_A = (spd_4_5m_lconv_A - spd_3m_lconv_A) / (4.5 - 3);
+        dspd_5_25m_lconv_A = (spd_6m_lconv_A - spd_4_5m_lconv_A) / (6 - 4.5);
+        dspd_7_25m_lconv_A = (spd_8_5m_lconv_A - spd_6m_lconv_A) / (8.5 - 6);
+        dspd_9_25m_lconv_A = (spd_10m_lconv_A - spd_8_5m_lconv_A) / (10 - 8.5);
+        dspd_12_5m_lconv_A = (spd_15m_lconv_A - spd_10m_lconv_A) / (15 - 10);
+        dspd_17_5m_lconv_A = (spd_20m_lconv_A - spd_15m_lconv_A) / (20 - 15);
+        
         spd_0_2m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 24};
         spd_1_5m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 25};
         spd_3m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 26};
@@ -301,6 +352,15 @@ daterange = 1018;
         spd_8_5m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 32};
         spd_15m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 34};
         spd_20m_lconv_B = speedTable{(varMidIdx+1):varEndIdx, 36};
+        
+        dspd_0_85m_lconv_B = (spd_1_5m_lconv_B - spd_0_2m_lconv_B) / (1.5 - 0.2);
+        dspd_2_25m_lconv_B = (spd_3m_lconv_B - spd_1_5m_lconv_B) / (3 - 1.5);
+        dspd_3_75m_lconv_B = (spd_4_5m_lconv_B - spd_3m_lconv_B) / (4.5 - 3);
+        dspd_5_25m_lconv_B = (spd_6m_lconv_B - spd_4_5m_lconv_B) / (6 - 4.5);
+        dspd_7_25m_lconv_B = (spd_8_5m_lconv_B - spd_6m_lconv_B) / (8.5 - 6);
+        dspd_9_25m_lconv_B = (spd_10m_lconv_B - spd_8_5m_lconv_B) / (10 - 8.5);
+        dspd_12_5m_lconv_B = (spd_15m_lconv_B - spd_10m_lconv_B) / (15 - 10);
+        dspd_17_5m_lconv_B = (spd_20m_lconv_B - spd_15m_lconv_B) / (20 - 15);
         
         part_A = varMidIdx - varStartIdx + 1;
         part_B = varEndIdx - varMidIdx;
@@ -933,4 +993,39 @@ movefile(strcat(targetDate,'_hourly_', '_lconv_' ,'.png'), strcat('v_VS_z\',targ
 %     
 %     close all
 %     
+
+
+
+% This section is for the dV/dZ versus Z plot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
