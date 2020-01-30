@@ -61,7 +61,7 @@ end
 
 % Create file list
 speedfile = strcat(file_dir, filesep, strcat(targetDate, '_Speed.csv'));
-%     directionfile = strcat(file_dir, filesep, strcat(targetDate, '_Direction.csv'));
+directionfile = strcat(file_dir, filesep, strcat(targetDate, '_Direction.csv'));
 temperaturefile = strcat(file_dir, filesep, strcat(targetDate, '_Temperature.csv'));
 windfile = strcat(file_dir, filesep, strcat(targetDate, '_3DWind.csv'));
 %     dustfile = strcat(file_dir, filesep, strcat(targetDate, '_Dustrak.csv'));
@@ -77,15 +77,15 @@ else
     errmsg('red','Wind speed variable does not exists. \n');
 end
 
-%     if isfile(directionfile)        % Check direction file at first
-%         isDirectionExist = 'Y';
-%         % fprintf('Wind direction variable exists.\n');
-%         errmsg('Magenta','Wind direction variable exists. \n');
-%     else
-%         isDirectionExist = 'N';
-%         % fprintf('Wind direction variable does not exist.\n');
-%         errmsg('red','Wind direction variable does not exist. \n');
-%     end
+if isfile(directionfile)        % Check direction file at first
+    isDirectionExist = 'Y';
+    % fprintf('Wind direction variable exists.\n');
+    errmsg('Magenta','Wind direction variable exists. \n');
+else
+    isDirectionExist = 'N';
+    % fprintf('Wind direction variable does not exist.\n');
+    errmsg('red','Wind direction variable does not exist. \n');
+end
 
 if isfile(temperaturefile)        % Check temperature file at first
     isTempExist = 'Y';
@@ -122,7 +122,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     % Start import variables
     speedTable = readtable(speedfile);
-    %directionTable = readtable(directionfile);
+    directionTable = readtable(directionfile);
     %temperatureTable = readtable(temperaturefile);
     windTable = readtable(windfile);
     
@@ -478,6 +478,74 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     part_A = varMidIdx - varStartIdx + 1;
     part_B = varEndIdx - varMidIdx;
     
+    dir_0_2m_init_A = directionTable{varStartIdx:varMidIdx, 3};
+    dir_1_5m_init_A = directionTable{varStartIdx:varMidIdx, 4};
+    dir_3m_init_A = directionTable{varStartIdx:varMidIdx, 5};
+    dir_4_5m_init_A = directionTable{varStartIdx:varMidIdx, 6};
+    dir_6m_init_A = directionTable{varStartIdx:varMidIdx, 7};
+    dir_10m_init_A = directionTable{varStartIdx:varMidIdx, 8};
+    
+    dir_0_2m_init_B = directionTable{(varMidIdx+1):varEndIdx, 3};
+    dir_1_5m_init_B = directionTable{(varMidIdx+1):varEndIdx, 4};
+    dir_3m_init_B = directionTable{(varMidIdx+1):varEndIdx, 5};
+    dir_4_5m_init_B = directionTable{(varMidIdx+1):varEndIdx, 6};
+    dir_6m_init_B = directionTable{(varMidIdx+1):varEndIdx, 7};
+    dir_10m_init_B = directionTable{(varMidIdx+1):varEndIdx, 8};
+    
+    dir_0_2m_uconv_A = directionTable{varStartIdx:varMidIdx, 17};
+    dir_1_5m_uconv_A = directionTable{varStartIdx:varMidIdx, 18};
+    dir_3m_uconv_A = directionTable{varStartIdx:varMidIdx, 19};
+    dir_4_5m_uconv_A = directionTable{varStartIdx:varMidIdx, 20};
+    dir_6m_uconv_A = directionTable{varStartIdx:varMidIdx, 21};
+    dir_10m_uconv_A = directionTable{varStartIdx:varMidIdx, 22};
+    
+    dir_0_2m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 17};
+    dir_1_5m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 18};
+    dir_3m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 19};
+    dir_4_5m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 20};
+    dir_6m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 21};
+    dir_10m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 22};
+    
+    dir_0_2m_rel_A = directionTable{varStartIdx:varMidIdx, 10};
+    dir_1_5m_rel_A = directionTable{varStartIdx:varMidIdx, 11};
+    dir_3m_rel_A = directionTable{varStartIdx:varMidIdx, 12};
+    dir_4_5m_rel_A = directionTable{varStartIdx:varMidIdx, 13};
+    dir_6m_rel_A = directionTable{varStartIdx:varMidIdx, 14};
+    dir_10m_rel_A = directionTable{varStartIdx:varMidIdx, 15};
+    dir_8_5m_rel_A = directionTable{varStartIdx:varMidIdx, 31};
+    dir_15m_rel_A = directionTable{varStartIdx:varMidIdx, 33};
+    dir_20m_rel_A = directionTable{varStartIdx:varMidIdx, 35};
+    
+    dir_0_2m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 10};
+    dir_1_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 11};
+    dir_3m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 12};
+    dir_4_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 13};
+    dir_6m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 14};
+    dir_10m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 15};
+    dir_8_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 31};
+    dir_15m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 33};
+    dir_20m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 35};
+    
+    dir_0_2m_lconv_A = directionTable{varStartIdx:varMidIdx, 24};
+    dir_1_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 25};
+    dir_3m_lconv_A = directionTable{varStartIdx:varMidIdx, 26};
+    dir_4_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 27};
+    dir_6m_lconv_A = directionTable{varStartIdx:varMidIdx, 28};
+    dir_10m_lconv_A = directionTable{varStartIdx:varMidIdx, 29};
+    dir_8_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 32};
+    dir_15m_lconv_A = directionTable{varStartIdx:varMidIdx, 34};
+    dir_20m_lconv_A = directionTable{varStartIdx:varMidIdx, 36};
+    
+    dir_0_2m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 24};
+    dir_1_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 25};
+    dir_3m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 26};
+    dir_4_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 27};
+    dir_6m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 28};
+    dir_10m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 29};
+    dir_8_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 32};
+    dir_15m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 34};
+    dir_20m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 36};
+    
     %         % Time series speed at each tower
     %         % 3D Plot
     %         figure
@@ -712,6 +780,74 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     %
     %     close all
     
+    
+    dir_0_2m_init_A = directionTable{varStartIdx:varMidIdx, 3};
+    dir_1_5m_init_A = directionTable{varStartIdx:varMidIdx, 4};
+    dir_3m_init_A = directionTable{varStartIdx:varMidIdx, 5};
+    dir_4_5m_init_A = directionTable{varStartIdx:varMidIdx, 6};
+    dir_6m_init_A = directionTable{varStartIdx:varMidIdx, 7};
+    dir_10m_init_A = directionTable{varStartIdx:varMidIdx, 8};
+    
+    dir_0_2m_init_B = directionTable{(varMidIdx+1):varEndIdx, 3};
+    dir_1_5m_init_B = directionTable{(varMidIdx+1):varEndIdx, 4};
+    dir_3m_init_B = directionTable{(varMidIdx+1):varEndIdx, 5};
+    dir_4_5m_init_B = directionTable{(varMidIdx+1):varEndIdx, 6};
+    dir_6m_init_B = directionTable{(varMidIdx+1):varEndIdx, 7};
+    dir_10m_init_B = directionTable{(varMidIdx+1):varEndIdx, 8};
+    
+    dir_0_2m_uconv_A = directionTable{varStartIdx:varMidIdx, 17};
+    dir_1_5m_uconv_A = directionTable{varStartIdx:varMidIdx, 18};
+    dir_3m_uconv_A = directionTable{varStartIdx:varMidIdx, 19};
+    dir_4_5m_uconv_A = directionTable{varStartIdx:varMidIdx, 20};
+    dir_6m_uconv_A = directionTable{varStartIdx:varMidIdx, 21};
+    dir_10m_uconv_A = directionTable{varStartIdx:varMidIdx, 22};
+    
+    dir_0_2m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 17};
+    dir_1_5m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 18};
+    dir_3m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 19};
+    dir_4_5m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 20};
+    dir_6m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 21};
+    dir_10m_uconv_B = directionTable{(varMidIdx+1):varEndIdx, 22};
+    
+    dir_0_2m_rel_A = directionTable{varStartIdx:varMidIdx, 10};
+    dir_1_5m_rel_A = directionTable{varStartIdx:varMidIdx, 11};
+    dir_3m_rel_A = directionTable{varStartIdx:varMidIdx, 12};
+    dir_4_5m_rel_A = directionTable{varStartIdx:varMidIdx, 13};
+    dir_6m_rel_A = directionTable{varStartIdx:varMidIdx, 14};
+    dir_10m_rel_A = directionTable{varStartIdx:varMidIdx, 15};
+    dir_8_5m_rel_A = directionTable{varStartIdx:varMidIdx, 31};
+    dir_15m_rel_A = directionTable{varStartIdx:varMidIdx, 33};
+    dir_20m_rel_A = directionTable{varStartIdx:varMidIdx, 35};
+    
+    dir_0_2m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 10};
+    dir_1_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 11};
+    dir_3m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 12};
+    dir_4_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 13};
+    dir_6m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 14};
+    dir_10m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 15};
+    dir_8_5m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 31};
+    dir_15m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 33};
+    dir_20m_rel_B = directionTable{(varMidIdx+1):varEndIdx, 35};
+    
+    dir_0_2m_lconv_A = directionTable{varStartIdx:varMidIdx, 24};
+    dir_1_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 25};
+    dir_3m_lconv_A = directionTable{varStartIdx:varMidIdx, 26};
+    dir_4_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 27};
+    dir_6m_lconv_A = directionTable{varStartIdx:varMidIdx, 28};
+    dir_10m_lconv_A = directionTable{varStartIdx:varMidIdx, 29};
+    dir_8_5m_lconv_A = directionTable{varStartIdx:varMidIdx, 32};
+    dir_15m_lconv_A = directionTable{varStartIdx:varMidIdx, 34};
+    dir_20m_lconv_A = directionTable{varStartIdx:varMidIdx, 36};
+    
+    dir_0_2m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 24};
+    dir_1_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 25};
+    dir_3m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 26};
+    dir_4_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 27};
+    dir_6m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 28};
+    dir_10m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 29};
+    dir_8_5m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 32};
+    dir_15m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 34};
+    dir_20m_lconv_B = directionTable{(varMidIdx+1):varEndIdx, 36};
     
     
     
@@ -1112,6 +1248,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     % This section is for the dV/dZ versus Z plot
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [0.85, 2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1164,6 +1301,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [0.85, 2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1218,6 +1356,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [0.85, 2.25, 3.75, 5.25, 8.00];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1265,6 +1404,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [0.85, 2.25, 3.75, 5.25, 8.00];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1310,7 +1450,8 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     movefile(strcat(targetDate,'_hourly_dVdZ', '_uconv_' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dVdZ', '_uconv_' ,'.png'));
     
     
-        figure
+    figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1361,6 +1502,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1413,6 +1555,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [2.25, 3.75, 5.25, 8.00];
         %set(gca, 'DataAspectRatioMode', 'auto')
@@ -1460,6 +1603,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     
     
     figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
         y_arr = [2.25, 3.75, 5.25, 8.00];
         %set(gca, 'DataAspectRatioMode', 'auto')

@@ -639,11 +639,33 @@ for idx = 1:num_NC
     end
     
     try
+        dir_15m_rel=ncread(currFile,'dir_15m_rel');
+    catch
+        errmsg('red','Dir_15m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_15m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
         spd_15m_lconv=ncread(currFile,'spd_15m_lconv');
     catch
         errmsg('red','Spd_15m_lconv does not exist in the following file: \n');
         errmsg('blue', '      %s\n',currFile)
         spd_15m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        dir_15m_lconv=ncread(currFile,'dir_15m_lconv');
+    catch
+        errmsg('red','Dir_15m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_15m_lconv = 0.* ones(len_Table,1);
         errmsg('Magenta','The data has been saved as 0!\n')
         fprintf('\n')
         flag_counter = flag_counter + 1;
@@ -662,11 +684,33 @@ for idx = 1:num_NC
     end
     
     try
+        dir_20m_rel=ncread(currFile,'dir_20m_rel');
+    catch
+        errmsg('red','Dir_20m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_20m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
         spd_20m_lconv=ncread(currFile,'spd_20m_lconv');
     catch
         errmsg('red','Spd_20m_lconv does not exist in the following file: \n');
         errmsg('blue', '      %s\n',currFile)
         spd_20m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        dir_20m_lconv=ncread(currFile,'dir_20m_lconv');
+    catch
+        errmsg('red','Dir_20m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_20m_lconv = 0.* ones(len_Table,1);
         errmsg('Magenta','The data has been saved as 0!\n')
         fprintf('\n')
         flag_counter = flag_counter + 1;
@@ -685,11 +729,33 @@ for idx = 1:num_NC
     end
     
     try
+        dir_8_5m_rel=ncread(currFile,'dir_8_5m_rel');
+    catch
+        errmsg('red','Dir_8_5m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_8_5m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
         spd_8_5m_lconv=ncread(currFile,'spd_8_5m_lconv');
     catch
         errmsg('red','Spd_8_5m_lconv does not exist in the following file: \n');
         errmsg('blue', '      %s\n',currFile)
         spd_8_5m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        dir_8_5m_lconv=ncread(currFile,'dir_8_5m_lconv');
+    catch
+        errmsg('red','Dir_8_5m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        dir_8_5m_lconv = 0.* ones(len_Table,1);
         errmsg('Magenta','The data has been saved as 0!\n')
         fprintf('\n')
         flag_counter = flag_counter + 1;
