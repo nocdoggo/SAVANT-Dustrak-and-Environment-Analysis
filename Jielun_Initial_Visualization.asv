@@ -387,8 +387,8 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     vtemp_3m_rel_B = windTable{(varMidIdx+1):varEndIdx, 160};
     vtemp_4_5m_rel_B = windTable{(varMidIdx+1):varEndIdx, 161};
     vtemp_6m_rel_B = windTable{(varMidIdx+1):varEndIdx, 162};
-    vtemp_10m_rel_B = windTable{(varMidIdx+1):varEndIdx, 164};
-    vtemp_8_5m_rel_B = windTable{(varMidIdx+1):varEndIdx, 163};
+    vtemp_10m_rel_B = windTable{(varMidIdx+1):varEndIdx, 163};
+    vtemp_8_5m_rel_B = windTable{(varMidIdx+1):varEndIdx, 164};
     vtemp_15m_rel_B = windTable{(varMidIdx+1):varEndIdx, 165};
     vtemp_20m_rel_B = windTable{(varMidIdx+1):varEndIdx, 166};
     
@@ -445,8 +445,8 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     vtemp_3m_lconv_A = windTable{varStartIdx:varMidIdx, 55};
     vtemp_4_5m_lconv_A = windTable{varStartIdx:varMidIdx, 56};
     vtemp_6m_lconv_A = windTable{varStartIdx:varMidIdx, 57};
-    vtemp_10m_lconv_A = windTable{varStartIdx:varMidIdx, 59};
-    vtemp_8_5m_lconv_A = windTable{varStartIdx:varMidIdx, 58};
+    vtemp_10m_lconv_A = windTable{varStartIdx:varMidIdx, 58};
+    vtemp_8_5m_lconv_A = windTable{varStartIdx:varMidIdx, 59};
     vtemp_15m_lconv_A = windTable{varStartIdx:varMidIdx, 60};
     vtemp_20m_lconv_A = windTable{varStartIdx:varMidIdx, 61};
     
@@ -462,8 +462,8 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y')
     vtemp_3m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 55};
     vtemp_4_5m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 56};
     vtemp_6m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 57};
-    vtemp_10m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 59};
-    vtemp_8_5m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 58};
+    vtemp_10m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 58};
+    vtemp_8_5m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 59};
     vtemp_15m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 60};
     vtemp_20m_lconv_B = windTable{(varMidIdx+1):varEndIdx, 61};
     
