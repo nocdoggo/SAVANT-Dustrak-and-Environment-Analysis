@@ -4074,7 +4074,8 @@ for idx = 1:num_NC
     else
         
         % Group Tables
-        tempT_dir2 = table(CDT_time, bar_fence, dir_0_2m_init, dir_1_5m_init, dir_3m_init, dir_4_5m_init, dir_6m_init, dir_10m_init, bar_fence, dir_0_2m_rel, dir_1_5m_rel, dir_3m_rel, dir_4_5m_rel, dir_6m_rel, dir_10m_rel, bar_fence, dir_0_2m_uconv, dir_1_5m_uconv, dir_3m_uconv, dir_4_5m_uconv, dir_6m_uconv, dir_10m_uconv, bar_fence, dir_0_2m_lconv, dir_1_5m_lconv, dir_3m_lconv, dir_4_5m_lconv, dir_6m_lconv, dir_10m_lconv);
+        tempT_dir2 = table(CDT_time, bar_fence, dir_0_2m_init, dir_1_5m_init, dir_3m_init, dir_4_5m_init, dir_6m_init, dir_10m_init, bar_fence, dir_0_2m_rel, dir_1_5m_rel, dir_3m_rel, dir_4_5m_rel, dir_6m_rel, dir_10m_rel, bar_fence, dir_0_2m_uconv, dir_1_5m_uconv, dir_3m_uconv, dir_4_5m_uconv, dir_6m_uconv, dir_10m_uconv, bar_fence, dir_0_2m_lconv, dir_1_5m_lconv, dir_3m_lconv, dir_4_5m_lconv, dir_6m_lconv, dir_10m_lconv,...
+            bar_fence, dir_8_5m_rel, dir_8_5m_lconv, dir_15m_rel, dir_15m_lconv, dir_20m_rel, dir_20m_lconv);
         tempT_T2 = table(CDT_time, bar_fence, T_0_2m_init, T_1_5m_init, T_4_5m_init, T_8_5m_init, T_15m_init, T_20m_init, bar_fence, T_0_2m_rel, T_1_5m_rel, T_4_5m_rel, T_8_5m_rel, T_15m_rel, T_20m_rel, bar_fence, T_0_2m_uconv, T_1_5m_uconv, T_4_5m_uconv, T_8_5m_uconv, T_15m_uconv, T_20m_uconv, bar_fence, T_0_2m_lconv, T_1_5m_lconv, T_4_5m_lconv, T_8_5m_lconv, T_15m_lconv, T_20m_lconv);
         tempT_spd2 = table(CDT_time, bar_fence, spd_0_2m_init, spd_1_5m_init, spd_3m_init, spd_4_5m_init, spd_6m_init, spd_10m_init, bar_fence, spd_0_2m_rel, spd_1_5m_rel, spd_3m_rel, spd_4_5m_rel, spd_6m_rel, spd_10m_rel, bar_fence, spd_0_2m_uconv, spd_1_5m_uconv, spd_3m_uconv, spd_4_5m_uconv, spd_6m_uconv, spd_10m_uconv, bar_fence, spd_0_2m_lconv, spd_1_5m_lconv, spd_3m_lconv, spd_4_5m_lconv, spd_6m_lconv, spd_10m_lconv,...
             bar_fence, spd_8_5m_rel, spd_8_5m_lconv, spd_15m_rel, spd_15m_lconv, spd_20m_rel, spd_20m_lconv);
