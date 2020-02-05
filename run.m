@@ -762,6 +762,235 @@ for idx = 1:num_NC
     end
     
     
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Relative Humidity
+    % Initiation Tower
+    try
+        RH_0_2m_init = ncread(currFile,'RH_0_2m_init');
+    catch
+        errmsg('red','RH_0_2m_init does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_0_2m_init = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_1_5m_init = ncread(currFile,'RH_1_5m_init');
+    catch
+        errmsg('red','RH_1_5m_init does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_1_5m_init = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_4_5m_init = ncread(currFile,'RH_4_5m_init');
+    catch
+        errmsg('red','RH_4_5m_init does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_4_5m_init = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_10m_init = ncread(currFile,'RH_10m_init');
+    catch
+        errmsg('red','RH_10m_init does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_10m_init = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    
+    % Upper convergence tower
+    try
+        RH_0_2m_uconv = ncread(currFile,'RH_0_2m_uconv');
+    catch
+        errmsg('red','RH_0_2m_uconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_0_2m_uconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_1_5m_uconv = ncread(currFile,'RH_1_5m_uconv');
+    catch
+        errmsg('red','RH_1_5m_uconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_1_5m_uconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_4_5m_uconv = ncread(currFile,'RH_4_5m_uconv');
+    catch
+        errmsg('red','RH_4_5m_uconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_4_5m_uconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_10m_uconv = ncread(currFile,'RH_10m_uconv');
+    catch
+        errmsg('red','RH_10m_uconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_10m_uconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    % Release Tower
+    try
+        RH_0_2m_rel = ncread(currFile,'RH_0_2m_rel');
+    catch
+        errmsg('red','RH_0_2m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_0_2m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_1_5m_rel = ncread(currFile,'RH_1_5m_rel');
+    catch
+        errmsg('red','RH_1_5m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_1_5m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_4_5m_rel = ncread(currFile,'RH_4_5m_rel');
+    catch
+        errmsg('red','RH_4_5m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_4_5m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_8_5m_rel = ncread(currFile,'RH_8_5m_rel');
+    catch
+        errmsg('red','RH_8_5m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_8_5m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_15m_rel = ncread(currFile,'RH_15m_rel');
+    catch
+        errmsg('red','RH_15m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_15m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_20m_rel = ncread(currFile,'RH_20m_rel');
+    catch
+        errmsg('red','RH_20m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_20m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    % Lower convergence tower
+    try
+        RH_0_2m_lconv = ncread(currFile,'RH_0_2m_lconv');
+    catch
+        errmsg('red','RH_0_2m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_0_2m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_1_5m_lconv = ncread(currFile,'RH_1_5m_lconv');
+    catch
+        errmsg('red','RH_1_5m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_1_5m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_4_5m_lconv = ncread(currFile,'RH_4_5m_lconv');
+    catch
+        errmsg('red','RH_4_5m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_4_5m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_8_5m_lconv = ncread(currFile,'RH_8_5m_lconv');
+    catch
+        errmsg('red','RH_8_5m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_8_5m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_15m_lconv = ncread(currFile,'RH_15m_lconv');
+    catch
+        errmsg('red','RH_15m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_15m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        RH_20m_lconv = ncread(currFile,'RH_20m_lconv');
+    catch
+        errmsg('red','RH_20m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        RH_20m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    
        
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Temperature

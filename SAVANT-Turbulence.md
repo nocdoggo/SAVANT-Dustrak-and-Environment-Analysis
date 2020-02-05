@@ -102,7 +102,7 @@ The angle represents the degree in between the direction where the sensor arm is
 
 ### 2.1 Sonic Sensor Data
 
-The sonic sensor data was extracted by using ==NCToolkit==, for more information, please visit ==NCToolkit== Manual.
+The sonic sensor data was extracted by using ==NCToolkit==, for more information, please visit [==NCToolkit== Manual](doc/nc_manual.html).
 
 Do notice that:
 
