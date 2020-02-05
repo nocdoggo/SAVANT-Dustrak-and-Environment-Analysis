@@ -991,6 +991,54 @@ for idx = 1:num_NC
     end
     
     
+    
+       
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Pressure
+    
+    try
+        P_20m_lconv = ncread(currFile,'P_20m_lconv');
+    catch
+        errmsg('red','P_20m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        P_20m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        P_1_5m_lconv = ncread(currFile,'P_1_5m_lconv');
+    catch
+        errmsg('red','P_1_5m_lconv does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        P_1_5m_lconv = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        P_20m_rel = ncread(currFile,'P_20m_rel');
+    catch
+        errmsg('red','P_20m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        P_20m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
+    
+    try
+        P_1_5m_rel = ncread(currFile,'P_1_5m_rel');
+    catch
+        errmsg('red','P_1_5m_rel does not exist in the following file: \n');
+        errmsg('blue', '      %s\n',currFile)
+        P_1_5m_rel = 0.* ones(len_Table,1);
+        errmsg('Magenta','The data has been saved as 0!\n')
+        fprintf('\n')
+        flag_counter = flag_counter + 1;
+    end
        
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Temperature
