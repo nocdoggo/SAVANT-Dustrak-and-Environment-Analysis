@@ -1077,11 +1077,11 @@ for idx = 1:num_NC
     end
     
     try
-        T_8_5m_init = ncread(currFile,'T_8_5m_init');
+        T_10m_init = ncread(currFile,'T_10m_init');
     catch
-        errmsg('red','T_8_5m_init does not exist in the following file: \n');
+        errmsg('red','T_10m_init does not exist in the following file: \n');
         errmsg('blue', '      %s\n',currFile)
-        T_8_5m_init = 0.* ones(len_Table,1);
+        T_10m_init = 0.* ones(len_Table,1);
         errmsg('Magenta','The data has been saved as 0!\n')
         fprintf('\n')
         flag_counter = flag_counter + 1;
@@ -1211,11 +1211,11 @@ for idx = 1:num_NC
     end
     
     try
-        T_8_5m_uconv = ncread(currFile,'T_8_5m_uconv');
+        T_10m_uconv = ncread(currFile,'T_10m_uconv');
     catch
-        errmsg('red','T_8_5m_uconv does not exist in the following file: \n');
+        errmsg('red','T_10m_uconv does not exist in the following file: \n');
         errmsg('blue', '      %s\n',currFile)
-        T_8_5m_uconv = 0.* ones(len_Table,1);
+        T_10m_uconv = 0.* ones(len_Table,1);
         errmsg('Magenta','The data has been saved as 0!\n')
         fprintf('\n')
         flag_counter = flag_counter + 1;
@@ -4285,7 +4285,7 @@ for idx = 1:num_NC
         tempT_60 = table(CDT_time, bar_fence, dir_6m_init, dir_6m_rel, dir_6m_uconv, dir_6m_lconv, bar_fence, spd_6m_init, spd_6m_rel, spd_6m_uconv, spd_6m_lconv);
         tempT_100 = table(CDT_time, bar_fence, dir_10m_init, dir_10m_rel, dir_10m_uconv, dir_10m_lconv, bar_fence, spd_10m_init, spd_10m_rel, spd_10m_uconv, spd_10m_lconv);
     
-        heatT_85 = table(CDT_time, bar_fence, T_8_5m_init, T_8_5m_rel, T_8_5m_uconv, T_8_5m_lconv);
+        heatT_85 = table(CDT_time, bar_fence, T_10m_init, T_8_5m_rel, T_10m_uconv, T_8_5m_lconv);
         heatT_150 = table(CDT_time, bar_fence, T_15m_init, T_15m_rel, T_15m_uconv, T_15m_lconv);
         heatT_200 = table(CDT_time, bar_fence, T_20m_init, T_20m_rel, T_20m_uconv, T_20m_lconv);
     
@@ -4313,9 +4313,9 @@ for idx = 1:num_NC
     elseif (out_T == 2)
         
         % Group Tables
-        tempT_init = table(CDT_time, bar_fence, dir_0_2m_init, dir_1_5m_init, dir_3m_init, dir_4_5m_init, dir_6m_init, dir_10m_init, bar_fence, spd_0_2m_init, spd_1_5m_init, spd_3m_init, spd_4_5m_init, spd_6m_init, spd_10m_init, bar_fence, T_0_2m_init, T_1_5m_init, T_4_5m_init, T_8_5m_init, T_15m_init, T_20m_init);
+        tempT_init = table(CDT_time, bar_fence, dir_0_2m_init, dir_1_5m_init, dir_3m_init, dir_4_5m_init, dir_6m_init, dir_10m_init, bar_fence, spd_0_2m_init, spd_1_5m_init, spd_3m_init, spd_4_5m_init, spd_6m_init, spd_10m_init, bar_fence, T_0_2m_init, T_1_5m_init, T_4_5m_init, T_10m_init, T_15m_init, T_20m_init);
         tempT_rel = table(CDT_time, bar_fence, dir_0_2m_rel, dir_1_5m_rel, dir_3m_rel, dir_4_5m_rel, dir_6m_rel, dir_10m_rel, bar_fence, spd_0_2m_rel, spd_1_5m_rel, spd_3m_rel, spd_4_5m_rel, spd_6m_rel, spd_10m_rel, bar_fence, T_0_2m_rel, T_1_5m_rel, T_4_5m_rel, T_8_5m_rel, T_15m_rel, T_20m_rel);
-        tempT_uconv = table(CDT_time, bar_fence, dir_0_2m_uconv, dir_1_5m_uconv, dir_3m_uconv, dir_4_5m_uconv, dir_6m_uconv, dir_10m_uconv, bar_fence, spd_0_2m_uconv, spd_1_5m_uconv, spd_3m_uconv, spd_4_5m_uconv, spd_6m_uconv, spd_10m_uconv, bar_fence, T_0_2m_uconv, T_1_5m_uconv, T_4_5m_uconv, T_8_5m_uconv, T_15m_uconv, T_20m_uconv);
+        tempT_uconv = table(CDT_time, bar_fence, dir_0_2m_uconv, dir_1_5m_uconv, dir_3m_uconv, dir_4_5m_uconv, dir_6m_uconv, dir_10m_uconv, bar_fence, spd_0_2m_uconv, spd_1_5m_uconv, spd_3m_uconv, spd_4_5m_uconv, spd_6m_uconv, spd_10m_uconv, bar_fence, T_0_2m_uconv, T_1_5m_uconv, T_4_5m_uconv, T_10m_uconv, T_15m_uconv, T_20m_uconv);
         tempT_lconv = table(CDT_time, bar_fence, dir_0_2m_lconv, dir_1_5m_lconv, dir_3m_lconv, dir_4_5m_lconv, dir_6m_lconv, dir_10m_lconv, bar_fence, spd_0_2m_lconv, spd_1_5m_lconv, spd_3m_lconv, spd_4_5m_lconv, spd_6m_lconv, spd_10m_lconv, bar_fence, T_0_2m_lconv, T_1_5m_lconv, T_4_5m_lconv, T_8_5m_lconv, T_15m_lconv, T_20m_lconv);
         
     
@@ -4335,7 +4335,7 @@ for idx = 1:num_NC
         
         % Group Tables
         tempT_dir = table(CDT_time, bar_fence, dir_0_2m_init, dir_0_2m_rel, dir_0_2m_uconv, dir_0_2m_lconv, bar_fence, dir_1_5m_init, dir_1_5m_rel, dir_1_5m_uconv, dir_1_5m_lconv, bar_fence, dir_3m_init, dir_3m_rel, dir_3m_uconv, dir_3m_lconv, bar_fence, dir_4_5m_init, dir_4_5m_rel, dir_4_5m_uconv, dir_4_5m_lconv, bar_fence, dir_6m_init, dir_6m_rel, dir_6m_uconv, dir_6m_lconv, bar_fence, dir_10m_init, dir_10m_rel, dir_10m_uconv, dir_10m_lconv);
-        tempT_T = table(CDT_time, bar_fence, T_0_2m_init, T_0_2m_rel, T_0_2m_uconv, T_0_2m_lconv, bar_fence, T_1_5m_init, T_1_5m_rel, T_1_5m_uconv, T_1_5m_lconv, bar_fence, T_4_5m_init, T_4_5m_rel, T_4_5m_uconv, T_4_5m_lconv, bar_fence, T_8_5m_init, T_8_5m_rel, T_8_5m_uconv, T_8_5m_lconv, bar_fence, T_15m_init, T_15m_rel, T_15m_uconv, T_15m_lconv, bar_fence, T_20m_init, T_20m_rel, T_20m_uconv, T_20m_lconv);
+        tempT_T = table(CDT_time, bar_fence, T_0_2m_init, T_0_2m_rel, T_0_2m_uconv, T_0_2m_lconv, bar_fence, T_1_5m_init, T_1_5m_rel, T_1_5m_uconv, T_1_5m_lconv, bar_fence, T_4_5m_init, T_4_5m_rel, T_4_5m_uconv, T_4_5m_lconv, bar_fence, T_10m_init, T_8_5m_rel, T_10m_uconv, T_8_5m_lconv, bar_fence, T_15m_init, T_15m_rel, T_15m_uconv, T_15m_lconv, bar_fence, T_20m_init, T_20m_rel, T_20m_uconv, T_20m_lconv);
         tempT_spd = table(CDT_time, bar_fence, spd_0_2m_init, spd_0_2m_rel, spd_0_2m_uconv, spd_0_2m_lconv, bar_fence, spd_1_5m_init, spd_1_5m_rel, spd_1_5m_uconv, spd_1_5m_lconv, bar_fence, spd_3m_init, spd_3m_rel, spd_3m_uconv, spd_3m_lconv, bar_fence, spd_4_5m_init, spd_4_5m_rel, spd_4_5m_uconv, spd_4_5m_lconv, bar_fence, spd_6m_init, spd_6m_rel, spd_6m_uconv, spd_6m_lconv, bar_fence, spd_10m_init, spd_10m_rel, spd_10m_uconv, spd_10m_lconv);
         
         % Format Table Names
@@ -4353,7 +4353,7 @@ for idx = 1:num_NC
         % Group Tables
         tempT_dir2 = table(CDT_time, bar_fence, dir_0_2m_init, dir_1_5m_init, dir_3m_init, dir_4_5m_init, dir_6m_init, dir_10m_init, bar_fence, dir_0_2m_rel, dir_1_5m_rel, dir_3m_rel, dir_4_5m_rel, dir_6m_rel, dir_10m_rel, bar_fence, dir_0_2m_uconv, dir_1_5m_uconv, dir_3m_uconv, dir_4_5m_uconv, dir_6m_uconv, dir_10m_uconv, bar_fence, dir_0_2m_lconv, dir_1_5m_lconv, dir_3m_lconv, dir_4_5m_lconv, dir_6m_lconv, dir_10m_lconv,...
             bar_fence, dir_8_5m_rel, dir_8_5m_lconv, dir_15m_rel, dir_15m_lconv, dir_20m_rel, dir_20m_lconv);
-        tempT_T2 = table(CDT_time, bar_fence, T_0_2m_init, T_1_5m_init, T_4_5m_init, T_8_5m_init, T_15m_init, T_20m_init, bar_fence, T_0_2m_rel, T_1_5m_rel, T_4_5m_rel, T_8_5m_rel, T_15m_rel, T_20m_rel, bar_fence, T_0_2m_uconv, T_1_5m_uconv, T_4_5m_uconv, T_8_5m_uconv, T_15m_uconv, T_20m_uconv, bar_fence, T_0_2m_lconv, T_1_5m_lconv, T_4_5m_lconv, T_8_5m_lconv, T_15m_lconv, T_20m_lconv);
+        tempT_T2 = table(CDT_time, bar_fence, T_0_2m_init, T_1_5m_init, T_4_5m_init, T_10m_init, T_15m_init, T_20m_init, bar_fence, T_0_2m_rel, T_1_5m_rel, T_4_5m_rel, T_8_5m_rel, T_15m_rel, T_20m_rel, bar_fence, T_0_2m_uconv, T_1_5m_uconv, T_4_5m_uconv, T_10m_uconv, T_15m_uconv, T_20m_uconv, bar_fence, T_0_2m_lconv, T_1_5m_lconv, T_4_5m_lconv, T_8_5m_lconv, T_15m_lconv, T_20m_lconv);
         tempT_spd2 = table(CDT_time, bar_fence, spd_0_2m_init, spd_1_5m_init, spd_3m_init, spd_4_5m_init, spd_6m_init, spd_10m_init, bar_fence, spd_0_2m_rel, spd_1_5m_rel, spd_3m_rel, spd_4_5m_rel, spd_6m_rel, spd_10m_rel, bar_fence, spd_0_2m_uconv, spd_1_5m_uconv, spd_3m_uconv, spd_4_5m_uconv, spd_6m_uconv, spd_10m_uconv, bar_fence, spd_0_2m_lconv, spd_1_5m_lconv, spd_3m_lconv, spd_4_5m_lconv, spd_6m_lconv, spd_10m_lconv,...
             bar_fence, spd_8_5m_rel, spd_8_5m_lconv, spd_15m_rel, spd_15m_lconv, spd_20m_rel, spd_20m_lconv);
         tempT_3D2 = table(CDT_time, bar_fence, u_1_5m_uconv, u_3m_uconv, u_4_5m_uconv, u_6m_uconv, u_10m_uconv, bar_fence, u_1_5m_lconv, u_3m_lconv, u_4_5m_lconv, u_6m_lconv, u_8_5m_lconv, u_10m_lconv, u_15m_lconv, u_20m_lconv, bar_fence, v_1_5m_uconv, v_3m_uconv, v_4_5m_uconv, v_6m_uconv, v_10m_uconv, bar_fence, v_1_5m_lconv, v_3m_lconv, v_4_5m_lconv, v_6m_lconv, v_8_5m_lconv, v_10m_lconv, v_15m_lconv, v_20m_lconv, ...
@@ -4387,10 +4387,10 @@ for idx = 1:num_NC
         
         % Output Tables
         %writetable(tempT_dir2, table_name_dir);
-        %writetable(tempT_T2, table_name_T);
+        writetable(tempT_T2, table_name_T);
         %writetable(tempT_spd2, table_name_spd);
         %writetable(tempT_3D2, table_name_3D);
-        writetable(tempT_moipres, table_name_moipres);
+        %writetable(tempT_moipres, table_name_moipres);
     end
     
 end

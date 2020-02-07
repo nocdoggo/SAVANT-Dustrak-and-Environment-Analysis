@@ -1,4 +1,4 @@
-CDT_time,bar_fence,T_0_2m_init,T_1_5m_init,T_4_5m_init,T_8_5m_init,T_15m_init,T_20m_init,bar_fence_1,T_0_2m_rel,T_1_5m_rel,T_4_5m_rel,T_8_5m_rel,T_15m_rel,T_20m_rel,bar_fence_2,T_0_2m_uconv,T_1_5m_uconv,T_4_5m_uconv,T_8_5m_uconv,T_15m_uconv,T_20m_uconv,bar_fence_3,T_0_2m_lconv,T_1_5m_lconv,T_4_5m_lconv,T_8_5m_lconv,T_15m_lconv,T_20m_lconv
+CDT_time,bar_fence,T_0_2m_init,T_1_5m_init,T_4_5m_init,T_10m_init,T_15m_init,T_20m_init,bar_fence_1,T_0_2m_rel,T_1_5m_rel,T_4_5m_rel,T_8_5m_rel,T_15m_rel,T_20m_rel,bar_fence_2,T_0_2m_uconv,T_1_5m_uconv,T_4_5m_uconv,T_10m_uconv,T_15m_uconv,T_20m_uconv,bar_fence_3,T_0_2m_lconv,T_1_5m_lconv,T_4_5m_lconv,T_8_5m_lconv,T_15m_lconv,T_20m_lconv
 19:02:30,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0
 19:07:30,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0
 19:12:30,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0,|,0,0,0,0,0,0

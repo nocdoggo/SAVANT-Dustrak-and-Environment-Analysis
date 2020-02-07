@@ -702,7 +702,6 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     P_rel_A = HPTable{(varMidIdx+1):varEndIdx, 27};
     P_lconv_A = HPTable{(varMidIdx+1):varEndIdx, 29};
     
-    ptemp_
     
     %         % Time series speed at each tower
     %         % 3D Plot
