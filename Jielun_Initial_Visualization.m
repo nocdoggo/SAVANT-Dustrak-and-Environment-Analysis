@@ -65,6 +65,7 @@ directionfile = strcat(file_dir, filesep, strcat(targetDate, '_Direction.csv'));
 temperaturefile = strcat(file_dir, filesep, strcat(targetDate, '_Temperature.csv'));
 windfile = strcat(file_dir, filesep, strcat(targetDate, '_3DWind.csv'));
 %     dustfile = strcat(file_dir, filesep, strcat(targetDate, '_Dustrak.csv'));
+HPfile = strcat(file_dir, filesep, strcat(targetDate, '_HP.csv'));
 
 % Catch if see if the file exist
 if isfile(speedfile)        % Check speed file at first
