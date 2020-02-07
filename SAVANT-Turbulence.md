@@ -166,5 +166,7 @@ Note that, for `Condition == 'Rain`, `Light Rain`, `Heavy Rain` are all included
 
 Post precipitation period, as the sensors are covered with moisture, according to technicians, 2 hours are usually needed for the surface of the sensors to dry out. During the drying period, the accuracy of the data may be affected due to local thermal exchange. Therefore, in order to avoid potential data corruptions, data from the hour before the starting of precipitation, along with 2 hours post the precipitation periods are being removed. 
 
+## 4. Data Visualization
+
 
 

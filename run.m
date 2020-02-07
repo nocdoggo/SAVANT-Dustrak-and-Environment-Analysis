@@ -4375,18 +4375,22 @@ for idx = 1:num_NC
             bar_fence, v_v__1_5m_uconv, v_v__3m_uconv, v_v__4_5m_uconv, v_v__6m_uconv, v_v__10m_uconv, bar_fence, v_v__1_5m_lconv, v_v__3m_lconv, v_v__4_5m_lconv, v_v__6m_lconv, v_v__8_5m_lconv, v_v__10m_lconv, v_v__15m_lconv, v_v__20m_lconv,...
             bar_fence, w_w__1_5m_init, w_w__3m_init, w_w__4_5m_init, w_w__6m_init, w_w__10m_init, bar_fence, w_w__1_5m_rel, w_w__3m_rel, w_w__4_5m_rel, w_w__6m_rel, w_w__8_5m_rel, w_w__10m_rel, w_w__15m_rel, w_w__20m_rel,...
             bar_fence, w_w__1_5m_uconv, w_w__3m_uconv, w_w__4_5m_uconv, w_w__6m_uconv, w_w__10m_uconv, bar_fence, w_w__1_5m_lconv, w_w__3m_lconv, w_w__4_5m_lconv, w_w__6m_lconv, w_w__8_5m_lconv, w_w__10m_lconv, w_w__15m_lconv, w_w__20m_lconv);
-        
+        tempT_moipres = table(CDT_time, bar_fence, RH_0_2m_init, RH_1_5m_init, RH_4_5m_init, RH_10m_init, bar_fence, RH_0_2m_rel, RH_1_5m_rel, RH_4_5m_rel, RH_8_5m_rel, RH_15m_rel, RH_20m_rel, ...
+            bar_fence, RH_0_2m_uconv, RH_1_5m_uconv, RH_4_5m_uconv, RH_10m_uconv, bar_fence, RH_0_2m_lconv, RH_1_5m_lconv, RH_4_5m_lconv, RH_8_5m_lconv, RH_15m_lconv, RH_20m_lconv, ...
+            bar_fence, P_1_5m_rel, P_20m_rel, P_1_5m_lconv, P_20m_lconv);
         % Format Table Names
         table_name_dir = strcat(currDate, '_Direction.csv');
         table_name_T = strcat(currDate, '_Temperature.csv');
         table_name_spd = strcat(currDate, '_Speed.csv');
         table_name_3D = strcat(currDate, '_3DWind.csv');
+        table_name_moipres = strcat(currDate, '_HP.csv');
         
         % Output Tables
-        writetable(tempT_dir2, table_name_dir);
-        writetable(tempT_T2, table_name_T);
-        writetable(tempT_spd2, table_name_spd);
-        writetable(tempT_3D2, table_name_3D);
+        %writetable(tempT_dir2, table_name_dir);
+        %writetable(tempT_T2, table_name_T);
+        %writetable(tempT_spd2, table_name_spd);
+        %writetable(tempT_3D2, table_name_3D);
+        writetable(tempT_moipres, table_name_moipres);
     end
     
 end
