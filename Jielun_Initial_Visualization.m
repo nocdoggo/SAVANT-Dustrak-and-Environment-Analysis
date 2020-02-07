@@ -128,12 +128,12 @@ end
 %     end
 
 % Start V_TKE analysis
-if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
+if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y') && (isTempExist == 'Y')
     
     % Start import variables
     speedTable = readtable(speedfile);
     directionTable = readtable(directionfile);
-    %temperatureTable = readtable(temperaturefile);
+    temperatureTable = readtable(temperaturefile);
     windTable = readtable(windfile);
     HPTable = readtable(HPfile);
     
@@ -170,6 +170,24 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     %     [Vtke_init_4_5, TKE_init_4_5, spd_init_4_5] = Jielun_TKE(windTable{(varMidIdx + 1):varEndIdx, 215}, windTable{(varMidIdx + 1):varEndIdx, 245}, windTable{(varMidIdx + 1):varEndIdx, 275}, speedTable{(varMidIdx + 1):varEndIdx, 6});
     %     [Vtke_init_6, TKE_init_6, spd_init_6] = Jielun_TKE(windTable{(varMidIdx + 1):varEndIdx, 216}, windTable{(varMidIdx + 1):varEndIdx, 246}, windTable{(varMidIdx + 1):varEndIdx, 276}, speedTable{(varMidIdx + 1):varEndIdx, 7});
     %     [Vtke_init_10, TKE_init_10, spd_init_10] = Jielun_TKE(windTable{(varMidIdx + 1):varEndIdx, 217}, windTable{(varMidIdx + 1):varEndIdx, 247}, windTable{(varMidIdx + 1):varEndIdx, 277}, speedTable{(varMidIdx + 1):varEndIdx, 8});
+    
+    % Now read in the pressure
+    P0 = 1000; % According to http://glossary.ametsoc.org/wiki/Potential_temperature
+    % And 100 kPa is 1000 millibar
+    P_rel_A = HPTable{varStartIdx:varMidIdx, 27};
+    P_lconv_A = HPTable{varStartIdx:varMidIdx, 29};
+    
+    P_rel_B = HPTable{(varMidIdx+1):varEndIdx, 27};
+    P_lconv_B = HPTable{(varMidIdx+1):varEndIdx, 29};
+    
+    % These are the scalars needed for converting from normal temperature
+    % to potential temperature. These are for part A and part B
+    % accordingly.
+    factorA_A = (P0 ./ P_rel_A).^(2/7);
+    factorB_A = (P0 ./ P_lconv_A).^(2/7);
+    
+    factorA_B = (P0 ./ P_rel_B).^(2/7);
+    factorB_B = (P0 ./ P_lconv_B).^(2/7);
     
     % Check on the V versus Z plot
     spd_0_2m_init_A = speedTable{varStartIdx:varMidIdx, 3};
@@ -220,6 +238,24 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     dvtemp_5_25m_init_B = (vtemp_6m_init_B - vtemp_4_5m_init_B) / (6 - 4.5);
     dvtemp_8m_init_B = (vtemp_10m_init_B - vtemp_6m_init_B) / (10 - 6);
     
+    ptemp_0_2m_init_A = temperatureTable{varStartIdx:varMidIdx, 3} .* factorA_A;
+    ptemp_1_5m_init_A = temperatureTable{varStartIdx:varMidIdx, 4} .* factorA_A;
+    ptemp_4_5m_init_A = temperatureTable{varStartIdx:varMidIdx, 5} .* factorA_A;
+    ptemp_10m_init_A = temperatureTable{varStartIdx:varMidIdx, 6} .* factorA_A;
+    
+    dptemp_0_85m_init_A = (ptemp_1_5m_init_A - ptemp_0_2m_init_A) / (1.5 - 0.2);
+    dptemp_3m_init_A = (ptemp_4_5m_init_A - ptemp_1_5m_init_A) / (4.5 - 1.5);
+    dptemp_7_25m_init_A = (ptemp_10m_init_A - ptemp_4_5m_init_A) / (10 - 4.5);
+    
+    ptemp_0_2m_init_B = temperatureTable{(varMidIdx+1):varEndIdx, 3} .* factorA_B;
+    ptemp_1_5m_init_B = temperatureTable{(varMidIdx+1):varEndIdx, 4} .* factorA_B;
+    ptemp_4_5m_init_B = temperatureTable{(varMidIdx+1):varEndIdx, 5} .* factorA_B;
+    ptemp_10m_init_B = temperatureTable{(varMidIdx+1):varEndIdx, 6} .* factorA_B;
+    
+    dptemp_0_85m_init_B = (ptemp_1_5m_init_B - ptemp_0_2m_init_B) / (1.5 - 0.2);
+    dptemp_3m_init_B = (ptemp_4_5m_init_B - ptemp_1_5m_init_B) / (4.5 - 1.5);
+    dptemp_7_25m_init_B = (ptemp_10m_init_B - ptemp_4_5m_init_B) / (10 - 4.5);
+    
     
     spd_0_2m_uconv_A = speedTable{varStartIdx:varMidIdx, 17};
     spd_1_5m_uconv_A = speedTable{varStartIdx:varMidIdx, 18};
@@ -268,6 +304,25 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     dvtemp_3_75m_uconv_B = (vtemp_4_5m_uconv_B - vtemp_3m_uconv_B) / (4.5 - 3);
     dvtemp_5_25m_uconv_B = (vtemp_6m_uconv_B - vtemp_4_5m_uconv_B) / (6 - 4.5);
     dvtemp_8m_uconv_B = (vtemp_10m_uconv_B - vtemp_6m_uconv_B) / (10 - 6);
+    
+    ptemp_0_2m_uconv_A = temperatureTable{varStartIdx:varMidIdx, 17} .* factorB_A;
+    ptemp_1_5m_uconv_A = temperatureTable{varStartIdx:varMidIdx, 18} .* factorB_A;
+    ptemp_4_5m_uconv_A = temperatureTable{varStartIdx:varMidIdx, 19} .* factorB_A;
+    ptemp_10m_uconv_A = temperatureTable{varStartIdx:varMidIdx, 20} .* factorB_A;
+    
+    dptemp_0_85m_uconv_A = (ptemp_1_5m_uconv_A - ptemp_0_2m_uconv_A) / (1.5 - 0.2);
+    dptemp_3m_uconv_A = (ptemp_4_5m_uconv_A - ptemp_1_5m_uconv_A) / (4.5 - 1.5);
+    dptemp_7_25m_uconv_A = (ptemp_10m_uconv_A - ptemp_4_5m_uconv_A) / (10 - 4.5);
+    
+    ptemp_0_2m_uconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 17} .* factorB_B;
+    ptemp_1_5m_uconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 18} .* factorB_B;
+    ptemp_4_5m_uconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 19} .* factorB_B;
+    ptemp_10m_uconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 20} .* factorB_B;
+    
+    dptemp_0_85m_uconv_B = (ptemp_1_5m_uconv_B - ptemp_0_2m_uconv_B) / (1.5 - 0.2);
+    dptemp_3m_uconv_B = (ptemp_4_5m_uconv_B - ptemp_1_5m_uconv_B) / (4.5 - 1.5);
+    dptemp_7_25m_uconv_B = (ptemp_10m_uconv_B - ptemp_4_5m_uconv_B) / (10 - 4.5);
+    
     
     part_A = varMidIdx - varStartIdx + 1;
     part_B = varEndIdx - varMidIdx;
@@ -486,6 +541,59 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     dvtemp_12_5m_lconv_B = (vtemp_15m_lconv_B - vtemp_10m_lconv_B) / (15 - 10);
     dvtemp_17_5m_lconv_B = (vtemp_20m_lconv_B - vtemp_15m_lconv_B) / (20 - 15);
     
+    ptemp_0_2m_rel_A = temperatureTable{varStartIdx:varMidIdx, 10} .* factorA_A;
+    ptemp_1_5m_rel_A = temperatureTable{varStartIdx:varMidIdx, 11} .* factorA_A;
+    ptemp_4_5m_rel_A = temperatureTable{varStartIdx:varMidIdx, 12} .* factorA_A;
+    ptemp_8_5m_rel_A = temperatureTable{varStartIdx:varMidIdx, 13} .* factorA_A;
+    ptemp_15m_rel_A = temperatureTable{varStartIdx:varMidIdx, 14} .* factorA_A;
+    ptemp_20m_rel_A = temperatureTable{varStartIdx:varMidIdx, 15} .* factorA_A;
+    
+    dptemp_0_85m_rel_A = (ptemp_1_5m_rel_A - ptemp_0_2m_rel_A) / (1.5 - 0.2);
+    dptemp_3m_rel_A = (ptemp_4_5m_rel_A - ptemp_1_5m_rel_A) / (4.5 - 1.5);
+    dptemp_6_5m_rel_A = (ptemp_8_5m_rel_A - ptemp_4_5m_rel_A) / (8.5 - 4.5);
+    dptemp_11_75m_rel_A = (ptemp_15m_rel_A - ptemp_8_5m_rel_A) / (15 - 8.5);
+    dptemp_17_5m_rel_A = (ptemp_20m_rel_A - ptemp_15m_rel_A) / (20 - 15);
+    
+    ptemp_0_2m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 10} .* factorA_B;
+    ptemp_1_5m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 11} .* factorA_B;
+    ptemp_4_5m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 12} .* factorA_B;
+    ptemp_8_5m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 13} .* factorA_B;
+    ptemp_15m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 14} .* factorA_B;
+    ptemp_20m_rel_B = temperatureTable{(varMidIdx+1):varEndIdx, 15} .* factorA_B;
+    
+    dptemp_0_85m_rel_B = (ptemp_1_5m_rel_B - ptemp_0_2m_rel_B) / (1.5 - 0.2);
+    dptemp_3m_rel_B = (ptemp_4_5m_rel_B - ptemp_1_5m_rel_B) / (4.5 - 1.5);
+    dptemp_6_5m_rel_B = (ptemp_8_5m_rel_B - ptemp_4_5m_rel_B) / (8.5 - 4.5);
+    dptemp_11_75m_rel_B = (ptemp_15m_rel_B - ptemp_8_5m_rel_B) / (15 - 8.5);
+    dptemp_17_5m_rel_B = (ptemp_20m_rel_B - ptemp_15m_rel_B) / (20 - 15);
+    
+    ptemp_0_2m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 24} .* factorB_A;
+    ptemp_1_5m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 25} .* factorB_A;
+    ptemp_4_5m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 26} .* factorB_A;
+    ptemp_8_5m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 27} .* factorB_A;
+    ptemp_15m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 28} .* factorB_A;
+    ptemp_20m_lconv_A = temperatureTable{varStartIdx:varMidIdx, 29} .* factorB_A;
+    
+    dptemp_0_85m_lconv_A = (ptemp_1_5m_lconv_A - ptemp_0_2m_lconv_A) / (1.5 - 0.2);
+    dptemp_3m_lconv_A = (ptemp_4_5m_lconv_A - ptemp_1_5m_lconv_A) / (4.5 - 1.5);
+    dptemp_6_5m_lconv_A = (ptemp_8_5m_lconv_A - ptemp_4_5m_lconv_A) / (8.5 - 4.5);
+    dptemp_11_75m_lconv_A = (ptemp_15m_lconv_A - ptemp_8_5m_lconv_A) / (15 - 8.5);
+    dptemp_17_5m_lconv_A = (ptemp_20m_lconv_A - ptemp_15m_lconv_A) / (20 - 15);
+    
+    ptemp_0_2m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 24} .* factorB_B;
+    ptemp_1_5m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 25} .* factorB_B;
+    ptemp_4_5m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 26} .* factorB_B;
+    ptemp_8_5m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 27} .* factorB_B;
+    ptemp_15m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 28} .* factorB_B;
+    ptemp_20m_lconv_B = temperatureTable{(varMidIdx+1):varEndIdx, 29} .* factorB_B;
+    
+    dptemp_0_85m_lconv_B = (ptemp_1_5m_lconv_B - ptemp_0_2m_lconv_B) / (1.5 - 0.2);
+    dptemp_3m_lconv_B = (ptemp_4_5m_lconv_B - ptemp_1_5m_lconv_B) / (4.5 - 1.5);
+    dptemp_6_5m_lconv_B = (ptemp_8_5m_lconv_B - ptemp_4_5m_lconv_B) / (8.5 - 4.5);
+    dptemp_11_75m_lconv_B = (ptemp_15m_lconv_B - ptemp_8_5m_lconv_B) / (15 - 8.5);
+    dptemp_17_5m_lconv_B = (ptemp_20m_lconv_B - ptemp_15m_lconv_B) / (20 - 15);
+    
+    
     part_A = varMidIdx - varStartIdx + 1;
     part_B = varEndIdx - varMidIdx;
     
@@ -693,16 +801,8 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     spd_15m_lconv_B(logic_15m_lconv_B) = NaN;
     spd_20m_lconv_B(logic_20m_lconv_B) = NaN;
     
-    % Now read in the pressure
-    P0 = 1000; % According to http://glossary.ametsoc.org/wiki/Potential_temperature
-    % And 100 kPa is 1000 millibar
-    P_rel_A = HPTable{varStartIdx:varMidIdx, 27};
-    P_lconv_A = HPTable{varStartIdx:varMidIdx, 29};
     
-    P_rel_A = HPTable{(varMidIdx+1):varEndIdx, 27};
-    P_lconv_A = HPTable{(varMidIdx+1):varEndIdx, 29};
     
-    ptemp_
     
     %         % Time series speed at each tower
     %         % 3D Plot
@@ -937,6 +1037,192 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     %     end
     %
     %     close all
+    
+    figure
+    tempStart = 1;
+    set(gca, 'LooseInset', get(gca,'TightInset'))
+    for hours = 1:5
+        y_arr = [0.2 1.5 4.5 8.5 15 20];
+        %set(gca, 'DataAspectRatioMode', 'auto')
+        
+        %daspect([1.75,5,1])
+        
+        
+        x_arr = [ nanmean(ptemp_0_2m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_8_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_15m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_20m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+        hold on
+    end
+    
+    for hours = 6:12
+        y_arr = [0.2 1.5 4.5 8.5 15 20];
+        hours = hours - 5;
+        x_arr = [nanmean(ptemp_0_2m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_8_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_15m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_20m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+        hold on
+        
+    end
+    hold off
+    
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+    xlabel('Theta (m/s)')
+    ylabel('z (m)')
+    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+    set(tempLegend, 'Location', 'best')
+    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Lower Conv Tower Theta - Z', ' Hourly Average'))
+    print(gcf, strcat(targetDate,'_hourly_Theta', '_lconv' ,'.png'), '-dpng','-r500');
+    movefile(strcat(targetDate,'_hourly_Theta', '_lconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_Theta', '_lconv' ,'.png'));
+    
+    figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
+    for hours = 1:5
+        y_arr = [0.2 1.5 4.5 8.5 15 20];
+        %set(gca, 'DataAspectRatioMode', 'auto')
+        
+        %daspect([1.75,5,1])
+        
+        
+        x_arr = [ nanmean(ptemp_0_2m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_8_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_15m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_20m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+        hold on
+    end
+    
+    for hours = 6:12
+        y_arr = [0.2 1.5 4.5 8.5 15 20];
+        hours = hours - 5;
+        x_arr = [nanmean(ptemp_0_2m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_8_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_15m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_20m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+        hold on
+        
+    end
+    hold off
+    
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+    xlabel('Theta (m/s)')
+    ylabel('z (m)')
+    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+    set(tempLegend, 'Location', 'best')
+    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Release Tower Theta - Z', ' Hourly Average'))
+    print(gcf, strcat(targetDate,'_hourly_Theta', '_rel' ,'.png'), '-dpng','-r500');
+    movefile(strcat(targetDate,'_hourly_Theta', '_rel' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_Theta', '_rel' ,'.png'));
+    
+    figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
+    for hours = 1:5
+        y_arr = [0.2 1.5 4.5 10];
+        %set(gca, 'DataAspectRatioMode', 'auto')
+        
+        %daspect([1.75,5,1])
+        
+        
+        x_arr = [ nanmean(ptemp_0_2m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_10m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+        hold on
+    end
+    
+    for hours = 6:12
+        y_arr = [0.2 1.5 4.5 10];
+        hours = hours - 5;
+        x_arr = [nanmean(ptemp_0_2m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_10m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+        hold on
+        
+    end
+    hold off
+    
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+    xlabel('Theta (m/s)')
+    ylabel('z (m)')
+    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+    set(tempLegend, 'Location', 'best')
+    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Upper Conv Tower Theta - Z', ' Hourly Average'))
+    print(gcf, strcat(targetDate,'_hourly_Theta', '_uconv' ,'.png'), '-dpng','-r500');
+    movefile(strcat(targetDate,'_hourly_Theta', '_uconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_Theta', '_uconv' ,'.png'));
+    
+    
+    figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
+    for hours = 1:5
+        y_arr = [0.2 1.5 4.5 10];
+        %set(gca, 'DataAspectRatioMode', 'auto')
+        
+        %daspect([1.75,5,1])
+        
+        
+        x_arr = [ nanmean(ptemp_0_2m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_10m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+        hold on
+    end
+    
+    for hours = 6:12
+        y_arr = [0.2 1.5 4.5 10];
+        hours = hours - 5;
+        x_arr = [nanmean(ptemp_0_2m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_1_5m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_4_5m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(ptemp_10m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+        hold on
+        
+    end
+    hold off
+    
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+    xlabel('Theta (m/s)')
+    ylabel('z (m)')
+    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+    set(tempLegend, 'Location', 'best')
+    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Initiation Tower Theta - Z', ' Hourly Average'))
+    print(gcf, strcat(targetDate,'_hourly_Theta', '_init' ,'.png'), '-dpng','-r500');
+    movefile(strcat(targetDate,'_hourly_Theta', '_init' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_Theta', '_init' ,'.png'));
     
     
 
@@ -1493,7 +1779,6 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     movefile(strcat(targetDate,'_hourly_dVdZ', '_init' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dVdZ', '_init' ,'.png'));
     
     
-    
     figure
     set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
@@ -1504,10 +1789,10 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
         
         
         x_arr = [nanmean(dspd_0_85m_uconv_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
-            nanmean(dvtemp_2_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            nanmean(dspd_2_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_3_75m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_5_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_8m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
         
@@ -1518,10 +1803,10 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
         y_arr = [0.85, 2.25, 3.75, 5.25, 8.00];
         hours = hours - 5;
         x_arr = [nanmean(dspd_0_85m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_2_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+            nanmean(dspd_2_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_3_75m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_5_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dspd_8m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
         
@@ -1531,7 +1816,7 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     hold off
     
     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
-    xlabel('dTheta/dZ (m/s)')
+    xlabel('dV/dZ (m/s)')
     ylabel('z (m)')
     tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
         '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
@@ -1541,22 +1826,122 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     movefile(strcat(targetDate,'_hourly_dVdZ', '_uconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dVdZ', '_uconv' ,'.png'));
     
     
+    
+%     figure
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     for hours = 1:5
+%         y_arr = [0.85, 2.25, 3.75, 5.25, 8.00];
+%         %set(gca, 'DataAspectRatioMode', 'auto')
+%         
+%         %daspect([1.75,5,1])
+%         
+%         
+%         x_arr = [nanmean(dspd_0_85m_uconv_A((tempStart+ (hours-1) * 12):(tempStart + (hours) * 12 - 1))),...
+%             nanmean(dvtemp_2_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for hours = 6:12
+%         y_arr = [0.85, 2.25, 3.75, 5.25, 8.00];
+%         hours = hours - 5;
+%         x_arr = [nanmean(dspd_0_85m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_2_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%         
+%     end
+%     hold off
+%     
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+%     xlabel('dTheta/dZ (m/s)')
+%     ylabel('z (m)')
+%     tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+%         '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+%     set(tempLegend, 'Location', 'best')
+%     title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Upper Conv Tower dV/dZ - Z', ' Hourly Average'))
+%     print(gcf, strcat(targetDate,'_hourly_dVdZ', '_uconv' ,'.png'), '-dpng','-r500');
+%     movefile(strcat(targetDate,'_hourly_dVdZ', '_uconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dVdZ', '_uconv' ,'.png'));
+%     
+    
+
+    
+    
+%     figure
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     for hours = 1:5
+%         y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
+%         %set(gca, 'DataAspectRatioMode', 'auto')
+%         
+%         %daspect([1.75,5,1])
+%         
+%         
+%         x_arr = [ nanmean(dvtemp_2_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_7_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_9_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_12_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_17_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for hours = 6:12
+%         y_arr = [ 2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
+%         hours = hours - 5;
+%         x_arr = [nanmean(dvtemp_2_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_7_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_9_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_12_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_17_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%         
+%     end
+%     hold off
+%     
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+%     xlabel('dTheta/dZ (m/s)')
+%     ylabel('z (m)')
+%     tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+%         '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+%     set(tempLegend, 'Location', 'best')
+%     title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Release Tower dTheta/dZ - Z', ' Hourly Average'))
+%     print(gcf, strcat(targetDate,'_hourly_dThetadZ', '_rel' ,'.png'), '-dpng','-r500');
+%     movefile(strcat(targetDate,'_hourly_dThetadZ', '_rel' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_rel' ,'.png'));
+
+
     figure
     set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
-        y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
+        y_arr = [0.85 3.0 6.5 11.75 17.5];
         %set(gca, 'DataAspectRatioMode', 'auto')
         
         %daspect([1.75,5,1])
         
         
-        x_arr = [nanmean(dspd_2_25m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_7_25m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_9_25m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_12_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_17_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [ nanmean(dptemp_0_85m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_6_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_11_75m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_17_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
         
@@ -1564,66 +1949,13 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     end
     
     for hours = 6:12
-        y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
+        y_arr = [0.85 3.0 6.5 11.75 17.5];
         hours = hours - 5;
-        x_arr = [nanmean(dvtemp_2_25m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_7_25m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_9_25m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_12_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_17_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
-        
-        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
-        
-        hold on
-        
-    end
-    hold off
-    
-    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
-    xlabel('dTheta/dZ (m/s)')
-    ylabel('z (m)')
-    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
-        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
-    set(tempLegend, 'Location', 'best')
-    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Lower Conv Tower dTheta/dZ - Z', ' Hourly Average'))
-    print(gcf, strcat(targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'), '-dpng','-r500');
-    movefile(strcat(targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'));
-    
-    
-    figure
-    set(gca, 'LooseInset', get(gca,'TightInset'))
-    for hours = 1:5
-        y_arr = [2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
-        %set(gca, 'DataAspectRatioMode', 'auto')
-        
-        %daspect([1.75,5,1])
-        
-        
-        x_arr = [ nanmean(dvtemp_2_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_7_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_9_25m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_12_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_17_5m_rel_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
-        
-        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
-        
-        hold on
-    end
-    
-    for hours = 6:12
-        y_arr = [ 2.25, 3.75, 5.25, 7.25, 9.25, 12.5, 17.5];
-        hours = hours - 5;
-        x_arr = [nanmean(dvtemp_2_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_7_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_9_25m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_12_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_17_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [nanmean(dptemp_0_85m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_6_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_11_75m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_17_5m_rel_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
         
@@ -1644,20 +1976,64 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     
     
     
+%     figure
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     for hours = 1:5
+%         y_arr = [2.25, 3.75, 5.25, 8.00];
+%         %set(gca, 'DataAspectRatioMode', 'auto')
+%         
+%         %daspect([1.75,5,1])
+%         
+%         
+%         x_arr = [nanmean(dvtemp_2_25m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+%         
+%         hold on
+%         
+%     end
+%     
+%     
+%     for hours = 6:12
+%         y_arr = [2.25, 3.75, 5.25, 8.00];
+%         hours = hours - 5;
+%         x_arr = [nanmean(dvtemp_2_25m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%         
+%     end
+%     hold off
+%     
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+%     xlabel('dTheta/dZ (m/s)')
+%     ylabel('z (m)')
+%     tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+%         '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+%     set(tempLegend, 'Location', 'best')
+%     title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Initiation Tower dTheta/dZ - Z', ' Hourly Average'))
+%     print(gcf, strcat(targetDate,'_hourly_dThetadZ', '_init' ,'.png'), '-dpng','-r500');
+%     movefile(strcat(targetDate,'_hourly_dThetadZ', '_init' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_init' ,'.png'));
     
     figure
     set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
-        y_arr = [2.25, 3.75, 5.25, 8.00];
+        y_arr = [0.85 3.0 7.25];
         %set(gca, 'DataAspectRatioMode', 'auto')
         
         %daspect([1.75,5,1])
         
         
-        x_arr = [nanmean(dvtemp_2_25m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [nanmean(dptemp_0_85m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_7_25m_init_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
         
@@ -1667,12 +2043,11 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     
     
     for hours = 6:12
-        y_arr = [2.25, 3.75, 5.25, 8.00];
+        y_arr = [0.85 3.0 7.25];
         hours = hours - 5;
-        x_arr = [nanmean(dvtemp_2_25m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [nanmean(dptemp_0_85m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_init_B ((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_7_25m_init_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
         
@@ -1692,33 +2067,76 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     movefile(strcat(targetDate,'_hourly_dThetadZ', '_init' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_init' ,'.png'));
     
     
+%     figure
+%     set(gca, 'LooseInset', get(gca,'TightInset'))
+%     for hours = 1:5
+%         y_arr = [2.25, 3.75, 5.25, 8.00];
+%         set(gca, 'DataAspectRatioMode', 'auto')
+%         
+%         daspect([1.75,5,1])
+%         
+%         
+%         x_arr = [nanmean(dvtemp_2_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+%         
+%         hold on
+%     end
+%     
+%     for hours = 6:12
+%         y_arr = [2.25, 3.75, 5.25, 8.00];
+%         hours = hours - 5;
+%         x_arr = [nanmean(dvtemp_2_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_3_75m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_5_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+%             nanmean(dvtemp_8m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+%         
+%         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+%         
+%         hold on
+%         
+%     end
+%     hold off
+%     
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+%     xlabel('dTheta/dZ (m/s)')
+%     ylabel('z (m)')
+%     tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+%         '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+%     set(tempLegend, 'Location', 'best')
+%     title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Upper Conv Tower dTheta/dZ - Z', ' Hourly Average'))
+%     print(gcf, strcat(targetDate,'_hourly_dThetadZ', '_uconv' ,'.png'), '-dpng','-r500');
+%     movefile(strcat(targetDate,'_hourly_dThetadZ', '_uconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_uconv' ,'.png'));
     
     figure
     set(gca, 'LooseInset', get(gca,'TightInset'))
     for hours = 1:5
-        y_arr = [2.25, 3.75, 5.25, 8.00];
+        y_arr = [0.85 3.0 7.25];
         %set(gca, 'DataAspectRatioMode', 'auto')
         
         %daspect([1.75,5,1])
         
         
-        x_arr = [nanmean(dvtemp_2_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [nanmean(dptemp_0_85m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_7_25m_uconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
         
         hold on
+        
     end
     
+    
     for hours = 6:12
-        y_arr = [2.25, 3.75, 5.25, 8.00];
+        y_arr = [0.85 3.0 7.25];
         hours = hours - 5;
-        x_arr = [nanmean(dvtemp_2_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_3_75m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_5_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
-            nanmean(dvtemp_8m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        x_arr = [nanmean(dptemp_0_85m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_uconv_B ((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_7_25m_uconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
         
         plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
         
@@ -1738,9 +2156,51 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     movefile(strcat(targetDate,'_hourly_dThetadZ', '_uconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_uconv' ,'.png'));
     
     
+    figure
+    set(gca, 'LooseInset', get(gca,'TightInset'))
+    for hours = 1:5
+        y_arr = [0.85 3.0 6.5 11.75 17.5];
+        %set(gca, 'DataAspectRatioMode', 'auto')
+        
+        %daspect([1.75,5,1])
+        
+        
+        x_arr = [ nanmean(dptemp_0_85m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_6_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_11_75m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_17_5m_lconv_A((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'Marker', '*')
+        
+        hold on
+    end
     
+    for hours = 6:12
+        y_arr = [0.85 3.0 6.5 11.75 17.5];
+        hours = hours - 5;
+        x_arr = [nanmean(dptemp_0_85m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_3m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_6_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_11_75m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1))),...
+            nanmean(dptemp_17_5m_lconv_B((tempStart+ (hours-1) * 12):(tempStart+ (hours) * 12 - 1)))];
+        
+        plot(x_arr, y_arr, 'Color', c.(names(hours)), 'LineStyle', '--', 'Marker', 'o')
+        
+        hold on
+        
+    end
+    hold off
     
-    
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.2, 0.2, 0.7, 0.6]);
+    xlabel('dTheta/dZ (m/s)')
+    ylabel('z (m)')
+    tempLegend = legend('19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00', '22:00 - 23:00', '23:00 - 00:00',...
+        '00:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00', '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00', '06:00 - 07:00');
+    set(tempLegend, 'Location', 'best')
+    title(strcat(num2str(daterange - 1), ' to' , {' '}, targetDate, ' Lower Conv Tower dTheta/dZ - Z', ' Hourly Average'))
+    print(gcf, strcat(targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'), '-dpng','-r500');
+    movefile(strcat(targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'), strcat('v_VS_z\',targetDate,'_hourly_dThetadZ', '_lconv' ,'.png'));
     
     
     
@@ -1748,4 +2208,6 @@ if (isWindExist == 'Y') && (isSpeedExist == 'Y') && (isHPExist == 'Y')
     
     
 end
+
+close all
 end
