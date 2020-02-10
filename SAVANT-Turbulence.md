@@ -181,5 +181,31 @@ Post precipitation period, as the sensors are covered with moisture, according t
 
 ## 4. Data Visualization
 
+The following data visualizations were practiced.
 
+### 4.1 Wind Speed Hourly Average
+
+![Hourly Wind Velocity Visualization](doc/1002_hourly_lconv.png)
+
+The horizontal axis represents the wind velocity with a unit of meters per second denoted as `V`. As for the vertical axis, it represents the height denoted as `z` with a unit of meter. And as for each plotted lines, each marker on the line represents an average value of wind velocity at the respective height based on a period of 1 hour of 5-min sampled data samples. If a marker is missing at a certain height at a given hour, there are following possibilities which resulted in the issue:
+
+1. Sonic sensor was not operating at the given time;
+2. The wind direction falls into the interfering range noted in **Section 3.2**.
+
+### 4.2 Wind Shear Hourly Average
+
+![Wind Shear Hourly](doc/1002_hourly_dVdZ_lconv.png)
+
+The horizontal axis represents the wind shear with a unit of meters per second denoted as `dV/dZ`. It is calculated based on the following equation:
+$$
+\frac{dV}{dZ} = \frac{V_{Higher Height} - V_{Lower Height}}{Z_{Higher Height} - Z_{Lower Height}}
+$$
+As for the vertical axis, it represents the height denoted as `z` with a unit of meter. The height is being assigned as:
+$$
+z = \frac{1}{2} * (Z_{Lower Height} + Z_{Higher Height})
+$$
+And as for each plotted lines, each marker on the line represents an average value of wind shear at the respective height based on a period of 1 hour of 5-min sampled data samples. If a marker is missing at a certain height at a given hour, there are following possibilities which resulted in the issue:
+
+1. Either/Both given height(s) were not recording sampling data;
+2. Either/Both given height(s) has direction fall into the interfering range noted in **Section 3.2**.
 
