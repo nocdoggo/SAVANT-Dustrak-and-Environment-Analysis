@@ -209,3 +209,12 @@ And as for each plotted lines, each marker on the line represents an average val
 1. Either/Both given height(s) were not recording sampling data;
 2. Either/Both given height(s) has direction fall into the interfering range noted in **Section 3.2**.
 
+### 4.3 Potential Temperature Hourly Average
+
+![Theta Hourly Average](doc/1002_hourly_Theta_lconv.png)
+
+The horizontal axis represents the wind shear with a unit of meters per second denoted as `Theta(Θ)`. It is calculated based on the following equation:
+$$
+Potential \space Temperature(\theta) = T * (\frac{P_{0}}{P})^k
+$$
+where as $k = \frac{2}{7}$, and $P_{0} = 100 \space kPa = 1000 \space Millibar$, $P$ is being selected as the 
