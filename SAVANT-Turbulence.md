@@ -183,6 +183,8 @@ Post precipitation period, as the sensors are covered with moisture, according t
 
 The following data visualizations were practiced.
 
+You can download a copy of the visualization images via [here](\doc\1.Hourly Visualization Plot.zip).
+
 ### 4.1 Wind Speed Hourly Average
 
 ![Hourly Wind Velocity Visualization](doc/1002_hourly_lconv.png)
