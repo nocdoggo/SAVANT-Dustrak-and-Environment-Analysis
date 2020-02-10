@@ -213,8 +213,15 @@ And as for each plotted lines, each marker on the line represents an average val
 
 ![Theta Hourly Average](doc/1002_hourly_Theta_lconv.png)
 
-The horizontal axis represents the wind shear with a unit of meters per second denoted as `Theta(Θ)`. It is calculated based on the following equation:
+The horizontal axis represents the potential temperature with a unit of meters per second denoted as `Theta(Θ)`. It is calculated based on the [following equation](http://glossary.ametsoc.org/wiki/Potential_temperature):
 $$
 Potential \space Temperature(\theta) = T * (\frac{P_{0}}{P})^k
 $$
-where as $k = \frac{2}{7}$, and $P_{0} = 100 \space kPa = 1000 \space Millibar$, $P$ is being selected as the 
+where as the [Poisson Constant](http://glossary.ametsoc.org/wiki/Poisson_constant) $k = \frac{2}{7}$, and $P_{0} = 100 \space kPa = 1000 \space Millibar$, $P$ is set to the atmospheric pressure at ==1.5 m== at the nearest tower location.
+
+As for the vertical axis, it represents the height denoted as `z` with a unit of meter. And as for each plotted lines, each marker on the line represents an average value of potential temperature at the respective height based on a period of 1 hour of 5-min sampled data samples. If a marker is missing at a certain height at a given hour, there are following possibilities which resulted in the issue:
+
+1. Sonic sensor was not operating at the given time.
+
+### 4.4 
+
