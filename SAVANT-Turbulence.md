@@ -132,6 +132,8 @@ During the data collection period, sensors can be offline, or malfunction during
 
 In order to maintain the data integrity, at the time when one or more sensor at a given tower is missing, all data samples being collected at the time will be removed.
 
+This filter is being applied to all the flux tower datasets.
+
 ### 3.2 Sonic Sensor Boom Angle
 
 According to Jielun's study:
@@ -139,6 +141,17 @@ According to Jielun's study:
 > Since the sonic anemometers were all mounted on booms pointing eastward, turbulent ﬂuxes associated with winds from 270° ± 60° could be distorted by the 60-m tower; therefore, all the ﬂux data from this sector were eliminated from this analysis.
 >
 > ​             — [Turbulence Regimes and Turbulence Intermittency in the Stable Boundary Layer during CASES-99](https://journals.ametsoc.org/doi/full/10.1175/jas-d-11-082.1?mobileUi=0)
+
+Based on the installation information mentioned in **Section 1.2**, if wind direction falls from the following range will be removed:
+
+| Tower ID | Starting Angle | End Angle |
+| -------- | -------------- | --------- |
+| Init     | 338°(-22°)     | 98°       |
+| Rel      | 48°            | 168°      |
+| Uconv    | 72°            | 192°      |
+| Lconv    | 354°(-6°)      | 114°      |
+
+This filter is only applied to wind speed and wind direction datasets, temperature datasets were excluded from this filter.
 
 ### 3.3 Weather Conditions
 
