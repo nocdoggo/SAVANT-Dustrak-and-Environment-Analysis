@@ -229,12 +229,34 @@ As for the vertical axis, it represents the height denoted as `z` with a unit of
 
 The horizontal axis represents the potential temperature gradient with a unit of meters per second denoted as `dTheta(Θ)/dZ`. It is calculated based on the [following equation](http://glossary.ametsoc.org/wiki/Potential_temperature):
 $$
-Potential \space Temperature(\theta) = T * (\frac{P_{0}}{P})^k
+\frac{d\theta}{dZ} = \frac{\theta_{HeigherHeight} - \theta{LowerHeight}}{Z_{HigherHeight} - Z_{LowerHeight}}
 $$
-where as the [Poisson Constant](http://glossary.ametsoc.org/wiki/Poisson_constant) $k = \frac{2}{7}$, and $P_{0} = 100 \space kPa = 1000 \space Millibar$, $P$ is set to the atmospheric pressure at ==1.5 m== at the nearest tower location.
-
 As for the vertical axis, it represents the height denoted as `z` with a unit of meter. And as for each plotted lines, each marker on the line represents an average value of potential temperature gradient at the respective height based on a period of 1 hour of 5-min sampled data samples. If a marker is missing at a certain height at a given hour, there are following possibilities which resulted in the issue:
 
 1. Sonic sensor was not operating at the given time.
 
-### 
+### 4.5 DustTrak Real-Time
+
+$$
+Under \space Construction
+$$
+
+## 5. Initial Calculation and Filtering
+
+In order to find out the stability of the boundary layers, the following calculations were performed during the initial stage of analsis.
+
+### 5.1. Bulk Richardson Number
+
+The **Bulk Richardson Number** is defined as:
+
+![new doc 2019-10-04 15.54.10_2](doc/new doc 2019-10-04 15.54.10_2.jpg)
+
+In the <kbd>.csv</kbd> files, it is noted as ==R_bulk==.
+
+### 5.2. Obukhov ength
+
+The **Obukhov length** is calculated based on:
+
+![new doc 2019-10-04 15.54.10_1](doc\new doc 2019-10-04 15.54.10_1.jpg)
+
+And the L for lower surface of the layer is denoted as ==L_low==, and the upper surface is denoted as ==L_high==. Note that, the value for $\frac{z}{L}$, is calculated and noted as `Term_3` in the picture above. The lower surface value is denoted as ==Term_3_low== and upper surface value is denoted as ==Term_3_high==.
