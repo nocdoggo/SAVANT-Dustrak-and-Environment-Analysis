@@ -39,8 +39,8 @@ end
 
 daterange = 1018;
 % Nic = [925:930];
-% Nic = [Nic, 1001:1031];
-Nic = [1002:1031];
+Nic = [Nic, 1001:1031];
+%Nic = [1002:1031];
 for daterange = Nic
 if daterange > 1000
     targetDate = num2str(daterange);
