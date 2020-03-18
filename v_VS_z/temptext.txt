@@ -1,0 +1,9 @@
+=IF((D2>C2)*(E2>D2)*(F2>E2)*(G2>F2)*(H2>G2),1,0)
+=IF((K2>J2)*(L2>K2)*(M2>L2)*(N2>M2)*(AE2>N2)*(O2>AE2)*(AG2>O2)*(AI2>AG2),1,0)
+=IF((R2>Q2)*(S2>R2)*(T2>S2)*(U2>T2)*(V2>U2),1,0)
+=IF((Y2>X2)*(Z2>Y2)*(AA2>Z2)*(AB2>AA2)*(AF2>AB2)*(AC2>AF2)*(AH2>AC2)*(AJ2>AH2),1,0)
+
+
+Wind Increasing
+
+AL
