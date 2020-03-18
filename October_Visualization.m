@@ -460,7 +460,7 @@ for daterange = date_dict
 %         ylabel('V tke')
 %         title(strcat(targetDate, ' Release Tower Data'))
 %         %legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
-%         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m');
+%         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
 %         set(tempLegend, 'Location', 'best')
 %         print(gcf, strcat(targetDate, '_one_rel.png'), '-dpng','-r1000');
 %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun', filesep, targetDate, '_one_rel.png'));
@@ -639,7 +639,7 @@ for daterange = date_dict
 %         ylabel('V tke')
 %         title(strcat(targetDate, ' Lower Convergence Tower Data'))
 %         %legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
-%         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m');
+%         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
 %         set(tempLegend, 'Location', 'best')
 %         %set(gcf,'PaperSize',[40 20])
 %         print(gcf, strcat(targetDate, '_one_lconv.png'), '-dpng','-r1000');
@@ -775,6 +775,57 @@ TKE_lconv_20_ALL_sorted(:, 1) = TKE_lconv_20_ALL(spd_lconv_20_sorted_order, 1);
 
 % Plot it
 figure
+subplot(3, 2, 1)
+scatter(spd_init_1_5_ALL, Vtke_init_1_5_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('1.5m')
+subplot(3, 2, 2)
+scatter(spd_init_3_ALL, Vtke_init_3_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('3.0m')
+subplot(3, 2, 3)
+scatter(spd_init_4_5_ALL, Vtke_init_4_5_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('4.5m')
+subplot(3, 2, 4)
+scatter(spd_init_6_ALL, Vtke_init_6_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('6.0m')
+subplot(3, 2, 5)
+scatter(spd_init_10_ALL, Vtke_init_10_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('10.0m')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat( 'all_init'), '-dpdf','-fillpage');
+movefile(strcat( 'all_init.pdf'), strcat('Jielun', filesep, 'all_init.pdf'));
+
+figure
+scatter(spd_init_1_5_ALL, Vtke_init_1_5_ALL, 'r*');
+hold on
+scatter(spd_init_3_ALL, Vtke_init_3_ALL, 'g*');
+hold on
+scatter(spd_init_4_5_ALL, Vtke_init_4_5_ALL, 'b*');
+hold on
+scatter(spd_init_6_ALL, Vtke_init_6_ALL, 'c*');
+hold on
+scatter(spd_init_10_ALL, Vtke_init_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat(' Lower Convergence Tower Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_init_ALL.png'), '-dpng','-r1000');
+movefile(strcat( 'one_init_ALL.png'), strcat('Jielun', filesep, 'one_init_ALL.png'));
+
+figure
 subplot(4, 2, 1)
 scatter(spd_rel_1_5_ALL, Vtke_rel_1_5_ALL)
 xlabel('Wind Speed (m/s)')
@@ -840,13 +891,64 @@ xlabel('Wind Speed (m/s)')
 ylabel('V tke')
 title(strcat(' Lower Convergence Tower Data'))
 %legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
-tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m');
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
 set(tempLegend, 'Location', 'best')
 %set(gcf,'PaperSize',[40 20])
 print(gcf, strcat('one_rel_ALL.png'), '-dpng','-r1000');
 movefile(strcat( 'one_rel_ALL.png'), strcat('Jielun', filesep, 'one_rel_ALL.png'));
 
 % Plot it
+figure
+subplot(3, 2, 1)
+scatter(spd_uconv_1_5_ALL, Vtke_uconv_1_5_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('1.5m')
+subplot(3, 2, 2)
+scatter(spd_uconv_3_ALL, Vtke_uconv_3_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('3.0m')
+subplot(3, 2, 3)
+scatter(spd_uconv_4_5_ALL, Vtke_uconv_4_5_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('4.5m')
+subplot(3, 2, 4)
+scatter(spd_uconv_6_ALL, Vtke_uconv_6_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('6.0m')
+subplot(3, 2, 5)
+scatter(spd_uconv_10_ALL, Vtke_uconv_10_ALL)
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title('10.0m')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat( 'all_uconv'), '-dpdf','-fillpage');
+movefile(strcat( 'all_uconv.pdf'), strcat('Jielun', filesep, 'all_uconv.pdf'));
+
+figure
+scatter(spd_uconv_1_5_ALL, Vtke_uconv_1_5_ALL, 'r*');
+hold on
+scatter(spd_uconv_3_ALL, Vtke_uconv_3_ALL, 'g*');
+hold on
+scatter(spd_uconv_4_5_ALL, Vtke_uconv_4_5_ALL, 'b*');
+hold on
+scatter(spd_uconv_6_ALL, Vtke_uconv_6_ALL, 'c*');
+hold on
+scatter(spd_uconv_10_ALL, Vtke_uconv_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat(' Lower Convergence Tower Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_uconv_ALL.png'), '-dpng','-r1000');
+movefile(strcat( 'one_uconv_ALL.png'), strcat('Jielun', filesep, 'one_uconv_ALL.png'));
+
 figure
 subplot(4, 2, 1)
 scatter(spd_lconv_1_5_ALL, Vtke_lconv_1_5_ALL)
@@ -913,9 +1015,68 @@ xlabel('Wind Speed (m/s)')
 ylabel('V tke')
 title(strcat(' Lower Convergence Tower Data'))
 %legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
-tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m');
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
 set(tempLegend, 'Location', 'best')
 %set(gcf,'PaperSize',[40 20])
 print(gcf, strcat( 'one_lconv_ALL.png'), '-dpng','-r1000');
 movefile(strcat('one_lconv_ALL.png'), strcat('Jielun', filesep, 'one_lconv_ALL.png'));
 
+% Now all in one mug shot?
+figure
+scatter(spd_init_1_5_ALL, Vtke_init_1_5_ALL, 'r*');
+hold on
+scatter(spd_init_3_ALL, Vtke_init_3_ALL, 'g*');
+hold on
+scatter(spd_init_4_5_ALL, Vtke_init_4_5_ALL, 'b*');
+hold on
+scatter(spd_init_6_ALL, Vtke_init_6_ALL, 'c*');
+hold on
+scatter(spd_init_10_ALL, Vtke_init_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold on
+scatter(spd_rel_1_5_ALL, Vtke_rel_1_5_ALL, 'r*');
+hold on
+scatter(spd_rel_3_ALL, Vtke_rel_3_ALL, 'g*');
+hold on
+scatter(spd_rel_4_5_ALL, Vtke_rel_4_5_ALL, 'b*');
+hold on
+scatter(spd_rel_6_ALL, Vtke_rel_6_ALL, 'c*');
+hold on
+scatter(spd_rel_8_5_ALL, Vtke_rel_8_5_ALL, 'k*');
+hold on
+scatter(spd_rel_10_ALL, Vtke_rel_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold on
+scatter(spd_rel_15_ALL, Vtke_rel_15_ALL, 'MarkerEdgeColor', c.um, 'Marker', '*');
+hold on
+scatter(spd_rel_20_ALL, Vtke_rel_20_ALL, 'MarkerEdgeColor', c.br, 'Marker', '*');
+hold on
+scatter(spd_uconv_1_5_ALL, Vtke_uconv_1_5_ALL, 'r*');
+hold on
+scatter(spd_uconv_3_ALL, Vtke_uconv_3_ALL, 'g*');
+hold on
+scatter(spd_uconv_4_5_ALL, Vtke_uconv_4_5_ALL, 'b*');
+hold on
+scatter(spd_uconv_6_ALL, Vtke_uconv_6_ALL, 'c*');
+hold on
+scatter(spd_uconv_10_ALL, Vtke_uconv_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold on
+scatter(spd_lconv_1_5_ALL, Vtke_lconv_1_5_ALL, 'r*');
+hold on
+scatter(spd_lconv_3_ALL, Vtke_lconv_3_ALL, 'g*');
+hold on
+scatter(spd_lconv_4_5_ALL, Vtke_lconv_4_5_ALL, 'b*');
+hold on
+scatter(spd_lconv_6_ALL, Vtke_lconv_6_ALL, 'c*');
+hold on
+scatter(spd_lconv_8_5_ALL, Vtke_lconv_8_5_ALL, 'k*');
+hold on
+scatter(spd_lconv_10_ALL, Vtke_lconv_10_ALL, 'MarkerEdgeColor', c.gl, 'Marker', '*');
+hold on
+scatter(spd_lconv_15_ALL, Vtke_lconv_15_ALL, 'MarkerEdgeColor', c.um, 'Marker', '*');
+hold on
+scatter(spd_lconv_20_ALL, Vtke_lconv_20_ALL, 'MarkerEdgeColor', c.br, 'Marker', '*');
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat('All Tower Data'))
+print(gcf, strcat( 'universal.png'), '-dpng','-r1000');
+movefile(strcat('universal.png'), strcat('Jielun', filesep, 'universal.png'));
