@@ -369,6 +369,38 @@ for daterange = date_dict
         [Vtke_rel_15, TKE_rel_15, spd_rel_15] = Jielun_TKE_simple(windTable{index_list, 225}, windTable{index_list, 255}, windTable{index_list, 285}, speedTable{index_list, 33});
         [Vtke_rel_20, TKE_rel_20, spd_rel_20] = Jielun_TKE_simple(windTable{index_list, 226}, windTable{index_list, 256}, windTable{index_list, 286}, speedTable{index_list, 35});
         
+        Vtke_rel_1_5_ALL = [Vtke_rel_1_5_ALL; Vtke_rel_1_5];
+        TKE_rel_1_5_ALL = [TKE_rel_1_5_ALL; TKE_rel_1_5]; 
+        spd_rel_1_5_ALL = [spd_rel_1_5_ALL; spd_rel_1_5];
+        
+        Vtke_rel_3_ALL = [Vtke_rel_3_ALL; Vtke_rel_3];
+        TKE_rel_3_ALL = [TKE_rel_3_ALL; TKE_rel_3]; 
+        spd_rel_3_ALL = [spd_rel_3_ALL; spd_rel_3];
+        
+        Vtke_rel_4_5_ALL = [Vtke_rel_4_5_ALL; Vtke_rel_4_5];
+        TKE_rel_4_5_ALL = [TKE_rel_4_5_ALL; TKE_rel_4_5]; 
+        spd_rel_4_5_ALL = [spd_rel_4_5_ALL; spd_rel_4_5];
+        
+        Vtke_rel_6_ALL = [Vtke_rel_6_ALL; Vtke_rel_6];
+        TKE_rel_6_ALL = [TKE_rel_6_ALL; TKE_rel_6]; 
+        spd_rel_6_ALL = [spd_rel_6_ALL; spd_rel_6];
+        
+        Vtke_rel_8_5_ALL = [Vtke_rel_8_5_ALL; Vtke_rel_8_5];
+        TKE_rel_8_5_ALL = [TKE_rel_8_5_ALL; TKE_rel_8_5]; 
+        spd_rel_8_5_ALL = [spd_rel_8_5_ALL; spd_rel_8_5];
+        
+        Vtke_rel_10_ALL = [Vtke_rel_10_ALL; Vtke_rel_10];
+        TKE_rel_10_ALL = [TKE_rel_10_ALL; TKE_rel_10]; 
+        spd_rel_10_ALL = [spd_rel_10_ALL; spd_rel_10];
+        
+        Vtke_rel_15_ALL = [Vtke_rel_15_ALL; Vtke_rel_15];
+        TKE_rel_15_ALL = [TKE_rel_15_ALL; TKE_rel_15]; 
+        spd_rel_15_ALL = [spd_rel_15_ALL; spd_rel_15];
+        
+        Vtke_rel_20_ALL = [Vtke_rel_20_ALL; Vtke_rel_20];
+        TKE_rel_20_ALL = [TKE_rel_20_ALL; TKE_rel_20]; 
+        spd_rel_20_ALL = [spd_rel_20_ALL; spd_rel_20];
+        
         % Plot it
 %         figure
 %         subplot(4, 2, 1)
@@ -442,6 +474,26 @@ for daterange = date_dict
         [Vtke_uconv_6, TKE_uconv_6, spd_uconv_6] = Jielun_TKE_simple(windTable{index_list, 231}, windTable{index_list, 261}, windTable{index_list, 291}, speedTable{index_list, 21});
         [Vtke_uconv_10, TKE_uconv_10, spd_uconv_10] = Jielun_TKE_simple(windTable{index_list, 232}, windTable{index_list, 262}, windTable{index_list, 292}, speedTable{index_list, 22});
         
+        Vtke_uconv_1_5_ALL = [Vtke_uconv_1_5_ALL; Vtke_uconv_1_5];
+        TKE_uconv_1_5_ALL = [TKE_uconv_1_5_ALL; TKE_uconv_1_5]; 
+        spd_uconv_1_5_ALL = [spd_uconv_1_5_ALL; spd_uconv_1_5];
+        
+        Vtke_uconv_3_ALL = [Vtke_uconv_3_ALL; Vtke_uconv_3];
+        TKE_uconv_3_ALL = [TKE_uconv_3_ALL; TKE_uconv_3]; 
+        spd_uconv_3_ALL = [spd_uconv_3_ALL; spd_uconv_3];
+        
+        Vtke_uconv_4_5_ALL = [Vtke_uconv_4_5_ALL; Vtke_uconv_4_5];
+        TKE_uconv_4_5_ALL = [TKE_uconv_4_5_ALL; TKE_uconv_4_5]; 
+        spd_uconv_4_5_ALL = [spd_uconv_4_5_ALL; spd_uconv_4_5];
+        
+        Vtke_uconv_6_ALL = [Vtke_uconv_6_ALL; Vtke_uconv_6];
+        TKE_uconv_6_ALL = [TKE_uconv_6_ALL; TKE_uconv_6]; 
+        spd_uconv_6_ALL = [spd_uconv_6_ALL; spd_uconv_6];
+        
+        Vtke_uconv_10_ALL = [Vtke_uconv_10_ALL; Vtke_uconv_10];
+        TKE_uconv_10_ALL = [TKE_uconv_10_ALL; TKE_uconv_10]; 
+        spd_uconv_10_ALL = [spd_uconv_10_ALL; spd_uconv_10];
+        
         % Plot it
 %         figure
 %         subplot(3, 2, 1)
@@ -495,6 +547,38 @@ for daterange = date_dict
         [Vtke_lconv_10, TKE_lconv_10, spd_lconv_10] = Jielun_TKE_simple(windTable{index_list, 239}, windTable{index_list, 269}, windTable{index_list, 299}, speedTable{index_list, 29});
         [Vtke_lconv_15, TKE_lconv_15, spd_lconv_15] = Jielun_TKE_simple(windTable{index_list, 240}, windTable{index_list, 270}, windTable{index_list, 300}, speedTable{index_list, 34});
         [Vtke_lconv_20, TKE_lconv_20, spd_lconv_20] = Jielun_TKE_simple(windTable{index_list, 241}, windTable{index_list, 271}, windTable{index_list, 301}, speedTable{index_list, 36});
+        
+        Vtke_lconv_1_5_ALL = [Vtke_lconv_1_5_ALL; Vtke_lconv_1_5];
+        TKE_lconv_1_5_ALL = [TKE_lconv_1_5_ALL; TKE_lconv_1_5]; 
+        spd_lconv_1_5_ALL = [spd_lconv_1_5_ALL; spd_lconv_1_5];
+        
+        Vtke_lconv_3_ALL = [Vtke_lconv_3_ALL; Vtke_lconv_3];
+        TKE_lconv_3_ALL = [TKE_lconv_3_ALL; TKE_lconv_3]; 
+        spd_lconv_3_ALL = [spd_lconv_3_ALL; spd_lconv_3];
+        
+        Vtke_lconv_4_5_ALL = [Vtke_lconv_4_5_ALL; Vtke_lconv_4_5];
+        TKE_lconv_4_5_ALL = [TKE_lconv_4_5_ALL; TKE_lconv_4_5]; 
+        spd_lconv_4_5_ALL = [spd_lconv_4_5_ALL; spd_lconv_4_5];
+        
+        Vtke_lconv_6_ALL = [Vtke_lconv_6_ALL; Vtke_lconv_6];
+        TKE_lconv_6_ALL = [TKE_lconv_6_ALL; TKE_lconv_6]; 
+        spd_lconv_6_ALL = [spd_lconv_6_ALL; spd_lconv_6];
+        
+        Vtke_lconv_8_5_ALL = [Vtke_lconv_8_5_ALL; Vtke_lconv_8_5];
+        TKE_lconv_8_5_ALL = [TKE_lconv_8_5_ALL; TKE_lconv_8_5]; 
+        spd_lconv_8_5_ALL = [spd_lconv_8_5_ALL; spd_lconv_8_5];
+        
+        Vtke_lconv_10_ALL = [Vtke_lconv_10_ALL; Vtke_lconv_10];
+        TKE_lconv_10_ALL = [TKE_lconv_10_ALL; TKE_lconv_10]; 
+        spd_lconv_10_ALL = [spd_lconv_10_ALL; spd_lconv_10];
+        
+        Vtke_lconv_15_ALL = [Vtke_lconv_15_ALL; Vtke_lconv_15];
+        TKE_lconv_15_ALL = [TKE_lconv_15_ALL; TKE_lconv_15]; 
+        spd_lconv_15_ALL = [spd_lconv_15_ALL; spd_lconv_15];
+        
+        Vtke_lconv_20_ALL = [Vtke_lconv_20_ALL; Vtke_lconv_20];
+        TKE_lconv_20_ALL = [TKE_lconv_20_ALL; TKE_lconv_20]; 
+        spd_lconv_20_ALL = [spd_lconv_20_ALL; spd_lconv_20];
         
         % Plot it
 %         figure
