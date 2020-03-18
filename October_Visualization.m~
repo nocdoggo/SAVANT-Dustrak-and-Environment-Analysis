@@ -1,0 +1,47 @@
+% October data visualization
+% This is for Jielun's paper calculation
+% Initialize memory space
+clc, clear all, close all
+
+% Prompt User Selection
+%fprintf('=============================================================================');
+%fprintf('\n');
+%file_dir = input('Please enter the name of the input environmental file folder: \n', 's');
+
+% The first ones are the 
+file_dir = 'SD';
+file_dir2 = 'calculations';     % May not be used only if need to cheap out on calculation time.
+
+% Color code
+c = struct('rr', [0.9047, 0.1918, 0.1988], ...  %Your required color
+    'bb', [0.2941, 0.5447, 0.7494], ... %Your required color
+    'um', [0.0824, 0.1294, 0.4196], ... %ultra marine
+    'br', [0.6510, 0.5725, 0.3412], ... %bronze
+    'gl', [0.8314, 0.7020, 0.7843] );   %greyed lavender
+
+% Catch all .csv files
+csv_group = dir(strcat(file_dir, filesep, '*.csv'));
+
+% Check if the directory is empty
+if (isempty(csv_group))
+    fprintf('\n');
+    errmsg('red','No CSV file detected @ %s, please check in your file explorer!\n', data_dir);
+    fprintf('\n');
+    return
+else
+    % Not sure if the parameter is needed
+    num_csv = length(csv_group);
+end
+
+
+% % Check on specific date
+% fprintf('=============================================================================');
+% fprintf('\n');
+% % Use string parameter to make sure no missing 0 in front of the date
+% targetDate = input('Please enter the date which you would like to analyze: [MMDD] \n', 's');
+% dateStamp = str2double(targetDate);     % Use str2double to increase performance
+% fprintf('=============================================================================');
+% fprintf('\n');
+
+data_dict = [1001:1031];
+
