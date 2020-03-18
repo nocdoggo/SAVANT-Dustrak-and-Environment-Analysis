@@ -214,7 +214,7 @@ for daterange = date_dict
         ylabel('V tke')
         title('10.0m')
         print(gcf, strcat(targetDate, '_all_init'), '-dpdf','-fillpage');
-        movefile(strcat(targetDate, '_all_init.pdf'), strcat('Jielun\', targetDate, '_all_init.pdf'));
+        movefile(strcat(targetDate, '_all_init.pdf'), strcat('Jielun', filesep, targetDate, '_all_init.pdf'));
         
         figure
         plot(spd_init_1_5, Vtke_init_1_5, 'r-*', spd_init_3, Vtke_init_3, 'g-*', spd_init_4_5, Vtke_init_4_5, 'b-*', spd_init_6, Vtke_init_6, 'c-*', spd_init_10, Vtke_init_10, 'k-*')
@@ -225,7 +225,7 @@ for daterange = date_dict
         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
         set(tempLegend, 'Location', 'best')
         print(gcf, strcat(targetDate, '_one_init.png'), '-dpng','-r1000');
-        movefile(strcat(targetDate, '_one_init.png'), strcat('Jielun\', targetDate, '_one_init.png'));
+        movefile(strcat(targetDate, '_one_init.png'), strcat('Jielun', filesep, targetDate, '_one_init.png'));
         
         
         % Release tower
@@ -281,7 +281,7 @@ for daterange = date_dict
         ylabel('V tke')
         title('20.0m')
         print(gcf, strcat(targetDate, '_all_rel'), '-dpdf','-fillpage');
-        movefile(strcat(targetDate, '_all_rel.pdf'), strcat('Jielun\', targetDate, '_all_rel.pdf'));
+        movefile(strcat(targetDate, '_all_rel.pdf'), strcat('Jielun', filesep, targetDate, '_all_rel.pdf'));
         
         
         figure
@@ -300,7 +300,7 @@ for daterange = date_dict
         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m');
         set(tempLegend, 'Location', 'best')
         print(gcf, strcat(targetDate, '_one_rel.png'), '-dpng','-r1000');
-        movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun\', targetDate, '_one_rel.png'));
+        movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun', filesep, targetDate, '_one_rel.png'));
         
         % Upper convergence tower
         [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5] = Jielun_TKE_simple(windTable{varStartIdx:varEndIdx, 228}, windTable{varStartIdx:varEndIdx, 258}, windTable{varStartIdx:varEndIdx, 288}, speedTable{varStartIdx:varEndIdx, 18});
@@ -337,7 +337,7 @@ for daterange = date_dict
         ylabel('V tke')
         title('10.0m')
         print(gcf, strcat(targetDate, '_all_uconv'), '-dpdf','-fillpage');
-        movefile(strcat(targetDate, '_all_uconv.pdf'), strcat('Jielun\', targetDate, '_all_uconv.pdf'));
+        movefile(strcat(targetDate, '_all_uconv.pdf'), strcat('Jielun', filesep, targetDate, '_all_uconv.pdf'));
         
         
         figure
@@ -349,7 +349,7 @@ for daterange = date_dict
         tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
         set(tempLegend, 'Location', 'best')
         print(gcf, strcat(targetDate, '_one_uconv.png'), '-dpng','-r1000');
-        movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun\', targetDate, '_one_uconv.png'));
+        movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun', filesep, targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
         [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5] = Jielun_TKE_simple(windTable{varStartIdx:varEndIdx, 234}, windTable{varStartIdx:varEndIdx, 264}, windTable{varStartIdx:varEndIdx, 294}, speedTable{varStartIdx:varEndIdx, 25});
@@ -405,7 +405,7 @@ for daterange = date_dict
         title('20.0m')
         %set(gcf,'PaperSize',[40 20])
         print(gcf, strcat(targetDate, '_all_lconv'), '-dpdf','-fillpage');
-        movefile(strcat(targetDate, '_all_lconv.pdf'), strcat('Jielun\', targetDate, '_all_lconv.pdf'));
+        movefile(strcat(targetDate, '_all_lconv.pdf'), strcat('Jielun', filesep, targetDate, '_all_lconv.pdf'));
         
         figure
         plot(spd_lconv_1_5, Vtke_lconv_1_5, 'r-*', spd_lconv_3, Vtke_lconv_3, 'g-*', spd_lconv_4_5, Vtke_lconv_4_5, 'b-*', spd_lconv_6, Vtke_lconv_6, 'c-*', spd_lconv_8_5, Vtke_lconv_8_5, 'k-*');
@@ -424,7 +424,7 @@ for daterange = date_dict
         set(tempLegend, 'Location', 'best')
         %set(gcf,'PaperSize',[40 20])
         print(gcf, strcat(targetDate, '_one_lconv.png'), '-dpng','-r1000');
-        movefile(strcat(targetDate, '_one_lconv.png'), strcat('Jielun\', targetDate, '_one_lconv.png'));
+        movefile(strcat(targetDate, '_one_lconv.png'), strcat('Jielun', filesep, targetDate, '_one_lconv.png'));
         
         % To close all the windows
         close all
@@ -443,7 +443,7 @@ for daterange = date_dict
         
         % Output table
         writetable(tempT_tke, table_name_tke);
-        movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun\', targetDate, '_Speed_vs_Vtke.csv'));
+        movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun', filesep, targetDate, '_Speed_vs_Vtke.csv'));
         
         
         %         % Initiation tower
