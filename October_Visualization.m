@@ -564,22 +564,22 @@ for daterange = date_dict
         % To close all the windows
         close all
         
-        bar_fence = repmat('|',length(CDT_Time(index_list)),1);
-        
-        % Now we can form table
-        % Group table
-        tempT_tke = table(CDT_Time(index_list), bar_fence, spd_init_1_5, Vtke_init_1_5, spd_init_3, Vtke_init_3, spd_init_4_5, Vtke_init_4_5, spd_init_6, Vtke_init_6, spd_init_10, Vtke_init_10, ...
-            bar_fence, spd_rel_1_5, Vtke_rel_1_5, spd_rel_3, Vtke_rel_3, spd_rel_4_5, Vtke_rel_4_5, spd_rel_6, Vtke_rel_6, spd_rel_8_5, Vtke_rel_8_5, spd_rel_10, Vtke_rel_10, spd_rel_15, Vtke_rel_15, spd_rel_20, Vtke_rel_20,...
-            bar_fence, spd_uconv_1_5, Vtke_uconv_1_5, spd_uconv_3, Vtke_uconv_3, spd_uconv_4_5, Vtke_uconv_4_5, spd_uconv_6, Vtke_uconv_6, spd_uconv_10, Vtke_uconv_10,...
-            spd_lconv_1_5, Vtke_lconv_1_5, spd_lconv_3, Vtke_lconv_3, spd_lconv_4_5, Vtke_lconv_4_5, spd_lconv_6, Vtke_lconv_6, spd_lconv_8_5, Vtke_lconv_8_5, spd_lconv_10, Vtke_lconv_10, spd_lconv_15, Vtke_lconv_15, spd_lconv_20, Vtke_lconv_20);
-        
-        % Format table name
-        table_name_tke = strcat(targetDate, '_Speed_vs_Vtke.csv');
-        
-        % Output table
-        writetable(tempT_tke, table_name_tke);
-        movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun', filesep, targetDate, '_Speed_vs_Vtke.csv'));
-        
+%         bar_fence = repmat('|',length(CDT_Time(index_list)),1);
+%         
+%         % Now we can form table
+%         % Group table
+%         tempT_tke = table(CDT_Time(index_list), bar_fence, spd_init_1_5, Vtke_init_1_5, spd_init_3, Vtke_init_3, spd_init_4_5, Vtke_init_4_5, spd_init_6, Vtke_init_6, spd_init_10, Vtke_init_10, ...
+%             bar_fence, spd_rel_1_5, Vtke_rel_1_5, spd_rel_3, Vtke_rel_3, spd_rel_4_5, Vtke_rel_4_5, spd_rel_6, Vtke_rel_6, spd_rel_8_5, Vtke_rel_8_5, spd_rel_10, Vtke_rel_10, spd_rel_15, Vtke_rel_15, spd_rel_20, Vtke_rel_20,...
+%             bar_fence, spd_uconv_1_5, Vtke_uconv_1_5, spd_uconv_3, Vtke_uconv_3, spd_uconv_4_5, Vtke_uconv_4_5, spd_uconv_6, Vtke_uconv_6, spd_uconv_10, Vtke_uconv_10,...
+%             spd_lconv_1_5, Vtke_lconv_1_5, spd_lconv_3, Vtke_lconv_3, spd_lconv_4_5, Vtke_lconv_4_5, spd_lconv_6, Vtke_lconv_6, spd_lconv_8_5, Vtke_lconv_8_5, spd_lconv_10, Vtke_lconv_10, spd_lconv_15, Vtke_lconv_15, spd_lconv_20, Vtke_lconv_20);
+%         
+%         % Format table name
+%         table_name_tke = strcat(targetDate, '_Speed_vs_Vtke.csv');
+%         
+%         % Output table
+%         writetable(tempT_tke, table_name_tke);
+%         movefile(strcat(targetDate, '_Speed_vs_Vtke.csv'), strcat('Jielun', filesep, targetDate, '_Speed_vs_Vtke.csv'));
+%         
     end
     
 end
