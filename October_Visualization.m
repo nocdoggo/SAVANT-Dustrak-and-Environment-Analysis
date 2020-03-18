@@ -9,7 +9,7 @@ clc, clear all, close all
 %file_dir = input('Please enter the name of the input environmental file folder: \n', 's');
 
 % The first ones are the 
-file_dir = 'SD';
+file_dir = 'S';
 file_dir2 = 'calculations';     % May not be used only if need to cheap out on calculation time.
 
 % Color code
