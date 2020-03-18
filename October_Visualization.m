@@ -43,10 +43,12 @@ end
 % fprintf('=============================================================================');
 % fprintf('\n');
 
-date_dict = [1001:1031];
+date_dict = [1001:1002];
 
 for daterange = date_dict
-        targetDate = num2str(daterange);
+    
+	% Convert to proper format
+	targetDate = num2str(daterange);
     dateStamp = str2double(targetDate);
     %targetDate = strcat('0', targetDate);
 
@@ -128,8 +130,9 @@ for daterange = date_dict
 %         [varLogB, varEndIdx] = ismember(varEnd, CDT_Time);
 
         % Figure out the size of the file
-        varStartIdx = 1;
-        [varEndIdx, whateveritis] = size(speedTable{:,1});
+        varStartIdx = 1;		% Always starts from the first line (After skipping off the variable name list)
+        %[varEndIdx, whateveritis] = size(speedTable{:,1});
+		varEndIdx = 144;		% 12 samples per hour, and we choose 12 hours as stated in Jielun's paper
         
         %     % Ask user for time period
         %     fprintf('=============================================================================');
