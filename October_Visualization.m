@@ -149,7 +149,7 @@ Vtke_lconv_20_ALL= [];
 TKE_lconv_20_ALL =[];
 spd_lconv_20_ALL = [];
 
-date_dict = [1001:1031, 1101:1127];
+date_dict = [1001:1010,1019:1023, 1028, 1031, 1101:1127];
 
 for daterange = date_dict
     
