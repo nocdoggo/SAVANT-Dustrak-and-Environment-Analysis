@@ -149,7 +149,7 @@ Vtke_lconv_20_ALL= [];
 TKE_lconv_20_ALL =[];
 spd_lconv_20_ALL = [];
 
-date_dict = [1001:1010,1019:1023, 1028, 1031, 1101:1127];
+date_dict = [1001:1031];
 
 for daterange = date_dict
     
@@ -222,7 +222,7 @@ for daterange = date_dict
         % Start import variables
         speedTable = readtable(speedfile);
         %directionTable = readtable(directionfile);
-        %temperatureTable = readtable(temperaturefile);
+        temperatureTable = readtable(temperaturefile);
         windTable = readtable(windfile);
         
         % Split out time
@@ -278,7 +278,9 @@ for daterange = date_dict
         %     TKE = V_tke .* V_tke;
         
         % Initiation tower
-		index_list = find(speedTable{varStartIdx:varEndIdx, 38} == 1);
+		index_list_A = find(speedTable{varStartIdx:varEndIdx, 38} == 1);
+		index_list_B = find(temperatureTable{varStartIdx:varEndIdx, 31} == 1);
+        index_list = intersect(index_list_A, index_list_B);
 		
         [Vtke_init_1_5, TKE_init_1_5, spd_init_1_5] = Jielun_TKE_simple(windTable{index_list, 213}, windTable{index_list, 243}, windTable{index_list, 273}, speedTable{index_list, 4});
         [Vtke_init_3, TKE_init_3, spd_init_3] = Jielun_TKE_simple(windTable{index_list, 214}, windTable{index_list, 244}, windTable{index_list, 274}, speedTable{index_list, 5});
@@ -358,7 +360,9 @@ for daterange = date_dict
 %         
         
         % Release tower
-		index_list = find(speedTable{varStartIdx:varEndIdx, 39} == 1);
+        index_list_A = find(speedTable{varStartIdx:varEndIdx, 39} == 1);
+		index_list_B = find(temperatureTable{varStartIdx:varEndIdx, 32} == 1);
+        index_list = intersect(index_list_A, index_list_B);
 		
         [Vtke_rel_1_5, TKE_rel_1_5, spd_rel_1_5] = Jielun_TKE_simple(windTable{index_list, 219}, windTable{index_list, 249}, windTable{index_list, 279}, speedTable{index_list, 11});
         [Vtke_rel_3, TKE_rel_3, spd_rel_3] = Jielun_TKE_simple(windTable{index_list, 220}, windTable{index_list, 250}, windTable{index_list, 280}, speedTable{index_list, 12});
@@ -466,7 +470,9 @@ for daterange = date_dict
 %         movefile(strcat(targetDate, '_one_rel.png'), strcat('Jielun', filesep, targetDate, '_one_rel.png'));
         
         % Upper convergence tower
-		index_list = find(speedTable{varStartIdx:varEndIdx, 40} == 1);
+        index_list_A = find(speedTable{varStartIdx:varEndIdx, 40} == 1);
+		index_list_B = find(temperatureTable{varStartIdx:varEndIdx, 33} == 1);
+        index_list = intersect(index_list_A, index_list_B);
 		
         [Vtke_uconv_1_5, TKE_uconv_1_5, spd_uconv_1_5] = Jielun_TKE_simple(windTable{index_list, 228}, windTable{index_list, 258}, windTable{index_list, 288}, speedTable{index_list, 18});
         [Vtke_uconv_3, TKE_uconv_3, spd_uconv_3] = Jielun_TKE_simple(windTable{index_list, 229}, windTable{index_list, 259}, windTable{index_list, 289}, speedTable{index_list, 19});
@@ -537,7 +543,9 @@ for daterange = date_dict
 %         movefile(strcat(targetDate, '_one_uconv.png'), strcat('Jielun', filesep, targetDate, '_one_uconv.png'));
         
         % Lower convergence tower
-		index_list = find(speedTable{varStartIdx:varEndIdx, 41} == 1);
+        index_list_A = find(speedTable{varStartIdx:varEndIdx, 41} == 1);
+		index_list_B = find(temperatureTable{varStartIdx:varEndIdx, 34} == 1);
+        index_list = intersect(index_list_A, index_list_B);
 		
         [Vtke_lconv_1_5, TKE_lconv_1_5, spd_lconv_1_5] = Jielun_TKE_simple(windTable{index_list, 234}, windTable{index_list, 264}, windTable{index_list, 294}, speedTable{index_list, 25});
         [Vtke_lconv_3, TKE_lconv_3, spd_lconv_3] = Jielun_TKE_simple(windTable{index_list, 235}, windTable{index_list, 265}, windTable{index_list, 295}, speedTable{index_list, 26});
