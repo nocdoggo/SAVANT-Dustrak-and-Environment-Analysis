@@ -255,10 +255,124 @@ The **Bulk Richardson Number** is defined as:
 
 In the <kbd>.csv</kbd> files, it is noted as ==R_bulk==.
 
-### 5.2. Obukhov ength
+### 5.2. Obukhov Length
 
-The **Obukhov length** is calculated based on:
+The **Obukhov Length** is calculated based on:
 
 ![new doc 2019-10-04 15.54.10_1](doc\new doc 2019-10-04 15.54.10_1.jpg)
 
 And the L for lower surface of the layer is denoted as ==L_low==, and the upper surface is denoted as ==L_high==. Note that, the value for $\frac{z}{L}$, is calculated and noted as `Term_3` in the picture above. The lower surface value is denoted as ==Term_3_low== and upper surface value is denoted as ==Term_3_high==.
+
+
+
+## 6. Initial Findings
+
+This is the first stage analysis with the reference to CASES-99 study.
+
+### 6.1 Data Filtering
+
+After constructing the base of analysis, additional filtering rules been applied to the datasets. As Jielun's Cases-99 were conducted in ==September==, which is over a course of ==30== days. All ==October== datasets were set as target, to minimize the variation of climate thermal condition. 
+
+#### 6.1.1 Temperature Filtering
+
+By theory, under stable condition, the temperature should increase while height increases. Hence, the following Boolean rule has been applied:
+
+`Initiation Tower / Upper Convergence Tower`:
+
+T<sub>0.2m</sub> $<=$ T<sub>1.5m</sub> $<=$ T<sub>3.0m</sub> $<=$ T<sub>4.5m</sub> $<=$ T<sub>6.0m</sub> $<=$ T<sub>10.0m</sub>
+
+`Release Tower / Lower Convergence Tower`:
+
+T<sub>0.2m</sub> $<=$ T<sub>1.5m</sub> $<=$ T<sub>3.0m</sub> $<=$ T<sub>4.5m</sub> $<=$ T<sub>6.0m</sub> $<=$ T<sub>8.5m</sub>  $<=$ T<sub>10.0m</sub> $<=$ T<sub>15.0m</sub> $<=$ T<sub>20.0m</sub>
+
+#### 6.1.2 Wind Speed Filtering
+
+By theory, under stable condition, the wind speed should increase while height increases. Hence, the following Boolean rule has been applied:
+
+`Initiation Tower / Upper Convergence Tower`:
+
+V<sub>0.2m</sub> $<=$ V<sub>1.5m</sub> $<=$ V<sub>3.0m</sub> $<=$ V<sub>4.5m</sub> $<=$ V<sub>6.0m</sub> $<=$ V<sub>10.0m</sub>
+
+`Release Tower / Lower Convergence Tower`:
+
+V<sub>0.2m</sub> $<=$ V<sub>1.5m</sub> $<=$ V<sub>3.0m</sub> $<=$ V<sub>4.5m</sub> $<=$ V<sub>6.0m</sub> $<=$ V<sub>8.5m</sub>  $<=$ V<sub>10.0m</sub> $<=$ V<sub>15.0m</sub> $<=$ V<sub>20.0m</sub>
+
+### 6.2 Scattered Visualization
+
+The figures below are visualizing the valid data samples in scatter and binned mode.
+
+#### 6.2.1 Initiation Tower
+
+![Initiation All](doc/one_init_ALL.png)
+
+![](doc/init_per_height.png)
+
+![](doc/one_init_bin.png)
+
+#### 6.2.2 Release Tower
+
+![Release All](doc/one_rel_ALL.png)
+
+![](doc/rel_per_height.png)
+
+![](doc/one_rel_bin.png)
+
+#### 6.2.3 Upper Convergence Tower
+
+![Upper Convergence All](doc/one_uconv_ALL.png)
+
+![](doc/uconv_per_height.png)
+
+![](doc/one_uconv_bin.png)
+
+#### 6.2.4 Lower Convergence Tower
+
+![Lower Convergence All](doc/one_lconv_ALL.png)
+
+![](doc/lconv_per_height.png)
+
+![](doc/one_lconv_bin.png)
+
+However, if we look at the Lower Convergence Tower scattered plot, we can see some clustering effect as:
+
+![](doc/cluster1.png)
+
+![](doc/cluster2.png)
+
+Also, the horizontal axis is the ==Horizontal Wind Speed==, and the vertical axis is the ==V<sub>TKE</sub>==. I believe that further filtering is required in order to bring down the data samples which surrounds the yellow and pink linear fitting zone.
+
+### 6.3 Valid Sample Rate
+
+The table down below reveals how many samples are valid post the filtering process. And ==Universal== refers to how many overall data samples are presented in the October time domain.
+
+![](doc/October_stats_wo_0_2.PNG)
+
+Do notice that, the wind direction of 0.2 meter are not being filtered, due to the fact it is way too close to the ground, and it is highly possible that the wind direction at 0.2 meter can be different that other heights, which falls into the range mentioned in `Section 3.2`. 
+
+![](doc/wind_direction_issue.PNG)
+
+As shown in the red circled area above, it is a usual phenonium where wind direction at 0.2 meter at each tower can be different / in 90 degrees different than the direction at any other height, whereas the direction at any other heights are virtually the same.
+
+If we ==DO== filter the wind direction at 0.2 meter, which will bring down the valid samples to:
+
+![](doc/October_stats_with_0_2.PNG)
+
+As shown above, we can see that the valid sample can reduce by ==20-30%== of the overall amount. This will change the binned plots to:
+
+![](doc/0.2one_init_bin.png)
+
+![](doc/0.2one_rel_bin.png)
+
+![](doc/0.2one_uconv_bin.png)
+
+![](doc/0.2one_lconv_bin.png)
+
+However, the overall scattered plot patterns will remain similar:
+
+![](doc/0.2init_per_height.png)
+
+![](doc/0.2rel_per_height.png)
+
+![](doc/0.2uconv_per_height.png)
+
+![](doc/0.2lconv_per_height.png)

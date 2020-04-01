@@ -710,8 +710,8 @@ for daterange = date_dict
     
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Initiation Tower
 
 [spd_init_1_5_sorted(:, 1), spd_init_1_5_sorted_order] = sort(spd_init_1_5_ALL);
 Vtke_init_1_5_ALL_sorted(:, 1) = Vtke_init_1_5_ALL(spd_init_1_5_sorted_order, 1);
@@ -768,90 +768,352 @@ spd_init_10_std = accumarray(idx(:),spd_init_10_sorted,[],@std);
 Vtke_init_10_mean = accumarray(idx(:),Vtke_init_10_ALL_sorted,[],@mean);
 valid_idx_init_10 = find(spd_init_10_mean > 0);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Release Tower
 
 [spd_rel_1_5_sorted(:, 1), spd_rel_1_5_sorted_order] = sort(spd_rel_1_5_ALL);
 Vtke_rel_1_5_ALL_sorted(:, 1) = Vtke_rel_1_5_ALL(spd_rel_1_5_sorted_order, 1);
 TKE_rel_1_5_ALL_sorted(:, 1) = TKE_rel_1_5_ALL(spd_rel_1_5_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_rel_1_5_sorted, 0:0.25:ceil(max(spd_rel_1_5_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_1_5_mean = accumarray(idx(:),spd_rel_1_5_sorted,[],@mean);
+spd_rel_1_5_std = accumarray(idx(:),spd_rel_1_5_sorted,[],@std);
+Vtke_rel_1_5_mean = accumarray(idx(:),Vtke_rel_1_5_ALL_sorted,[],@mean);
+valid_idx_rel_1_5 = find(spd_rel_1_5_mean > 0);
+
 [spd_rel_3_sorted(:, 1), spd_rel_3_sorted_order] = sort(spd_rel_3_ALL);
 Vtke_rel_3_ALL_sorted(:, 1) = Vtke_rel_3_ALL(spd_rel_3_sorted_order, 1);
 TKE_rel_3_ALL_sorted(:, 1) = TKE_rel_3_ALL(spd_rel_3_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_rel_3_sorted, 0:0.25:ceil(max(spd_rel_3_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_3_mean = accumarray(idx(:),spd_rel_3_sorted,[],@mean);
+spd_rel_3_std = accumarray(idx(:),spd_rel_3_sorted,[],@std);
+Vtke_rel_3_mean = accumarray(idx(:),Vtke_rel_3_ALL_sorted,[],@mean);
+valid_idx_rel_3 = find(spd_rel_3_mean > 0);
 
 [spd_rel_4_5_sorted(:, 1), spd_rel_4_5_sorted_order] = sort(spd_rel_4_5_ALL);
 Vtke_rel_4_5_ALL_sorted(:, 1) = Vtke_rel_4_5_ALL(spd_rel_4_5_sorted_order, 1);
 TKE_rel_4_5_ALL_sorted(:, 1) = TKE_rel_4_5_ALL(spd_rel_4_5_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_rel_4_5_sorted, 0:0.25:ceil(max(spd_rel_4_5_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_4_5_mean = accumarray(idx(:),spd_rel_4_5_sorted,[],@mean);
+spd_rel_4_5_std = accumarray(idx(:),spd_rel_4_5_sorted,[],@std);
+Vtke_rel_4_5_mean = accumarray(idx(:),Vtke_rel_4_5_ALL_sorted,[],@mean);
+valid_idx_rel_4_5 = find(spd_rel_4_5_mean > 0);
+
 [spd_rel_6_sorted(:, 1), spd_rel_6_sorted_order] = sort(spd_rel_6_ALL);
 Vtke_rel_6_ALL_sorted(:, 1) = Vtke_rel_6_ALL(spd_rel_6_sorted_order, 1);
 TKE_rel_6_ALL_sorted(:, 1) = TKE_rel_6_ALL(spd_rel_6_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_rel_6_sorted, 0:0.25:ceil(max(spd_rel_6_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_6_mean = accumarray(idx(:),spd_rel_6_sorted,[],@mean);
+spd_rel_6_std = accumarray(idx(:),spd_rel_6_sorted,[],@std);
+Vtke_rel_6_mean = accumarray(idx(:),Vtke_rel_6_ALL_sorted,[],@mean);
+valid_idx_rel_6 = find(spd_rel_6_mean > 0);
 
 [spd_rel_8_5_sorted(:, 1), spd_rel_8_5_sorted_order] = sort(spd_rel_8_5_ALL);
 Vtke_rel_8_5_ALL_sorted(:, 1) = Vtke_rel_8_5_ALL(spd_rel_8_5_sorted_order, 1);
 TKE_rel_8_5_ALL_sorted(:, 1) = TKE_rel_8_5_ALL(spd_rel_8_5_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_rel_8_5_sorted, 0:0.25:ceil(max(spd_rel_8_5_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_8_5_mean = accumarray(idx(:),spd_rel_8_5_sorted,[],@mean);
+spd_rel_8_5_std = accumarray(idx(:),spd_rel_8_5_sorted,[],@std);
+Vtke_rel_8_5_mean = accumarray(idx(:),Vtke_rel_8_5_ALL_sorted,[],@mean);
+valid_idx_rel_8_5 = find(spd_rel_8_5_mean > 0);
+
 [spd_rel_10_sorted(:, 1), spd_rel_10_sorted_order] = sort(spd_rel_10_ALL);
 Vtke_rel_10_ALL_sorted(:, 1) = Vtke_rel_10_ALL(spd_rel_10_sorted_order, 1);
 TKE_rel_10_ALL_sorted(:, 1) = TKE_rel_10_ALL(spd_rel_10_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_rel_10_sorted, 0:0.25:ceil(max(spd_rel_10_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_10_mean = accumarray(idx(:),spd_rel_10_sorted,[],@mean);
+spd_rel_10_std = accumarray(idx(:),spd_rel_10_sorted,[],@std);
+Vtke_rel_10_mean = accumarray(idx(:),Vtke_rel_10_ALL_sorted,[],@mean);
+valid_idx_rel_10 = find(spd_rel_10_mean > 0);
 
 [spd_rel_15_sorted(:, 1), spd_rel_15_sorted_order] = sort(spd_rel_15_ALL);
 Vtke_rel_15_ALL_sorted(:, 1) = Vtke_rel_15_ALL(spd_rel_15_sorted_order, 1);
 TKE_rel_15_ALL_sorted(:, 1) = TKE_rel_15_ALL(spd_rel_15_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_rel_15_sorted, 0:0.25:ceil(max(spd_rel_15_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_15_mean = accumarray(idx(:),spd_rel_15_sorted,[],@mean);
+spd_rel_15_std = accumarray(idx(:),spd_rel_15_sorted,[],@std);
+Vtke_rel_15_mean = accumarray(idx(:),Vtke_rel_15_ALL_sorted,[],@mean);
+valid_idx_rel_15 = find(spd_rel_15_mean > 0);
+
 [spd_rel_20_sorted(:, 1), spd_rel_20_sorted_order] = sort(spd_rel_20_ALL);
 Vtke_rel_20_ALL_sorted(:, 1) = Vtke_rel_20_ALL(spd_rel_20_sorted_order, 1);
 TKE_rel_20_ALL_sorted(:, 1) = TKE_rel_20_ALL(spd_rel_20_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_rel_20_sorted, 0:0.25:ceil(max(spd_rel_20_sorted)));        % Can't be fucked, just going to use histc
+spd_rel_20_mean = accumarray(idx(:),spd_rel_20_sorted,[],@mean);
+spd_rel_20_std = accumarray(idx(:),spd_rel_20_sorted,[],@std);
+Vtke_rel_20_mean = accumarray(idx(:),Vtke_rel_20_ALL_sorted,[],@mean);
+valid_idx_rel_20 = find(spd_rel_20_mean > 0);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Upper Convergence Tower
 
 [spd_uconv_1_5_sorted(:, 1), spd_uconv_1_5_sorted_order] = sort(spd_uconv_1_5_ALL);
 Vtke_uconv_1_5_ALL_sorted(:, 1) = Vtke_uconv_1_5_ALL(spd_uconv_1_5_sorted_order, 1);
 TKE_uconv_1_5_ALL_sorted(:, 1) = TKE_uconv_1_5_ALL(spd_uconv_1_5_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_uconv_1_5_sorted, 0:0.25:ceil(max(spd_uconv_1_5_sorted)));        % Can't be fucked, just going to use histc
+spd_uconv_1_5_mean = accumarray(idx(:),spd_uconv_1_5_sorted,[],@mean);
+spd_uconv_1_5_std = accumarray(idx(:),spd_uconv_1_5_sorted,[],@std);
+Vtke_uconv_1_5_mean = accumarray(idx(:),Vtke_uconv_1_5_ALL_sorted,[],@mean);
+valid_idx_uconv_1_5 = find(spd_uconv_1_5_mean > 0);
+
 [spd_uconv_3_sorted(:, 1), spd_uconv_3_sorted_order] = sort(spd_uconv_3_ALL);
 Vtke_uconv_3_ALL_sorted(:, 1) = Vtke_uconv_3_ALL(spd_uconv_3_sorted_order, 1);
 TKE_uconv_3_ALL_sorted(:, 1) = TKE_uconv_3_ALL(spd_uconv_3_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_uconv_3_sorted, 0:0.25:ceil(max(spd_uconv_3_sorted)));        % Can't be fucked, just going to use histc
+spd_uconv_3_mean = accumarray(idx(:),spd_uconv_3_sorted,[],@mean);
+spd_uconv_3_std = accumarray(idx(:),spd_uconv_3_sorted,[],@std);
+Vtke_uconv_3_mean = accumarray(idx(:),Vtke_uconv_3_ALL_sorted,[],@mean);
+valid_idx_uconv_3 = find(spd_uconv_3_mean > 0);
 
 [spd_uconv_4_5_sorted(:, 1), spd_uconv_4_5_sorted_order] = sort(spd_uconv_4_5_ALL);
 Vtke_uconv_4_5_ALL_sorted(:, 1) = Vtke_uconv_4_5_ALL(spd_uconv_4_5_sorted_order, 1);
 TKE_uconv_4_5_ALL_sorted(:, 1) = TKE_uconv_4_5_ALL(spd_uconv_4_5_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_uconv_4_5_sorted, 0:0.25:ceil(max(spd_uconv_4_5_sorted)));        % Can't be fucked, just going to use histc
+spd_uconv_4_5_mean = accumarray(idx(:),spd_uconv_4_5_sorted,[],@mean);
+spd_uconv_4_5_std = accumarray(idx(:),spd_uconv_4_5_sorted,[],@std);
+Vtke_uconv_4_5_mean = accumarray(idx(:),Vtke_uconv_4_5_ALL_sorted,[],@mean);
+valid_idx_uconv_4_5 = find(spd_uconv_4_5_mean > 0);
+
 [spd_uconv_6_sorted(:, 1), spd_uconv_6_sorted_order] = sort(spd_uconv_6_ALL);
 Vtke_uconv_6_ALL_sorted(:, 1) = Vtke_uconv_6_ALL(spd_uconv_6_sorted_order, 1);
 TKE_uconv_6_ALL_sorted(:, 1) = TKE_uconv_6_ALL(spd_uconv_6_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_uconv_6_sorted, 0:0.25:ceil(max(spd_uconv_6_sorted)));        % Can't be fucked, just going to use histc
+spd_uconv_6_mean = accumarray(idx(:),spd_uconv_6_sorted,[],@mean);
+spd_uconv_6_std = accumarray(idx(:),spd_uconv_6_sorted,[],@std);
+Vtke_uconv_6_mean = accumarray(idx(:),Vtke_uconv_6_ALL_sorted,[],@mean);
+valid_idx_uconv_6 = find(spd_uconv_6_mean > 0);
 
 [spd_uconv_10_sorted(:, 1), spd_uconv_10_sorted_order] = sort(spd_uconv_10_ALL);
 Vtke_uconv_10_ALL_sorted(:, 1) = Vtke_uconv_10_ALL(spd_uconv_10_sorted_order, 1);
 TKE_uconv_10_ALL_sorted(:, 1) = TKE_uconv_10_ALL(spd_uconv_10_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_uconv_10_sorted, 0:0.25:ceil(max(spd_uconv_10_sorted)));        % Can't be fucked, just going to use histc
+spd_uconv_10_mean = accumarray(idx(:),spd_uconv_10_sorted,[],@mean);
+spd_uconv_10_std = accumarray(idx(:),spd_uconv_10_sorted,[],@std);
+Vtke_uconv_10_mean = accumarray(idx(:),Vtke_uconv_10_ALL_sorted,[],@mean);
+valid_idx_uconv_10 = find(spd_uconv_10_mean > 0);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lower Convergence Tower
+
 [spd_lconv_1_5_sorted(:, 1), spd_lconv_1_5_sorted_order] = sort(spd_lconv_1_5_ALL);
 Vtke_lconv_1_5_ALL_sorted(:, 1) = Vtke_lconv_1_5_ALL(spd_lconv_1_5_sorted_order, 1);
 TKE_lconv_1_5_ALL_sorted(:, 1) = TKE_lconv_1_5_ALL(spd_lconv_1_5_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_1_5_sorted, 0:0.25:ceil(max(spd_lconv_1_5_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_1_5_mean = accumarray(idx(:),spd_lconv_1_5_sorted,[],@mean);
+spd_lconv_1_5_std = accumarray(idx(:),spd_lconv_1_5_sorted,[],@std);
+Vtke_lconv_1_5_mean = accumarray(idx(:),Vtke_lconv_1_5_ALL_sorted,[],@mean);
+valid_idx_lconv_1_5 = find(spd_lconv_1_5_mean > 0);
 
 [spd_lconv_3_sorted(:, 1), spd_lconv_3_sorted_order] = sort(spd_lconv_3_ALL);
 Vtke_lconv_3_ALL_sorted(:, 1) = Vtke_lconv_3_ALL(spd_lconv_3_sorted_order, 1);
 TKE_lconv_3_ALL_sorted(:, 1) = TKE_lconv_3_ALL(spd_lconv_3_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_3_sorted, 0:0.25:ceil(max(spd_lconv_3_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_3_mean = accumarray(idx(:),spd_lconv_3_sorted,[],@mean);
+spd_lconv_3_std = accumarray(idx(:),spd_lconv_3_sorted,[],@std);
+Vtke_lconv_3_mean = accumarray(idx(:),Vtke_lconv_3_ALL_sorted,[],@mean);
+valid_idx_lconv_3 = find(spd_lconv_3_mean > 0);
+
 [spd_lconv_4_5_sorted(:, 1), spd_lconv_4_5_sorted_order] = sort(spd_lconv_4_5_ALL);
 Vtke_lconv_4_5_ALL_sorted(:, 1) = Vtke_lconv_4_5_ALL(spd_lconv_4_5_sorted_order, 1);
 TKE_lconv_4_5_ALL_sorted(:, 1) = TKE_lconv_4_5_ALL(spd_lconv_4_5_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_4_5_sorted, 0:0.25:ceil(max(spd_lconv_4_5_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_4_5_mean = accumarray(idx(:),spd_lconv_4_5_sorted,[],@mean);
+spd_lconv_4_5_std = accumarray(idx(:),spd_lconv_4_5_sorted,[],@std);
+Vtke_lconv_4_5_mean = accumarray(idx(:),Vtke_lconv_4_5_ALL_sorted,[],@mean);
+valid_idx_lconv_4_5 = find(spd_lconv_4_5_mean > 0);
 
 [spd_lconv_6_sorted(:, 1), spd_lconv_6_sorted_order] = sort(spd_lconv_6_ALL);
 Vtke_lconv_6_ALL_sorted(:, 1) = Vtke_lconv_6_ALL(spd_lconv_6_sorted_order, 1);
 TKE_lconv_6_ALL_sorted(:, 1) = TKE_lconv_6_ALL(spd_lconv_6_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_6_sorted, 0:0.25:ceil(max(spd_lconv_6_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_6_mean = accumarray(idx(:),spd_lconv_6_sorted,[],@mean);
+spd_lconv_6_std = accumarray(idx(:),spd_lconv_6_sorted,[],@std);
+Vtke_lconv_6_mean = accumarray(idx(:),Vtke_lconv_6_ALL_sorted,[],@mean);
+valid_idx_lconv_6 = find(spd_lconv_6_mean > 0);
+
 [spd_lconv_8_5_sorted(:, 1), spd_lconv_8_5_sorted_order] = sort(spd_lconv_8_5_ALL);
 Vtke_lconv_8_5_ALL_sorted(:, 1) = Vtke_lconv_8_5_ALL(spd_lconv_8_5_sorted_order, 1);
 TKE_lconv_8_5_ALL_sorted(:, 1) = TKE_lconv_8_5_ALL(spd_lconv_8_5_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_8_5_sorted, 0:0.25:ceil(max(spd_lconv_8_5_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_8_5_mean = accumarray(idx(:),spd_lconv_8_5_sorted,[],@mean);
+spd_lconv_8_5_std = accumarray(idx(:),spd_lconv_8_5_sorted,[],@std);
+Vtke_lconv_8_5_mean = accumarray(idx(:),Vtke_lconv_8_5_ALL_sorted,[],@mean);
+valid_idx_lconv_8_5 = find(spd_lconv_8_5_mean > 0);
 
 [spd_lconv_10_sorted(:, 1), spd_lconv_10_sorted_order] = sort(spd_lconv_10_ALL);
 Vtke_lconv_10_ALL_sorted(:, 1) = Vtke_lconv_10_ALL(spd_lconv_10_sorted_order, 1);
 TKE_lconv_10_ALL_sorted(:, 1) = TKE_lconv_10_ALL(spd_lconv_10_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_10_sorted, 0:0.25:ceil(max(spd_lconv_10_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_10_mean = accumarray(idx(:),spd_lconv_10_sorted,[],@mean);
+spd_lconv_10_std = accumarray(idx(:),spd_lconv_10_sorted,[],@std);
+Vtke_lconv_10_mean = accumarray(idx(:),Vtke_lconv_10_ALL_sorted,[],@mean);
+valid_idx_lconv_10 = find(spd_lconv_10_mean > 0);
+
 [spd_lconv_15_sorted(:, 1), spd_lconv_15_sorted_order] = sort(spd_lconv_15_ALL);
 Vtke_lconv_15_ALL_sorted(:, 1) = Vtke_lconv_15_ALL(spd_lconv_15_sorted_order, 1);
 TKE_lconv_15_ALL_sorted(:, 1) = TKE_lconv_15_ALL(spd_lconv_15_sorted_order, 1);
 
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_15_sorted, 0:0.25:ceil(max(spd_lconv_15_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_15_mean = accumarray(idx(:),spd_lconv_15_sorted,[],@mean);
+spd_lconv_15_std = accumarray(idx(:),spd_lconv_15_sorted,[],@std);
+Vtke_lconv_15_mean = accumarray(idx(:),Vtke_lconv_15_ALL_sorted,[],@mean);
+valid_idx_lconv_15 = find(spd_lconv_15_mean > 0);
+
 [spd_lconv_20_sorted(:, 1), spd_lconv_20_sorted_order] = sort(spd_lconv_20_ALL);
 Vtke_lconv_20_ALL_sorted(:, 1) = Vtke_lconv_20_ALL(spd_lconv_20_sorted_order, 1);
 TKE_lconv_20_ALL_sorted(:, 1) = TKE_lconv_20_ALL(spd_lconv_20_sorted_order, 1);
+
+% Find speed mean and std
+[~, idx] = histc(spd_lconv_20_sorted, 0:0.25:ceil(max(spd_lconv_20_sorted)));        % Can't be fucked, just going to use histc
+spd_lconv_20_mean = accumarray(idx(:),spd_lconv_20_sorted,[],@mean);
+spd_lconv_20_std = accumarray(idx(:),spd_lconv_20_sorted,[],@std);
+Vtke_lconv_20_mean = accumarray(idx(:),Vtke_lconv_20_ALL_sorted,[],@mean);
+valid_idx_lconv_20 = find(spd_lconv_20_mean > 0);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+errorbar(spd_init_1_5_mean(valid_idx_init_1_5), Vtke_init_1_5_mean(valid_idx_init_1_5), spd_init_1_5_std(valid_idx_init_1_5))
+hold on
+errorbar(spd_init_3_mean(valid_idx_init_3), Vtke_init_3_mean(valid_idx_init_3), spd_init_3_std(valid_idx_init_3))
+hold on
+errorbar(spd_init_4_5_mean(valid_idx_init_4_5), Vtke_init_4_5_mean(valid_idx_init_4_5), spd_init_4_5_std(valid_idx_init_4_5))
+hold on
+errorbar(spd_init_6_mean(valid_idx_init_6), Vtke_init_6_mean(valid_idx_init_6), spd_init_6_std(valid_idx_init_6))
+hold on
+errorbar(spd_init_10_mean(valid_idx_init_10), Vtke_init_10_mean(valid_idx_init_10), spd_init_10_std(valid_idx_init_10))
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat('Initiation Tower Binned Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_init_bin.png'), '-dpng','-r1000');
+movefile(strcat( 'one_init_bin.png'), strcat('Jielun', filesep, 'one_init_bin.png'));
+
+
+
+figure
+errorbar(spd_rel_1_5_mean(valid_idx_rel_1_5), Vtke_rel_1_5_mean(valid_idx_rel_1_5), spd_rel_1_5_std(valid_idx_rel_1_5))
+hold on
+errorbar(spd_rel_3_mean(valid_idx_rel_3), Vtke_rel_3_mean(valid_idx_rel_3), spd_rel_3_std(valid_idx_rel_3))
+hold on
+errorbar(spd_rel_4_5_mean(valid_idx_rel_4_5), Vtke_rel_4_5_mean(valid_idx_rel_4_5), spd_rel_4_5_std(valid_idx_rel_4_5))
+hold on
+errorbar(spd_rel_6_mean(valid_idx_rel_6), Vtke_rel_6_mean(valid_idx_rel_6), spd_rel_6_std(valid_idx_rel_6))
+hold on
+errorbar(spd_rel_8_5_mean(valid_idx_rel_8_5), Vtke_rel_8_5_mean(valid_idx_rel_8_5), spd_rel_8_5_std(valid_idx_rel_8_5))
+hold on
+errorbar(spd_rel_10_mean(valid_idx_rel_10), Vtke_rel_10_mean(valid_idx_rel_10), spd_rel_10_std(valid_idx_rel_10))
+hold on
+errorbar(spd_rel_15_mean(valid_idx_rel_15), Vtke_rel_15_mean(valid_idx_rel_15), spd_rel_15_std(valid_idx_rel_15))
+hold on
+errorbar(spd_rel_20_mean(valid_idx_rel_20), Vtke_rel_20_mean(valid_idx_rel_20), spd_rel_20_std(valid_idx_rel_20))
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat('Release Tower Binned Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_rel_bin.png'), '-dpng','-r1000');
+movefile(strcat( 'one_rel_bin.png'), strcat('Jielun', filesep, 'one_rel_bin.png'));
+
+
+
+figure
+errorbar(spd_uconv_1_5_mean(valid_idx_uconv_1_5), Vtke_uconv_1_5_mean(valid_idx_uconv_1_5), spd_uconv_1_5_std(valid_idx_uconv_1_5))
+hold on
+errorbar(spd_uconv_3_mean(valid_idx_uconv_3), Vtke_uconv_3_mean(valid_idx_uconv_3), spd_uconv_3_std(valid_idx_uconv_3))
+hold on
+errorbar(spd_uconv_4_5_mean(valid_idx_uconv_4_5), Vtke_uconv_4_5_mean(valid_idx_uconv_4_5), spd_uconv_4_5_std(valid_idx_uconv_4_5))
+hold on
+errorbar(spd_uconv_6_mean(valid_idx_uconv_6), Vtke_uconv_6_mean(valid_idx_uconv_6), spd_uconv_6_std(valid_idx_uconv_6))
+hold on
+errorbar(spd_uconv_10_mean(valid_idx_uconv_10), Vtke_uconv_10_mean(valid_idx_uconv_10), spd_uconv_10_std(valid_idx_uconv_10))
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat('Upper Convergence Tower Binned Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_uconv_bin.png'), '-dpng','-r1000');
+movefile(strcat( 'one_uconv_bin.png'), strcat('Jielun', filesep, 'one_uconv_bin.png'));
+
+
+figure
+errorbar(spd_lconv_1_5_mean(valid_idx_lconv_1_5), Vtke_lconv_1_5_mean(valid_idx_lconv_1_5), spd_lconv_1_5_std(valid_idx_lconv_1_5))
+hold on
+errorbar(spd_lconv_3_mean(valid_idx_lconv_3), Vtke_lconv_3_mean(valid_idx_lconv_3), spd_lconv_3_std(valid_idx_lconv_3))
+hold on
+errorbar(spd_lconv_4_5_mean(valid_idx_lconv_4_5), Vtke_lconv_4_5_mean(valid_idx_lconv_4_5), spd_lconv_4_5_std(valid_idx_lconv_4_5))
+hold on
+errorbar(spd_lconv_6_mean(valid_idx_lconv_6), Vtke_lconv_6_mean(valid_idx_lconv_6), spd_lconv_6_std(valid_idx_lconv_6))
+hold on
+errorbar(spd_lconv_8_5_mean(valid_idx_lconv_8_5), Vtke_lconv_8_5_mean(valid_idx_lconv_8_5), spd_lconv_8_5_std(valid_idx_lconv_8_5))
+hold on
+errorbar(spd_lconv_10_mean(valid_idx_lconv_10), Vtke_lconv_10_mean(valid_idx_lconv_10), spd_lconv_10_std(valid_idx_lconv_10))
+hold on
+errorbar(spd_lconv_15_mean(valid_idx_lconv_15), Vtke_lconv_15_mean(valid_idx_lconv_15), spd_lconv_15_std(valid_idx_lconv_15))
+hold on
+errorbar(spd_lconv_20_mean(valid_idx_lconv_20), Vtke_lconv_20_mean(valid_idx_lconv_20), spd_lconv_20_std(valid_idx_lconv_20))
+hold off
+xlabel('Wind Speed (m/s)')
+ylabel('V tke')
+title(strcat('Lower Conver Tower Binned Data'))
+%legend('1.5m', '3.0m', '4.5m', '6.0m', '10.0m', '15.0m', '20.0m')
+tempLegend = legend('1.5m', '3.0m', '4.5m', '6.0m', '8.5m', '10.0m', '15.0m', '20.0m');
+set(tempLegend, 'Location', 'best')
+%set(gcf,'PaperSize',[40 20])
+print(gcf, strcat('one_lconv_bin.png'), '-dpng','-r1000');
+movefile(strcat( 'one_lconv_bin.png'), strcat('Jielun', filesep, 'one_lconv_bin.png'));
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Plot it
 figure
