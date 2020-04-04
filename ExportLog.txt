@@ -1,0 +1,662 @@
+   03-Apr-2020 23:48:10
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+   03-Apr-2020 23:51:11
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+   04-Apr-2020 02:37:53
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    '20181026'
+
+{Undefined function or variable 'label'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run_farm', 'D:\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run_farm.m', 235)" style="font-weight:bold">run_farm</a> (<a href="matlab: opentoline('D:\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run_farm.m',235,0)">line 235</a>)
+    raintag(label) = ones(length(time), 1);
+} 
+opentoline('D:\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run_farm.m',235,0)
+run_farm
+   04-Apr-2020 02:38:14
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    '20181026'
+
+
+currDate =
+
+    '20181027'
+
+
+currDate =
+
+    '20181028'
+
+
+currDate =
+
+    '20181029'
+
+   04-Apr-2020 02:38:38
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    '1026'
+
+
+currDate =
+
+    '1027'
+
+
+currDate =
+
+    '1028'
+
+
+currDate =
+
+    '1029'
+
+   04-Apr-2020 02:48:57
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    '1026'
+
+
+printer =
+
+   288
+
+
+currDate =
+
+    '1027'
+
+
+printer =
+
+   288
+
+
+currDate =
+
+    '1028'
+
+
+printer =
+
+   288
+
+
+currDate =
+
+    '1029'
+
+
+printer =
+
+   288
+
+   04-Apr-2020 02:51:58
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    '1026'
+
+
+currDate =
+
+    '1027'
+
+
+currDate =
+
+    '1028'
+
+
+currDate =
+
+    '1029'
+
+   04-Apr-2020 02:52:51
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 79 NetCDF files in this directory.
+
+
+currDate =
+
+    'sfs_'
+
+
+currDate =
+
+    '0913'
+
+
+currDate =
+
+    '0914'
+
+
+currDate =
+
+    '0915'
+
+
+currDate =
+
+    '0916'
+
+
+currDate =
+
+    '0917'
+
+
+currDate =
+
+    '0918'
+
+
+currDate =
+
+    '0919'
+
+
+currDate =
+
+    '0920'
+
+
+currDate =
+
+    '0921'
+
+
+currDate =
+
+    '0922'
+
+
+currDate =
+
+    '0923'
+
+
+currDate =
+
+    '0924'
+
+
+currDate =
+
+    '0925'
+
+
+currDate =
+
+    '0926'
+
+
+currDate =
+
+    '0927'
+
+
+currDate =
+
+    '0928'
+
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run_farm', 'D:\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run_farm.m', 72)" style="font-weight:bold">run_farm</a> (<a href="matlab: opentoline('D:\GitHub\SAVANT-Dustrak-and-Environment-Analysis\run_farm.m',72,0)">line 72</a>)
+} 
+run_farm
+   04-Apr-2020 02:53:50
+
+=============================================================================
+This is for farm site data only!
+
+
+There are 78 NetCDF files in this directory.
+
+
+currDate =
+
+    '0913'
+
+
+currDate =
+
+    '0914'
+
+
+currDate =
+
+    '0915'
+
+
+currDate =
+
+    '0916'
+
+
+currDate =
+
+    '0917'
+
+
+currDate =
+
+    '0918'
+
+
+currDate =
+
+    '0919'
+
+
+currDate =
+
+    '0920'
+
+
+currDate =
+
+    '0921'
+
+
+currDate =
+
+    '0922'
+
+
+currDate =
+
+    '0923'
+
+
+currDate =
+
+    '0924'
+
+
+currDate =
+
+    '0925'
+
+
+currDate =
+
+    '0926'
+
+
+currDate =
+
+    '0927'
+
+
+currDate =
+
+    '0928'
+
+
+currDate =
+
+    '0929'
+
+
+currDate =
+
+    '0930'
+
+
+currDate =
+
+    '1001'
+
+
+currDate =
+
+    '1002'
+
+
+currDate =
+
+    '1003'
+
+
+currDate =
+
+    '1004'
+
+
+currDate =
+
+    '1005'
+
+
+currDate =
+
+    '1006'
+
+
+currDate =
+
+    '1007'
+
+
+currDate =
+
+    '1008'
+
+
+currDate =
+
+    '1009'
+
+
+currDate =
+
+    '1010'
+
+
+currDate =
+
+    '1011'
+
+
+currDate =
+
+    '1012'
+
+
+currDate =
+
+    '1013'
+
+
+currDate =
+
+    '1014'
+
+
+currDate =
+
+    '1015'
+
+
+currDate =
+
+    '1016'
+
+
+currDate =
+
+    '1017'
+
+
+currDate =
+
+    '1018'
+
+
+currDate =
+
+    '1019'
+
+
+currDate =
+
+    '1020'
+
+
+currDate =
+
+    '1021'
+
+
+currDate =
+
+    '1022'
+
+
+currDate =
+
+    '1023'
+
+
+currDate =
+
+    '1024'
+
+
+currDate =
+
+    '1025'
+
+
+currDate =
+
+    '1026'
+
+
+currDate =
+
+    '1027'
+
+
+currDate =
+
+    '1028'
+
+
+currDate =
+
+    '1029'
+
+
+currDate =
+
+    '1030'
+
+
+currDate =
+
+    '1031'
+
+
+currDate =
+
+    '1101'
+
+
+currDate =
+
+    '1102'
+
+
+currDate =
+
+    '1103'
+
+
+currDate =
+
+    '1104'
+
+
+currDate =
+
+    '1105'
+
+
+currDate =
+
+    '1106'
+
+
+currDate =
+
+    '1107'
+
+
+currDate =
+
+    '1108'
+
+
+currDate =
+
+    '1109'
+
+
+currDate =
+
+    '1110'
+
+
+currDate =
+
+    '1111'
+
+
+currDate =
+
+    '1112'
+
+
+currDate =
+
+    '1113'
+
+
+currDate =
+
+    '1114'
+
+
+currDate =
+
+    '1115'
+
+
+currDate =
+
+    '1116'
+
+
+currDate =
+
+    '1117'
+
+
+currDate =
+
+    '1118'
+
+
+currDate =
+
+    '1119'
+
+
+currDate =
+
+    '1120'
+
+
+currDate =
+
+    '1121'
+
+
+currDate =
+
+    '1122'
+
+
+currDate =
+
+    '1123'
+
+
+currDate =
+
+    '1124'
+
+
+currDate =
+
+    '1125'
+
+
+currDate =
+
+    '1126'
+
+
+currDate =
+
+    '1127'
+
+
+currDate =
+
+    '1128'
+
+
+currDate =
+
+    '1129'
+

@@ -16,7 +16,8 @@ disp(START_TIME)
 fprintf('=============================================================================');
 fprintf('\n');
 errmsg('magenta', 'This is for farm site data only!\n\n')
-data_dir = input('Please enter the name of the input NetCDF file folder: \n', 's');
+%data_dir = input('Please enter the name of the input NetCDF file folder: \n', 's');
+data_dir = 'Farm_Site_Data';
 
 % Catch all .nc files
 nc_group = dir(strcat(data_dir, filesep, '*.nc'));
@@ -38,16 +39,19 @@ fprintf('\n');
 
 % Start to loop through it
 for idx = 1:num_NC
+%for idx = 45:48       % This is for debug purposes.
     % Extract File Name
     currFile = strcat(data_dir, filesep, nc_group(idx).name);
     name = strcat(nc_group(idx).name);
     % currDate format changed
-    currDate = char(extractBetween(name, 6, 13));
+    currDate = char(extractBetween(name, 10, 13))
     % Toggle this for debugging purposes
     % ncdisp(testStr)
     time  = ncread(currFile,'time');
     len_Table = length(time);   % For putting null there
     
+    % Create another duplicate
+    second_counter = time;
     % Initialize Error Counter
     flag_counter = 0;
     
@@ -204,20 +208,60 @@ for idx = 1:num_NC
     end
     
     
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Now we try to filter out the precipitation period.            %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % This is the temporary solution, not sure if subject to future
+    % changes.
+    
+    % Try to find the time stamps where there are rains
+    high_freq_rain_idx = find(rainr_3m > 0);
+    
+    % Cut down the time before the rain starts
+    high_pre = high_freq_rain_idx - 1;
+    high_pre = high_pre(high_pre > 0);
+    
+    % Cut down
+    high_post = high_freq_rain_idx + 1;
+    high_post = high_post(high_post <= length(time));    % This makes sure it doesn't overflow
+    
+    % Now we set join
+    temp_join = union(high_pre, high_freq_rain_idx);
+    rain_idx = union(temp_join, high_post);
+    
+    % So we decide to use 1 to denote the valid data which does not have
+    % rain, where as 0 as there are rains.
+    raintag = ones(length(time), 1);
+    raintag(rain_idx) = 0;
+    
+    % Down-sampling to 5-min interval to match with the other set of data
+    % given by NCAR.
+    five_min_rain = raintag(3:5:length(time));
+    
+    time_tag = CDT_time(3:5:length(time));
+    
+    % This is for debug purpose only
+    %printer = length(five_min_rain)
+    
+    
     % Generate Tables
     
     % Generate empty column
     bar_fence = repmat('|',length(CDT_time),1);
+    bar_line = repmat('|',length(time_tag),1);
     
     % Group table
-    tempT = table(CDT_time, bar_fence, T_3m, Td_3m, RH_3m, P_3m, Spd_3m, raina_3m, preciptype_3m, rainr_3m, Ad_3m);
+    tempT = table(CDT_time, bar_fence, T_3m, Td_3m, RH_3m, P_3m, Spd_3m, raina_3m, preciptype_3m, rainr_3m, Ad_3m, bar_fence, second_counter, bar_fence, raintag);
+    temp_raintag = table(time_tag, bar_line, five_min_rain);
     
     % Format table name
     table_name_T = strcat(currDate, '_Farm.csv');
+    table_name_raintag = strcat(currDate, '_RainTag.csv');
     
     % Output Tables
     writetable(tempT, table_name_T);
-    
+    writetable(temp_raintag, table_name_raintag);
     
 end
 
