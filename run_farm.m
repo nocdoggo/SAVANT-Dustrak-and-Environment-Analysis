@@ -215,8 +215,9 @@ for idx = 1:num_NC
     % This is the temporary solution, not sure if subject to future
     % changes.
     
-    % Try to find the time stamps where there are rains
-    high_freq_rain_idx = find(rainr_3m > 0);
+    % Try to find the time stamps where there are rains, also we need to
+    % remove the values which are NaN.
+    high_freq_rain_idx = find((rainr_3m > 0) | isnan(rainr_3m));
     
     % Cut down the time before the rain starts
     high_pre = high_freq_rain_idx - 1;
